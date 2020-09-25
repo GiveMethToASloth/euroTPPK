@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4DD2A71B-109C-4686-98BB-8F57F822CEFE}</ProjectGuid>
+    <RootNamespace>EuroTPPK</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.28916.169</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <OutputFile>EuroTPPK/houdini.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="asm.cpp" />
+    <ClCompile Include="AutoAim.cpp" />
+    <ClCompile Include="Autoparty.cpp" />
+    <ClCompile Include="BPManager.cpp" />
+    <ClCompile Include="CalcTele.cpp" />
+    <ClCompile Include="CCommon.cpp" />
+    <ClCompile Include="Chicken.cpp" />
+    <ClCompile Include="CollisionMap.cpp" />
+    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="ConfigBox.cpp" />
+    <ClCompile Include="Console.cpp" />
+    <ClCompile Include="CTele.cpp" />
+    <ClCompile Include="D2Helpers.cpp" />
+    <ClCompile Include="DrawHook.cpp" />
+    <ClCompile Include="Drink.cpp" />
+    <ClCompile Include="EuroTPPK.cpp" />
+    <ClCompile Include="expbox.cpp" />
+    <ClCompile Include="Extra.cpp" />
+    <ClCompile Include="InfoBox.cpp" />
+    <ClCompile Include="Intercepts.cpp" />
+    <ClCompile Include="Internet.cpp" />
+    <ClCompile Include="ItemLevel.cpp" />
+    <ClCompile Include="ItemViewer.cpp" />
+    <ClCompile Include="KeyHook.cpp" />
+    <ClCompile Include="Keylogger.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="Maphack.cpp" />
+    <ClCompile Include="Monsters.cpp" />
+    <ClCompile Include="Offset.cpp" />
+    <ClCompile Include="PrecastsBox.cpp" />
+    <ClCompile Include="ReceivePacket.cpp" />
+    <ClCompile Include="Reg.cpp" />
+    <ClCompile Include="SelectedTarget.cpp" />
+    <ClCompile Include="SendPacket.cpp" />
+    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="StatBox.cpp" />
+    <ClCompile Include="Targetlist.cpp" />
+    <ClCompile Include="Team.cpp" />
+    <ClCompile Include="TeleportPath.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="WalkPath.cpp" />
+    <ClCompile Include="WelcomeBox.cpp" />
+    <ClCompile Include="Winamp.cpp" />
+    <ClCompile Include="WinampBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Area.h" />
+    <ClInclude Include="ArrayEx.h" />
+    <ClInclude Include="asm.h" />
+    <ClInclude Include="AutoAim.h" />
+    <ClInclude Include="Autoparty.h" />
+    <ClInclude Include="BPManager.h" />
+    <ClInclude Include="CalcTele.h" />
+    <ClInclude Include="CCommon.h" />
+    <ClInclude Include="Chicken.h" />
+    <ClInclude Include="CMapIncludes.h" />
+    <ClInclude Include="CollisionMap.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="ConfigBox.h" />
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="CTele.h" />
+    <ClInclude Include="D2Helpers.h" />
+    <ClInclude Include="D2Ptrs.h" />
+    <ClInclude Include="D2Structs.h" />
+    <ClInclude Include="DrawHook.h" />
+    <ClInclude Include="Drink.h" />
+    <ClInclude Include="EuroTPPK.h" />
+    <ClInclude Include="expbox.h" />
+    <ClInclude Include="Extra.h" />
+    <ClInclude Include="InfoBox.h" />
+    <ClInclude Include="Intercepts.h" />
+    <ClInclude Include="Internet.h" />
+    <ClInclude Include="ItemLevel.h" />
+    <ClInclude Include="ItemViewer.h" />
+    <ClInclude Include="KeyHook.h" />
+    <ClInclude Include="Keylogger.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Maphack.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Monsters.h" />
+    <ClInclude Include="Offset.h" />
+    <ClInclude Include="Patch.h" />
+    <ClInclude Include="PrecastsBox.h" />
+    <ClInclude Include="ReceivePacket.h" />
+    <ClInclude Include="Reg.h" />
+    <ClInclude Include="SelectedTarget.h" />
+    <ClInclude Include="SendPacket.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="StatBox.h" />
+    <ClInclude Include="SyncObj.h" />
+    <ClInclude Include="Targetlist.h" />
+    <ClInclude Include="Team.h" />
+    <ClInclude Include="TeleportPath.h" />
+    <ClInclude Include="Test.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Vars.h" />
+    <ClInclude Include="WalkPath.h" />
+    <ClInclude Include="WelcomeBox.h" />
+    <ClInclude Include="Winamp.h" />
+    <ClInclude Include="WinampBox.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

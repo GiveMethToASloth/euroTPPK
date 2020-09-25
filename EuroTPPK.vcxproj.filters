@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Diablo II">
+      <UniqueIdentifier>{9723ec76-5e73-4fb1-be32-1c27854c5e3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts">
+      <UniqueIdentifier>{fbab5b0f-36d9-46dc-98e3-f06d3fd45267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\ReceivePacket">
+      <UniqueIdentifier>{ac151113-0359-4227-88bd-fab646100a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\SendPacket">
+      <UniqueIdentifier>{19b17d50-7427-4a73-8459-3ccad39d28c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\DrawHook">
+      <UniqueIdentifier>{de62ea07-ad04-4159-bd51-726b38f67929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\DrawHook\Boxes">
+      <UniqueIdentifier>{b0b392d4-f020-4a0e-961d-606c16efd949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\ItemViewer">
+      <UniqueIdentifier>{90fe8f7b-7205-403f-ba76-c76c0df66306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\ItemLevel">
+      <UniqueIdentifier>{a7cec9a5-fe1b-4aa3-a88b-43688ee5b733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intercepts\KeyHook">
+      <UniqueIdentifier>{fbdcba6d-2b68-4738-a8d1-950bc4a013c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="__ASM">
+      <UniqueIdentifier>{0d55c9ee-8b2f-4508-bb92-b8baa8024520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maphack">
+      <UniqueIdentifier>{b9cf4a98-81c4-437b-9d05-9b7bee6e9f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LinkedList">
+      <UniqueIdentifier>{78c35770-fdeb-485b-a848-4791c90a9d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AutoAim">
+      <UniqueIdentifier>{024c0863-661b-4379-a327-ff2466e8ee1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{a6d561b6-e2ca-46eb-8712-36f72430a922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chicken">
+      <UniqueIdentifier>{811b385d-408d-494d-893a-3a80e12db28d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cmap">
+      <UniqueIdentifier>{157bd619-19a3-4fe1-8380-c0a6a713fb33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Internet">
+      <UniqueIdentifier>{f95d22b8-bbd7-43e9-af41-17763e41c016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AutoParty">
+      <UniqueIdentifier>{31d265ba-683e-4bc7-ac01-8bf188b3cbfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Team">
+      <UniqueIdentifier>{66ef1e86-618d-4d20-96db-f25b64ad84d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BPManager">
+      <UniqueIdentifier>{d28aa2b6-2eb7-4ff0-bbb3-4c4be849b92e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinAmp">
+      <UniqueIdentifier>{0de64253-bdca-40b0-9c31-77aed1bdb0f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Keylogger">
+      <UniqueIdentifier>{079696c4-55ad-46a5-a246-d4015d21f7a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EuroTPPK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Reg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>Diablo II</Filter>
+    </ClCompile>
+    <ClCompile Include="D2Helpers.cpp">
+      <Filter>Diablo II</Filter>
+    </ClCompile>
+    <ClCompile Include="Offset.cpp">
+      <Filter>Diablo II</Filter>
+    </ClCompile>
+    <ClCompile Include="Intercepts.cpp">
+      <Filter>Intercepts</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceivePacket.cpp">
+      <Filter>Intercepts\ReceivePacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SendPacket.cpp">
+      <Filter>Intercepts\SendPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawHook.cpp">
+      <Filter>Intercepts\DrawHook</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoBox.cpp">
+      <Filter>Intercepts\DrawHook</Filter>
+    </ClCompile>
+    <ClCompile Include="StatBox.cpp">
+      <Filter>Intercepts\DrawHook</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigBox.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="expbox.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="PrecastsBox.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectedTarget.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Targetlist.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="WelcomeBox.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="WinampBox.cpp">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemViewer.cpp">
+      <Filter>Intercepts\ItemViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemLevel.cpp">
+      <Filter>Intercepts\ItemLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyHook.cpp">
+      <Filter>Intercepts\KeyHook</Filter>
+    </ClCompile>
+    <ClCompile Include="asm.cpp">
+      <Filter>__ASM</Filter>
+    </ClCompile>
+    <ClCompile Include="Maphack.cpp">
+      <Filter>Maphack</Filter>
+    </ClCompile>
+    <ClCompile Include="Monsters.cpp">
+      <Filter>Maphack</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Maphack</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>LinkedList</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoAim.cpp">
+      <Filter>AutoAim</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Chicken.cpp">
+      <Filter>Chicken</Filter>
+    </ClCompile>
+    <ClCompile Include="Drink.cpp">
+      <Filter>Chicken</Filter>
+    </ClCompile>
+    <ClCompile Include="CalcTele.cpp">
+      <Filter>Cmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CCommon.cpp">
+      <Filter>Cmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMap.cpp">
+      <Filter>Cmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CTele.cpp">
+      <Filter>Cmap</Filter>
+    </ClCompile>
+    <ClCompile Include="TeleportPath.cpp">
+      <Filter>Cmap</Filter>
+    </ClCompile>
+    <ClCompile Include="WalkPath.cpp">
+      <Filter>Cmap</Filter>
+    </ClCompile>
+    <ClCompile Include="Internet.cpp">
+      <Filter>Internet</Filter>
+    </ClCompile>
+    <ClCompile Include="Autoparty.cpp">
+      <Filter>AutoParty</Filter>
+    </ClCompile>
+    <ClCompile Include="Extra.cpp">
+      <Filter>Team</Filter>
+    </ClCompile>
+    <ClCompile Include="Team.cpp">
+      <Filter>Team</Filter>
+    </ClCompile>
+    <ClCompile Include="BPManager.cpp">
+      <Filter>BPManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Winamp.cpp">
+      <Filter>WinAmp</Filter>
+    </ClCompile>
+    <ClCompile Include="Keylogger.cpp">
+      <Filter>Keylogger</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EuroTPPK.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reg.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Area.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrayEx.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="D2Helpers.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="D2Ptrs.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="D2Structs.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="Offset.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="Patch.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="SyncObj.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="Vars.h">
+      <Filter>Diablo II</Filter>
+    </ClInclude>
+    <ClInclude Include="Intercepts.h">
+      <Filter>Intercepts</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceivePacket.h">
+      <Filter>Intercepts\ReceivePacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SendPacket.h">
+      <Filter>Intercepts\SendPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawHook.h">
+      <Filter>Intercepts\DrawHook</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoBox.h">
+      <Filter>Intercepts\DrawHook</Filter>
+    </ClInclude>
+    <ClInclude Include="StatBox.h">
+      <Filter>Intercepts\DrawHook</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigBox.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="expbox.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="PrecastsBox.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectedTarget.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Targetlist.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="WelcomeBox.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="WinampBox.h">
+      <Filter>Intercepts\DrawHook\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemViewer.h">
+      <Filter>Intercepts\ItemViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemLevel.h">
+      <Filter>Intercepts\ItemLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyHook.h">
+      <Filter>Intercepts\KeyHook</Filter>
+    </ClInclude>
+    <ClInclude Include="asm.h">
+      <Filter>__ASM</Filter>
+    </ClInclude>
+    <ClInclude Include="Maphack.h">
+      <Filter>Maphack</Filter>
+    </ClInclude>
+    <ClInclude Include="Monsters.h">
+      <Filter>Maphack</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>Maphack</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoAim.h">
+      <Filter>AutoAim</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Chicken.h">
+      <Filter>Chicken</Filter>
+    </ClInclude>
+    <ClInclude Include="Drink.h">
+      <Filter>Chicken</Filter>
+    </ClInclude>
+    <ClInclude Include="CalcTele.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommon.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapIncludes.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMap.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CTele.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="TeleportPath.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkPath.h">
+      <Filter>Cmap</Filter>
+    </ClInclude>
+    <ClInclude Include="Internet.h">
+      <Filter>Internet</Filter>
+    </ClInclude>
+    <ClInclude Include="Autoparty.h">
+      <Filter>AutoParty</Filter>
+    </ClInclude>
+    <ClInclude Include="Extra.h">
+      <Filter>Team</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>Team</Filter>
+    </ClInclude>
+    <ClInclude Include="BPManager.h">
+      <Filter>BPManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Winamp.h">
+      <Filter>WinAmp</Filter>
+    </ClInclude>
+    <ClInclude Include="Keylogger.h">
+      <Filter>Keylogger</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
