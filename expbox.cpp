@@ -61,9 +61,10 @@ void ExpBox(void) {
 	if (!pUnit) return;
 	DWORD dwLevel = D2COMMON_GetUnitStat(pUnit, 12, 0);
 	DWORD dwExp = D2COMMON_GetUnitStat(pUnit, 13, 0);
-	DWORD dwMaxExp = nLevelExp[dwLevel];
-	DWORD dwExpLeft = GetExpLeft();
-	DWORD dwExpPercent = DWORD(abs((double(dwExp - nLevelExp[dwLevel - 1]) / double(dwMaxExp - nLevelExp[dwLevel - 1])) * 100.0));
+	DWORD dwMaxExp = DWORD(D2COMMON_GetExpToAchiveLvl(1, int(dwLevel)));
+	DWORD dwExpLastLvl = DWORD(D2COMMON_GetExpToAchiveLvl(1, int(dwLevel - 1)));
+	DWORD dwExpRemain = DWORD(D2COMMON_GetExpToAchiveLvl(1, dwLevel)) - dwExp;
+	DWORD dwExpPercent = DWORD(abs((double(dwExp - dwExpLastLvl) / double(dwMaxExp - dwExpLastLvl)) * 100.0));
 	DWORD dwGainedExp = dwExp - dwCurrentExp;
 	DWORD dwGamesRemain = 0;
 
@@ -78,7 +79,7 @@ void ExpBox(void) {
 	if (dwCurrentExp != 0) sprintf_s(szGamesLeft, 200, "%d", dwGamesRemain);
 
 	char szExpRemaining[20];
-	sprintf(szExpRemaining, "%s", ConvertIntegers(dwExpLeft));
+	sprintf(szExpRemaining, "%s", ConvertIntegers(dwExpRemain));
 
 	char Buf[512];
 	if (!D2CLIENT_GetUiVar(0x01))

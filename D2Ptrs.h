@@ -220,6 +220,7 @@ FUNCPTR(D2COMMON, FixOverheadMsg, VOID __stdcall, (OverheadMsg* pMsg, DWORD dwUn
 FUNCPTR(D2COMMON, CheckCollision, DWORD __stdcall, (Room1* pRoom, DWORD dwX, DWORD dwY, DWORD dwBitMask), 0x24CB30) // Updated
 //FUNCPTR(D2COMMON, GetUnitMaxHP, DWORD __stdcall, (UnitAny* pUnit), -10445) // Updated
 //FUNCPTR(D2COMMON, CheckUnitSlot, DWORD __stdcall, (Inventory* pInventory, DWORD dwSlot), -10099)
+FUNCPTR(D2COMMON, GetExpToAchiveLvl, int __stdcall, (int ClassId, int ExpLvl), 0x211800)
 
 VARPTR(D2CLIENT, PlayerList, RosterUnit*, 0x3BB5C0) //added
 //VARPTR(D2CLIENT, pUnitTable, POINT, 0x11A960) //added
