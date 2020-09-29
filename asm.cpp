@@ -219,14 +219,16 @@ void __declspec(naked) __fastcall GameEndPatch_ASM()
 	}
 }
 
-void __declspec(naked) __fastcall GameLoopPatch_ASM()
+void __declspec(naked) GameLoopPatch_ASM()
 {
-	__asm {
-		pop eax
-		sub esp, 0x20
-		mov[esp + 0x0c], ecx
-		push eax
-		jmp TimerTick
+	__asm
+	{
+		pushad;
+		call GameLoopPatch;
+		popad;
+
+		push D2CLIENT_GameLoop;
+		ret;
 	}
 }
 

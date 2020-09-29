@@ -20,6 +20,6 @@ PatchHook pHooks[] = {
 	{PatchCall, GetDllOffset("D2Multi.dll", 0x45F39), (DWORD)NextGamePasswordPatch, 5},
 	{PatchCall, GetDllOffset("D2Multi.dll", 0x46153), (DWORD)NextGameNamePatch, 5},
 	{PatchCall, GetDllOffset("D2Multi.dll", 0x4618E), (DWORD)NextGamePasswordPatch, 5},
-	{PatchCall,  GetDllOffset("D2Client.dll", 0x25A1B3),(DWORD)GameEndPatch_ASM, 5 },
-	{PatchCall,  GetDllOffset("D2Client.dll", 0x4F28B),(DWORD)GameLoopPatch_ASM, 6,}*/
+	{PatchCall,  GetDllOffset("D2Client.dll", 0x25A1B3),(DWORD)GameEndPatch_ASM, 5 },*/
+	{PatchCall,  GetDllOffset("D2Client.dll", 0x4F28B),(DWORD)GameLoopPatch_ASM, 6,}
 };

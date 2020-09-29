@@ -147,6 +147,7 @@ VARPTR(D2CLIENT, GoldDialogAction, DWORD, 0x3A279C) // Updated
 
 //ASMPTR(D2CLIENT, GenerateSpell_I, 0x4F800) //6FAFF800 6FAFFF08  |. E8 F3F8FFFF    CALL D2Client.6FAFF800                   ; \D2Client.6FAFF800
 //ASMPTR(D2CLIENT, TestPvpFlag_I, 0x30DD0) // Updated
+ASMPTR(D2CLIENT, GameLoop, 0x4C990) //Updated 1.14d
 ASMPTR(D2CLIENT, LoadUIImage_I, 0x788B0) // Updated
 ASMPTR(D2CLIENT, LoadAct_1, 0x59150) // Updated
 ASMPTR(D2CLIENT, LoadAct_2, 0x62D00) // Updated
@@ -190,7 +191,7 @@ FUNCPTR(D2COMMON, GetItemFromInventory, UnitAny* __stdcall, (Inventory* inv), 0x
 FUNCPTR(D2COMMON, GetNextItemFromInventory, UnitAny* __stdcall, (UnitAny* pItem), 0x23DFA0)// Updated
 FUNCPTR(D2COMMON, GetItemText, ItemTxt* __stdcall, (DWORD dwItemNo), 0x2335F0) // Updated
 FUNCPTR(D2COMMON, GetUnitStat, DWORD __stdcall, (UnitAny* pUnit, DWORD dwStat, DWORD dwStat2), 0x225480) // Updated
-FUNCPTR(D2COMMON, GetUnitState, int __stdcall, (UnitAny* pUnit, DWORD dwStateNo, DWORD unknown), 0x239DF0) // Updated
+FUNCPTR(D2COMMON, GetUnitState, int __stdcall, (UnitAny* pUnit, DWORD dwStateNo), 0x239DF0) // Updated
 FUNCPTR(D2COMMON, GetUnitState2, int __stdcall, (UnitAny* pUnit, DWORD dwStat, DWORD unknown), 0x2253b0) // Added
 FUNCPTR(D2COMMON, GetUnitState3, int __stdcall, (DWORD unknown, DWORD unknown2), 0x264780) // Added // 10152 10680
 //FUNCPTR(D2COMMON, GetUnitX, int __stdcall, (Path* pPath), -10178) // Updated

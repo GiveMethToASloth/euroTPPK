@@ -26,10 +26,10 @@ BOOL ClickMap(DWORD dwClickType, WORD wX, WORD wY, BOOL bShift)
 void TimerTick()
 {
 	//ChickenCheck(); //starting Chicken.
-	//DrinkCheck(); //starting Drinking.
-	Delay++;
+	DrinkCheck(); //starting Drinking.
+	//Delay++;
 	Count++;
-	if (!strcmp(Auto.GetPlayerNAME(), D2CLIENT_GetPlayerUnit()->pPlayerData->szName))
+	/*if (!strcmp(Auto.GetPlayerNAME(), D2CLIENT_GetPlayerUnit()->pPlayerData->szName))
 	{
 		RosterUnit* pUnit = (RosterUnit*)*(DWORD*)0x6FBCC080;
 		if (pUnit)
@@ -60,7 +60,7 @@ void TimerTick()
 	if (CampUnitOn)
 	{
 		D2CLIENT_clickMap(3, Camp.x, Camp.y, 8);
-	}
+	}*/
 	//if(Flash)
 	//    {
 	//    if(FindUnit(Auto.GetPlayerID(),0)!=NULL)
@@ -97,7 +97,7 @@ void TimerTick()
 					}
 	}
 	*/
-	if (AutoPK)
+	/*if (AutoPK)
 	{
 		AutoPK = false;
 		Missled = 0;
@@ -113,6 +113,7 @@ void TimerTick()
 			if (MakeTP())
 				TakeNextTP = true;
 		}
+	*/
 	/*if (CastMissles)
 	{
 		if (cfg.Missles >= Missled)

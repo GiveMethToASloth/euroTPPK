@@ -75,52 +75,65 @@ int DrankRejMana;
 //	}
 //}
 
-//void DrinkCheck(void) {
-//	if (GameReady()) {
-//		if (!IsTownLevel(GetPlayerArea())) {
-//			if (v_AutoDrink) {
-//				UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
-//				if (pUnit) {
-//					int LifePercent = ((GetCurrentLife()) * 100) / (GetMaxLife());
-//					int ManaPercent = ((GetCurrentMana()) * 100) / (GetMaxMana());
-//
-//					/*if(v_AutoDrinkLife!=0 && LifePercent<=(int)v_AutoDrinkLife) {
-//						if(GetTickCount() - DrankHealthPot > (int)v_DrinkLifeTimer) {
-//							DrinkLife();
-//							DrankHealthPot = GetTickCount();
-//						}
-//					}*/
-//
-//					if (v_AutoDrinkLife != 0 && LifePercent <= v_AutoDrinkLife) {
-//						if (GetTickCount() - DrankHealthPot > v_DrinkLifeTimer) {
-//							DrinkLife();
-//							DrankHealthPot = GetTickCount();
-//						}
-//					}
-//
-//					if (v_AutoDrinkMana != 0 && ManaPercent <= (int)v_AutoDrinkMana) {
-//						if (GetTickCount() - DrankManaPot > (int)v_DrinkManaTimer) {
-//							DrinkMana();
-//							DrankManaPot = GetTickCount();
-//						}
-//					}
-//					if (v_AutoDrinkReju != 0 && LifePercent <= (int)v_AutoDrinkReju) {
-//						if (GetTickCount() - DrankRejLife > (int)v_DrinkRejuTimer) {
-//							DrinkRejLife();
-//							DrankRejLife = GetTickCount();
-//						}
-//					}
-//					/*						if(v_AutoDrinkManaRej!=0 && ManaPercent<=(int)v_AutoDrinkManaRej) {
-//												if(GetTickCount() - DrankRejMana > (int)v_DrinkRejuTimer) {
-//													DrinkRejMana();
-//													DrankRejMana = GetTickCount();
-//												}
-//											}*/
-//				}
-//			}
-//		}
-//	}
-//}
+BYTE CalcPercent(DWORD dwVal, DWORD dwMaxVal, BYTE iMin)
+{
+	if (dwVal == 0 || dwMaxVal == 0)
+		return NULL;
+
+	BYTE iRes = (double(dwVal) / double(dwMaxVal)) * 100.0;
+
+	if (iRes == 100)
+		iRes = 100;
+
+	return max(iRes, iMin);
+}
+
+void DrinkCheck(void) {
+	if (GameReady()) {
+		if (!IsTownLevel(GetPlayerArea())) {
+			if (v_AutoDrink) {
+				UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
+				if (pUnit) {
+					DWORD dwLifePer = CalcPercent(D2COMMON_GetUnitStat(pUnit, STAT_HP, 0) >> 8, D2COMMON_GetUnitStat(pUnit, STAT_MAXHP, 0) >> 8);
+					DWORD dwManaPer = CalcPercent(D2COMMON_GetUnitStat(pUnit, STAT_MANA, 0) >> 8, D2COMMON_GetUnitStat(pUnit, STAT_MAXMANA, 0) >> 8);
+
+					/*if(v_AutoDrinkLife!=0 && LifePercent<=(int)v_AutoDrinkLife) {
+						if(GetTickCount() - DrankHealthPot > (int)v_DrinkLifeTimer) {
+							DrinkLife();
+							DrankHealthPot = GetTickCount();
+						}
+					}*/
+
+					if (v_AutoDrinkLife != 0 && dwLifePer <= v_AutoDrinkLife) {
+						if (GetTickCount64() - DrankHealthPot > v_DrinkLifeTimer) {
+							UsePot(0);
+							DrankHealthPot = GetTickCount64();
+						}
+					}
+
+					if (v_AutoDrinkMana != 0 && dwManaPer <= (int)v_AutoDrinkMana) {
+						if (GetTickCount64() - DrankManaPot > (int)v_DrinkManaTimer) {
+							UsePot(1);
+							DrankManaPot = GetTickCount64();
+						}
+					}
+					if (v_AutoDrinkReju != 0 && dwLifePer <= (int)v_AutoDrinkReju) {
+						if (GetTickCount64() - DrankRejLife > (int)v_DrinkRejuTimer) {
+							UsePot(2);
+							DrankRejLife = GetTickCount64();
+						}
+					}
+					/*						if(v_AutoDrinkManaRej!=0 && ManaPercent<=(int)v_AutoDrinkManaRej) {
+												if(GetTickCount() - DrankRejMana > (int)v_DrinkRejuTimer) {
+													DrinkRejMana();
+													DrankRejMana = GetTickCount();
+												}
+											}*/
+				}
+			}
+		}
+	}
+}
 
 /*
 

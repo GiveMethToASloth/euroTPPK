@@ -17,12 +17,12 @@
 #define UI_MINISKILL			0x03
 #define UI_SKILL				0x04
 #define UI_CHAT					0x05
-#define UI_NPCMENU				0x08	
+#define UI_NPCMENU				0x08
 #define UI_MAINMENU				0x09
 #define UI_AUTOMAP				0x0a
 #define UI_CONFIG				0x0b
 #define UI_NPCSHOP				0x0c
-#define UI_ALTDOWN				0x0d			
+#define UI_ALTDOWN				0x0d
 #define UI_ANVIL				0x0e
 #define UI_QUEST				0x0f
 #define UI_QUESTLOG				0x11
@@ -134,23 +134,23 @@
 #define NODEPAGE_BELTSLOTS	2
 #define NODEPAGE_EQUIP		3
 
-
 ///////////////////////////////////////////////////
 // Body Locations
 ///////////////////////////////////////////////////
-enum {  EQUIP_NONE = 0,			// Not equipped
-EQUIP_HEAD,				// Head
-EQUIP_AMULET,			// Amulet
-EQUIP_BODY,				// Body armor
-EQUIP_RIGHT_PRIMARY,	// Right primary slot
-EQUIP_LEFT_PRIMARY,		// Left primary slot
-EQUIP_RIGHT_RING,		// Right ring
-EQUIP_LEFT_RING,		// Left ring
-EQUIP_BELT,				// Belt
-EQUIP_FEET,				// Feet
-EQUIP_GLOVES,			// Gloves
-EQUIP_RIGHT_SECONDARY,	// Right secondary slot
-EQUIP_LEFT_SECONDARY,	// Left secondary slot
+enum {
+	EQUIP_NONE = 0,			// Not equipped
+	EQUIP_HEAD,				// Head
+	EQUIP_AMULET,			// Amulet
+	EQUIP_BODY,				// Body armor
+	EQUIP_RIGHT_PRIMARY,	// Right primary slot
+	EQUIP_LEFT_PRIMARY,		// Left primary slot
+	EQUIP_RIGHT_RING,		// Right ring
+	EQUIP_LEFT_RING,		// Left ring
+	EQUIP_BELT,				// Belt
+	EQUIP_FEET,				// Feet
+	EQUIP_GLOVES,			// Gloves
+	EQUIP_RIGHT_SECONDARY,	// Right secondary slot
+	EQUIP_LEFT_SECONDARY,	// Left secondary slot
 };
 
 ///////////////////////////////////////////////////
@@ -158,9 +158,10 @@ EQUIP_LEFT_SECONDARY,	// Left secondary slot
 ///////////////////////////////////////////////////
 #define STORAGE_INVENTORY	0
 #define STORAGE_EQUIP		1
-#define STORAGE_BELT		2
+#define STORAGE_TRADE		2
 #define STORAGE_CUBE		3
 #define STORAGE_STASH		4
+#define STORAGE_BELT		5
 #define STORAGE_NULL		255
 
 ///////////////////////////////////////////////////
@@ -187,70 +188,77 @@ EQUIP_LEFT_SECONDARY,	// Left secondary slot
 ///////////////////////////////////////////////////
 // Player Mode Definition
 ///////////////////////////////////////////////////
-enum {	PLAYER_MODE_DEATH = 0,				// death
-PLAYER_MODE_STAND_OUTTOWN,			// standing outside town
-PLAYER_MODE_WALK_OUTTOWN,			// walking outside town
-PLAYER_MODE_RUN,					// running
-PLAYER_MODE_BEING_HIT,				// being hit
-PLAYER_MODE_STAND_INTOWN,			// standing inside town
-PLAYER_MODE_WALK_INTOWN,			// walking outside town
-PLAYER_MODE_ATTACK1,				// attacking 1
-PLAYER_MODE_ATTACK2,				// attacking 2
-PLAYER_MODE_BLOCK,					// blocking
-PLAYER_MODE_CAST,					// casting spell
-PLAYER_MODE_THROW,					// throwing
-PLAYER_MODE_KICK,					// kicking (assassin)
-PLAYER_MODE_USESKILL1,				// using skill 1
-PLAYER_MODE_USESKILL2,				// using skill 2
-PLAYER_MODE_USESKILL3,				// using skill 3
-PLAYER_MODE_USESKILL4,				// using skill 4
-PLAYER_MODE_DEAD,					// dead
-PLAYER_MODE_SEQUENCE,				// sequence
-PLAYER_MODE_BEING_KNOCKBACK };		// being knocked back
-
+enum {
+	PLAYER_MODE_DEATH = 0,				// death
+	PLAYER_MODE_STAND_OUTTOWN,			// standing outside town
+	PLAYER_MODE_WALK_OUTTOWN,			// walking outside town
+	PLAYER_MODE_RUN,					// running
+	PLAYER_MODE_BEING_HIT,				// being hit
+	PLAYER_MODE_STAND_INTOWN,			// standing inside town
+	PLAYER_MODE_WALK_INTOWN,			// walking outside town
+	PLAYER_MODE_ATTACK1,				// attacking 1
+	PLAYER_MODE_ATTACK2,				// attacking 2
+	PLAYER_MODE_BLOCK,					// blocking
+	PLAYER_MODE_CAST,					// casting spell
+	PLAYER_MODE_THROW,					// throwing
+	PLAYER_MODE_KICK,					// kicking (assassin)
+	PLAYER_MODE_USESKILL1,				// using skill 1
+	PLAYER_MODE_USESKILL2,				// using skill 2
+	PLAYER_MODE_USESKILL3,				// using skill 3
+	PLAYER_MODE_USESKILL4,				// using skill 4
+	PLAYER_MODE_DEAD,					// dead
+	PLAYER_MODE_SEQUENCE,				// sequence
+	PLAYER_MODE_BEING_KNOCKBACK
+};		// being knocked back
 
 ///////////////////////////////////////////////////
 // NPC Mode Definition
 ///////////////////////////////////////////////////
-enum {  NPC_MODE_DEATH = 0,		// NPC death
-NPC_MODE_STAND,			// NPC standing still
-NPC_MODE_WALK,			// NPC walking
-NPC_MODE_BEING_HIT,		// NPC getting hit
-NPC_MODE_ATTACK1,		// NPC attacking 1
-NPC_MODE_ATTACK2,		// NPC attacking 2
-NPC_MODE_BLOCK,			// NPC blocking
-NPC_MODE_CAST,			// NPC casting spell skill
-NPC_MODE_USESKILL1,		// NPC using skill 1
-NPC_MODE_USESKILL2,		// NPC using skill 2
-NPC_MODE_USESKILL3,		// NPC using skill 3
-NPC_MODE_USESKILL4,		// NPC using skill 4
-NPC_MODE_DEAD,			// NPC dead
-NPC_MODE_BEING_KNOCKBACK,	// NPC being knocked back
-NPC_MODE_SEQUENCE,		// NPC sequence
-NPC_MODE_RUN };			// NPC running
+enum {
+	NPC_MODE_DEATH = 0,		// NPC death
+	NPC_MODE_STAND,			// NPC standing still
+	NPC_MODE_WALK,			// NPC walking
+	NPC_MODE_BEING_HIT,		// NPC getting hit
+	NPC_MODE_ATTACK1,		// NPC attacking 1
+	NPC_MODE_ATTACK2,		// NPC attacking 2
+	NPC_MODE_BLOCK,			// NPC blocking
+	NPC_MODE_CAST,			// NPC casting spell skill
+	NPC_MODE_USESKILL1,		// NPC using skill 1
+	NPC_MODE_USESKILL2,		// NPC using skill 2
+	NPC_MODE_USESKILL3,		// NPC using skill 3
+	NPC_MODE_USESKILL4,		// NPC using skill 4
+	NPC_MODE_DEAD,			// NPC dead
+	NPC_MODE_BEING_KNOCKBACK,	// NPC being knocked back
+	NPC_MODE_SEQUENCE,		// NPC sequence
+	NPC_MODE_RUN
+};			// NPC running
 
 ///////////////////////////////////////////////////
 // Object Mode Definition
 ///////////////////////////////////////////////////
-enum {  OBJ_MODE_IDLE = 0,		// Object idle
-OBJ_MODE_OPERATING,		// Object operating
-OBJ_MODE_OPENED,		// Object opened
-OBJ_MODE_SPECIAL1,		// Object special 1
-OBJ_MODE_SPECIAL2,		// Object special 2
-OBJ_MODE_SPECIAL3,		// Object special 3
-OBJ_MODE_SPECIAL4,		// Object special 4
-OBJ_MODE_SPECIAL5 };	// Object special 5
+enum {
+	OBJ_MODE_IDLE = 0,		// Object idle
+	OBJ_MODE_OPERATING,		// Object operating
+	OBJ_MODE_OPENED,		// Object opened
+	OBJ_MODE_SPECIAL1,		// Object special 1
+	OBJ_MODE_SPECIAL2,		// Object special 2
+	OBJ_MODE_SPECIAL3,		// Object special 3
+	OBJ_MODE_SPECIAL4,		// Object special 4
+	OBJ_MODE_SPECIAL5
+};	// Object special 5
 
 ///////////////////////////////////////////////////
 // Item Mode Definition
 ///////////////////////////////////////////////////
-enum {  ITEM_MODE_INV_STASH_CUBE_STORE = 0,	// Item inven stash cube store
-ITEM_MODE_EQUIPPED,					// Item equipped self or merc
-ITEM_MODE_IN_BELT,					// Item in belt
-ITEM_MODE_ON_GROUND,				// Item on ground
-ITEM_MODE_ON_CURSOR,				// Item on cursor
-ITEM_MODE_BEING_DROPPED,			// Item being dropped
-ITEM_MODE_SOCKETED_IN_ITEM };		// Item socketed in item
+enum {
+	ITEM_MODE_INV_STASH_CUBE_STORE = 0,	// Item inven stash cube store
+	ITEM_MODE_EQUIPPED,					// Item equipped self or merc
+	ITEM_MODE_IN_BELT,					// Item in belt
+	ITEM_MODE_ON_GROUND,				// Item on ground
+	ITEM_MODE_ON_CURSOR,				// Item on cursor
+	ITEM_MODE_BEING_DROPPED,			// Item being dropped
+	ITEM_MODE_SOCKETED_IN_ITEM
+};		// Item socketed in item
 
 ///////////////////////////////////////////////////
 // Unit Types
@@ -295,11 +303,12 @@ enum {
 	CLASS_BAR,
 	CLASS_DRU,
 	CLASS_ASN,
-	CLASS_NA};
+	CLASS_NA
+};
 
-	///////////////////////////////////////////////////
-	// Common Spells
-	///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+// Common Spells
+///////////////////////////////////////////////////
 
 #define D2S_INVALID				0xffff // should never happen
 #define D2S_ATTACK				0x0000
@@ -353,7 +362,6 @@ enum {
 #define D2S_EXPLODINGARROW		0x0010
 #define D2S_IMMOLATIONARROW		0x001b
 
-
 	///////////////////////////////////////////////////////////////
 	// Assassin Spells
 	///////////////////////////////////////////////////////////////
@@ -393,7 +401,6 @@ enum {
 #define D2S_BLADESENTINEL		0x0101
 #define D2S_BLADEFURY			0x010a
 #define D2S_BLADESHIELD			0x0115
-
 
 	///////////////////////////////////////////////////////////////
 	// Barbarian Spells
@@ -435,7 +442,6 @@ enum {
 #define D2S_DOUBLETHROW			0x008c
 #define D2S_FRENZY				0x0093
 
-
 	///////////////////////////////////////////////////////////////
 	// Druid Spells
 	///////////////////////////////////////////////////////////////
@@ -475,7 +481,6 @@ enum {
 #define D2S_POISONCREEPER		0x00de
 #define D2S_CARRIONVINE			0x00e7
 #define D2S_SOLARCREEPER		0x00f1
-
 
 	///////////////////////////////////////////////////////////////
 	// Necromancer Spells
@@ -517,7 +522,6 @@ enum {
 #define D2S_TERROR				0x004d
 #define D2S_DECREPIFY			0x0057
 
-
 	///////////////////////////////////////////////////////////////
 	// Paladin Spells
 	///////////////////////////////////////////////////////////////
@@ -557,7 +561,6 @@ enum {
 #define D2S_SMITE				0x0061
 #define D2S_CHARGE				0x006b
 #define D2S_HOLYSHIELD			0x0075
-
 
 	///////////////////////////////////////////////////////////////
 	// Sorceress Spells
@@ -647,7 +650,6 @@ enum {
 #define MAP_A1_TRISTRAM							0x26
 #define MAP_A1_THE_SECRET_COW_LEVEL				0x27
 
-
 	///////////////////////////////////////////////////
 	// Act 2 Maps
 	///////////////////////////////////////////////////
@@ -686,7 +688,6 @@ enum {
 #define MAP_A2_TAL_RASHAS_TOMB_7				0x48
 #define MAP_A2_TAL_RASHAS_CHAMBER				0x49
 #define MAP_A2_ARCANE_SANCTUARY					0x4a
-
 
 	///////////////////////////////////////////////////
 	// Act 3 Maps

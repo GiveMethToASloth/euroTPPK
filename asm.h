@@ -26,5 +26,5 @@ DWORD __fastcall D2CLIENT_GetUIVar_STUB(DWORD varno);
 //void __stdcall GameShake(LPDWORD lpX, LPDWORD lpY);
 void  __fastcall D2COMMON_DisplayOverheadMsg_ASM(DWORD pUnit);
 void __fastcall GameEndPatch_ASM();
-void __fastcall GameLoopPatch_ASM();
+void GameLoopPatch_ASM();
 void D2Login_ASM();
