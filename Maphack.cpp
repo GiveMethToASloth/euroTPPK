@@ -128,7 +128,7 @@ AutomapLayer* InitAutomapLayer(DWORD levelno)
 	return D2CLIENT_InitAutomapLayer(pLayer->nLayerNo);
 }
 
-BOOL GameReady(VOID)
+bool GameReady(void)
 {
 	if (D2CLIENT_GetPlayerUnit())
 		if (D2CLIENT_GetPlayerUnit()->pInventory)
@@ -139,8 +139,8 @@ BOOL GameReady(VOID)
 							if (D2CLIENT_GetPlayerUnit()->pPath->pRoom1->pRoom2->pLevel)
 								if (D2CLIENT_GetPlayerUnit()->pAct)
 									if (GetPlayerArea() != NULL)
-										return TRUE;
-	return FALSE;
+										return true;
+	return false;
 }
 
 void DrawPresets(Room2* pRoom2)

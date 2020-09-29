@@ -1,7 +1,7 @@
 PatchHook pHooks[] = {
 	{PatchJmp, GetDllOffset("D2Client.dll", 0x5ADB3), (DWORD)GameDrawAutomapInfo_STUB, 5},
 	{PatchJmp, GetDllOffset("D2Client.dll", 0x572D8), (DWORD)GameDraw_STUB, 6},
-	/*{PatchCall, GetDllOffset("D2Client.dll", 0x6A847), (DWORD)KeyHookIntercept_STUB, 7},*/
+	//{PatchCall, GetDllOffset("D2Client.dll", 0x6A847), (DWORD)KeyHookIntercept_STUB, 7},
 
 	//{PatchCall, GetDllOffset("D2Client.dll", 0x5F8F7),(DWORD)GameLightRadius_STUB, 5},
 

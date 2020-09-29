@@ -69,7 +69,7 @@ BOOL WINAPI DllMain(HINSTANCE hDll, DWORD dwReason, LPVOID lpReserved)
 				TimeOn++;			            // Start TimeOn Timer for welcome message.
 				TimeOn1++;
 				//CheckAuth();                    // Performs auth check
-				RevealAct();		            // Reveals the first act.
+				//RevealAct();		            // Reveals the first act.
 				//GetPlayers();		            // Gets Playerlists
 				SaveGameName();                 // Saves the current gamename and password.
 				Auto.Init();

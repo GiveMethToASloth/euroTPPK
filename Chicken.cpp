@@ -49,6 +49,28 @@ void ChickenCheck(void) {
 							sprintf(lpszText, "Chickens to town (Life)");
 							if (lpszText && lpszText[0])
 							{
+								OverheadMsg* pMsg = D2COMMON_GenerateOverheadMsg(NULL, lpszText, *p_D2CLIENT_OverheadTrigger);
+								if (pMsg)
+								{
+									D2COMMON_FixOverheadMsg(pMsg, NULL);
+									pUnit->pOMsg = pMsg;
+								}
+							}
+							TakeNextTP = true;
+						}
+					}
+				}
+			}
+
+			if (v_TownManaPercent != 0) {
+				if (v_TownManaPercent != 0 && dwManaPer <= (int)v_TownManaPercent) {
+					if (!TakeNextTP) {
+						if (MakeTP()) {
+							//PrintMessage("::ÿc  Chickens to town (MANA)",1);
+							char lpszText[100];
+							sprintf(lpszText, "Chickens to town (Mana)");
+							if (lpszText && lpszText[0])
+							{
 								UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
 								OverheadMsg* pMsg = D2COMMON_GenerateOverheadMsg(NULL, lpszText, *p_D2CLIENT_OverheadTrigger);
 								if (pMsg)
@@ -63,40 +85,17 @@ void ChickenCheck(void) {
 				}
 			}
 
-			//if (v_TownManaPercent != 0) {
-			//	if (v_TownManaPercent != 0 && dwManaPer <= (int)v_TownManaPercent) {
-			//		if (!TakeNextTP) {
-			//			if (MakeTP()) {
-			//				//PrintMessage("::ÿc  Chickens to town (MANA)",1);
-			//				char lpszText[100];
-			//				sprintf(lpszText, "Chickens to town (Mana)");
-			//				if (lpszText && lpszText[0])
-			//				{
-			//					UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
-			//					OverheadMsg* pMsg = D2COMMON_GenerateOverheadMsg(NULL, lpszText, *p_D2CLIENT_OverheadTrigger);
-			//					if (pMsg)
-			//					{
-			//						D2COMMON_FixOverheadMsg(pMsg, NULL);
-			//						pUnit->pOMsg = pMsg;
-			//					}
-			//				}
-			//				TakeNextTP = true;
-			//			}
-			//		}
-			//	}
-			//}
+			if (v_QuitLifePercent != 0) {
+				if (v_QuitLifePercent != 0 && dwLifePer <= (int)v_QuitLifePercent) {
+					D2CLIENT_ExitGame();
+				}
+			}
 
-			//if (v_QuitLifePercent != 0) {
-			//	if (v_QuitLifePercent != 0 && dwLifePer <= (int)v_QuitLifePercent) {
-			//		D2CLIENT_ExitGame();
-			//	}
-			//}
-
-			//if (v_QuitManaPercent != 0) {
-			//	if (v_QuitManaPercent != 0 && dwManaPer <= (int)v_QuitManaPercent) {
-			//		D2CLIENT_ExitGame();
-			//	}
-			//}
+			if (v_QuitManaPercent != 0) {
+				if (v_QuitManaPercent != 0 && dwManaPer <= (int)v_QuitManaPercent) {
+					D2CLIENT_ExitGame();
+				}
+			}
 		}
 	}
 }
@@ -129,12 +128,12 @@ void DrinkCheck(void) {
 					}
 				}
 
-				/*if (v_AutoDrinkManaRej != 0 && ManaPercent <= (int)v_AutoDrinkManaRej) {
-					if (GetTickCount() - DrankRejMana > (int)v_DrinkRejuTimer) {
-						DrinkRejMana();
-						DrankRejMana = GetTickCount();
-					}
-				}*/
+				//if (v_AutoDrinkManaRej != 0 && ManaPercent <= (int)v_AutoDrinkManaRej) {
+				//	if (GetTickCount() - DrankRejMana > (int)v_DrinkRejuTimer) {
+				//		DrinkRejMana();
+				//		DrankRejMana = GetTickCount();
+				//	}
+				//}
 			}
 		}
 	}

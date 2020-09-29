@@ -1004,10 +1004,10 @@ void DrawAutomapInfos(void)
 	//DrawYonTarget();
 	DrawUIVars();
 }
-void GameDraw(void)
+
+void GameDraw()
 {
-	if (!D2CLIENT_GetUiVar(0x18)) // Messages Console.
-	{
+	if (!D2CLIENT_GetUiVar(0x18)) {
 		ConfBoxx();
 		ExpBox();
 		PreCastsBox();
@@ -1017,14 +1017,17 @@ void GameDraw(void)
 	}
 	DrawMessageConsole();
 	DrawConsole();
+
 	//RevealActOnce();
 	/*TestDraw();*/
 	DT();
 	Screenhooks();
 	Boxes();
 	//DrawPlayerInventoryHook();
+
 	DrawWelcomeText();
 	WelcomeBox();
+
 	//if (D2CLIENT_AutomapOn) // The Automap is tabbed ON
 	//	AutoTeleDraw();		 // Draw while auto teleporting
 }

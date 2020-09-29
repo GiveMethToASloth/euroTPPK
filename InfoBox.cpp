@@ -46,15 +46,17 @@ void DrawOriginal(void) {
 	WToC(pLocaleText, nDiff);
 
 	char szTime[200];
-	int nTime = ((GetTickCount() - nGameTimer) / 1000);
+	int nTime = ((GetTickCount64() - nGameTimer) / 1000);
 	sprintf_s(szTime, 200, "%.2d:%.2d:%.2d", nTime / 3600, (nTime / 60) % 60, nTime % 60);
+
 	/*
 		char nExpPercent[50];
 		int nLevel = D2COMMON_GetUnitStat(pUnit, 12, 0);
 		unsigned long int nExp = D2COMMON_GetUnitStat(pUnit, 13, 0);
 		int nExpPer = abs((float)((double)(nExp - nLevelExp[nLevel - 1]) / (double)(nLevelExp[nLevel] - nLevelExp[nLevel - 1])) * 100);
 		sprintf_s(nExpPercent, sizeof(nExpPercent), "%i", nExpPer);
-		*/
+	*/
+
 	char curTime[200];
 	time_t ttTime;
 	time(&ttTime);
@@ -67,29 +69,31 @@ void DrawOriginal(void) {
 	char FPS[200];
 	int fps = D2CLIENT_FPS;
 	sprintf_s(FPS, 200, "%i", fps);
+
 	/*
 	EXP PER GAME
-EXP THIS GAME
-EXP LEFT
-// Current EXP
-*/
+	EXP THIS GAME
+	EXP LEFT
+	// Current EXP
+	*/
 
-/*DWORD MaxExp=GetExpLeft()-D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(),13,0);
-DWORD GamesLeft=0;
+	/*
+	DWORD MaxExp=GetExpLeft()-D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(),13,0);
+	DWORD GamesLeft=0;
 
-if(MaxExp!=NULL&&CurrentExpierences!=NULL)
-GamesLeft=MaxExp/CurrentExpierences;
-if(CurrentExp!=0) {
-sprintf(buf,"Games Left %d",GamesLeft);
-DrawTextToScreen(buf,1,500,3,4);
-*/
+	if(MaxExp!=NULL&&CurrentExpierences!=NULL)
+	GamesLeft=MaxExp/CurrentExpierences;
+	if(CurrentExp!=0) {
+	sprintf(buf,"Games Left %d",GamesLeft);
+	DrawTextToScreen(buf,1,500,3,4);
+	*/
 
-/*
-if(GetExpLeft()!=0)
-sprintf(buf,"Exp Left %s",ConvertIntegers(GetExpLeft()-D2COMMON_GetUnitState((UnitAny*)*(DWORD*)0x6FBCC1E0,13,0)));
-else sprintf(buf, "Exp Left 0");
-DrawTextToScreen(buf,1,480,3,4);
-*/
+	/*
+	if(GetExpLeft()!=0)
+	sprintf(buf,"Exp Left %s",ConvertIntegers(GetExpLeft()-D2COMMON_GetUnitState((UnitAny*)*(DWORD*)0x6FBCC1E0,13,0)));
+	else sprintf(buf, "Exp Left 0");
+	DrawTextToScreen(buf,1,480,3,4);
+	*/
 
 	AutomapInfo Automap[] = {
 		{nGame, pInfo->szGameName},
@@ -103,9 +107,9 @@ DrawTextToScreen(buf,1,480,3,4);
 		//	{"Total Exp: %s%%", nExpPercent},
 		//	{"Gained Exp: %s", GainedExp},
 		//	{"Games Left: %s", GamesL},
-			{"", ""},
-			{"%s", szTime},
-			{"%s", curTime},
+		{"", ""},
+		{"%s", szTime},
+		{"%s", curTime},
 	};
 
 	int yLen = 0;

@@ -28,7 +28,7 @@ extern bool ConfigPlayerInfo;
 //void Targets(void);
 void Boxes(void);
 
-void GameDraw(void);
+void GameDraw();
 void DrawUIVars(void);
 void DrawAutomapInfos(void);
 void RevealActOnce(void);
