@@ -14,7 +14,7 @@ wchar_t wszGameName[32];
 wchar_t wszGamePassword[32];
 void SaveGameName()
 {
-	GameStructInfo* gi = GetGameInfo();
+	GameStructInfo* gi = D2CLIENT_GetGameInfo();
 	if (*gi->szGameName) {
 		wcscpy2(wszGameName, gi->szGameName);
 		wcscpy2(wszGamePassword, gi->szGamePassword);

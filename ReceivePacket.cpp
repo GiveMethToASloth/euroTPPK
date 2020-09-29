@@ -152,28 +152,28 @@ DWORD __fastcall RecvPacket(byte* data, DWORD len) {
 		data[6] += 4;
 	}*/
 
-	/*if (data[0] == 0x5b && data[1] == 0x24 && (*(DWORD*)&data[3] == D2CLIENT_GetPlayerUnit()->dwUnitId)) {
+	if (data[0] == 0x5b && data[1] == 0x24 && (*(DWORD*)&data[3] == D2CLIENT_GetPlayerUnit()->dwUnitId)) {
 		if (GameReady())
 		{
 			//CheckAuth();
 			SayOverHead("EuroTPPK 3.4");
 			sprintf(Buffer, "%s Joined game %s", curTime, D2CLIENT_GetGameInfo()->szGameName);
 			PrintConsoleString(Buffer);
-			Auto.Init();
-			RevealAct();
+			//Auto.Init();
+			//RevealAct();
 			//GetPlayers();
 			nGameTimer = GetTickCount();
 			SaveGameName();
 			dwCurrentExp = D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0);
 			TimeOn++;
 			TimeOn1++;
-			if (v_MaxBPs)
-				MaxBPs();
-			// Prot
-		//	if(PlayerFriendList->GetItemCount()==0) {
-		//		RemovePatchs();
-			//	UninstallPatches();
-		//	}
+			/*if (v_MaxBPs)
+				MaxBPs();*/
+				// Prot
+			//	if(PlayerFriendList->GetItemCount()==0) {
+			//		RemovePatchs();
+				//	UninstallPatches();
+			//	}
 
 			if (IsDebuggerPresent())
 			{
@@ -181,7 +181,7 @@ DWORD __fastcall RecvPacket(byte* data, DWORD len) {
 				TerminateProcess(GetCurrentProcess(), 0);
 			}
 		}
-	}*/
+	}
 	// Anti Flash
 	if (data[0] == 0x15)
 	{

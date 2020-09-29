@@ -1028,9 +1028,9 @@ void GameDraw(void)
 		MovableTargets();*/
 		//WinAmpBox();
 	}
-	//DrawMessageConsole();
-	/*DrawConsole();
-	RevealActOnce();*/
+	DrawMessageConsole();
+	DrawConsole();
+	//RevealActOnce();
 	/*TestDraw();*/
 	DT();
 	Screenhooks();

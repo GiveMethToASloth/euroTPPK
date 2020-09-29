@@ -265,8 +265,7 @@ DWORD __declspec(naked) IsExpansion() {
 }
 
 GameStructInfo* GetGameInfo() {
-	DWORD Addresse = 0x11B908/*10D618*/; // 0x10D618+6FAB0000 6FBBD618 ||6FBCB908-6FAB0000
-	Addresse = Addresse + (DWORD)LoadLibrary("D2Client.dll");
+	GameStructInfo* Addresse = D2CLIENT_GetGameInfo();
 	GameStructInfo* Returne;
 	__asm {
 		push eax
