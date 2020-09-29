@@ -34,7 +34,7 @@ void DrawAutomapInfos(void);
 void RevealActOnce(void);
 //void DrawModifiers(void);
 void DrawPos(void);
-//void DrawPlines(void);
+void DrawPlines(void);
 //void DrawYonTarget(void);
 void AutoTeleDraw(void);
 void Screenhooks(void);
@@ -43,7 +43,6 @@ void Screenhooks(void);
 //void UpdateVectors(void);
 
 //void DrawPlayerInventoryHook(void);
-void DrawWinamp(void);
 void DrawWelcomeText(void);
 
 void GiveFinger(void);

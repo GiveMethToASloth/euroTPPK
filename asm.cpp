@@ -52,18 +52,18 @@ void SendGAMEPacket(BYTE* Packet, DWORD PacketSize) {
 //	}
 //}
 
-//WORD GetPlayerX(DWORD ID) {
-//	UnitAny* pUnit = (UnitAny*)D2CLIENT_GetUnitFromId_STUB(ID, 0);
-//	if (pUnit != NULL)
-//		return pUnit->pPath->xPos;
-//	return 0;
-//}
-//WORD GetPlayerY(DWORD ID) {
-//	UnitAny* pUnit = (UnitAny*)D2CLIENT_GetUnitFromId_STUB(ID, 0);
-//	if (pUnit != NULL)
-//		return pUnit->pPath->yPos;
-//	return 0;
-//}
+WORD GetPlayerX(DWORD ID) {
+	UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
+	if (pUnit != NULL)
+		return pUnit->pPath->xPos;
+	return 0;
+}
+WORD GetPlayerY(DWORD ID) {
+	UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
+	if (pUnit != NULL)
+		return pUnit->pPath->yPos;
+	return 0;
+}
 //WORD GetPlayerXTarget(DWORD ID) {
 //	UnitAny* pUnit = (UnitAny*)D2CLIENT_GetUnitFromId_STUB(ID, 0);
 //	if (pUnit != NULL)

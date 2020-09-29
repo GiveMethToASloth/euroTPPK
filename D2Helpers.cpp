@@ -407,7 +407,7 @@ void Hostile(DWORD ID) {
 void HostileAll()
 {
 	int i;
-	RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;
+	RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList;
 	BYTE Hostile[7] = { 0x5d,0x04,0x01,0,0,0,0 };
 
 	/*if (GetLevelByN(D2CLIENT_GetPlayerUnit()->pPlayerData->szName) > 8) {
@@ -427,7 +427,7 @@ void HostileAll()
 void UnhostMembers()
 {
 	/*int i;
-	RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;
+	RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList;
 	BYTE UnHostile[7] = { 0x5d,0x04,0x00,0,0,0,0 };
 	for (i = 0; pUnit != NULL; i++)
 	{

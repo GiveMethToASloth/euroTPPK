@@ -2,7 +2,7 @@
 
 //RosterUnit* FindPartyById1(DWORD dwUnitId)
 //{
-//	for (RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster; pUnit; pUnit = pUnit->pNext)
+//	for (RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit; pUnit = pUnit->pNext)
 //		if (pUnit->dwUnitId == dwUnitId)
 //			return pUnit;
 //	_asm nop
@@ -14,7 +14,7 @@
 //{
 //	DWORD dwFlags1 = 0;
 //	UnitAny* Me = (UnitAny*)D2CLIENT_GetPlayerUnit();
-//	for (RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster; pUnit; pUnit = pUnit->pNext)
+//	for (RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit; pUnit = pUnit->pNext)
 //	{
 //		if (pUnit->dwUnitId != dwPlayerId)
 //			continue;

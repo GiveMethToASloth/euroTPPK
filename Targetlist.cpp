@@ -21,7 +21,7 @@ POINT TargetBoxxx;
 
 int LongestCharname() {
 	int i, x, high = 0;
-	RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;
+	RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList;
 	for (i = 0; pUnit != NULL; i++) {
 		x = strlen(pUnit->szName);
 		if (x > high)
@@ -38,7 +38,7 @@ void MovableTargets(void) {
 			if (!D2CLIENT_GetUiVar(0x19))
 				if (!D2CLIENT_GetUiVar(0x02))
 					if (TargetList) {
-						RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster; pUnit = pUnit->pNext;
+						RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit = pUnit->pNext;
 
 						if (!pUnit) {
 							int x1 = 40;

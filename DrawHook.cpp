@@ -73,20 +73,16 @@ Level* GetLevelPointerD(ActMisc* pActMisc, int nLevel)
 	return D2COMMON_GetLevel(pActMisc, nLevel);
 }
 
-//void DrawPlayerBlob(int xpos, int ypos, int col) {
-//	static char blines[][2] = { 0,-2, 4,-4, 8,-2, 4,0, 8,2, 4,4, 0,2, -4,4, -8,2, -4,0, -8,-2, -4,-4, 0,-2 };
-//	for (int i = 0; i < ARRAYSIZE(blines) - 1; i++) {
-//		D2GFX_DrawLine(xpos + blines[i][0], ypos + blines[i][1], xpos + blines[i + 1][0], ypos + blines[i + 1][1], col, 0xff);
-//	}
-//	POINT Player;
-//	Player.x = GetPlayerX(GetPlayerID());
-//	Player.y = GetPlayerY(GetPlayerID());
-//	POINT DrawCalc;
-//	MapToScreenCoords(Player);
-//	ScreenToAutomapRelative(&DrawCalc, Player.x, Player.y);
-//	D2GFX_DrawLine(DrawCalc.x, DrawCalc.y, xpos, ypos, col, 0xff);
-//	//D2DrawLine(DrawCalc.x,DrawCalc.y,xpos,ypos,0xff);
-//}
+void DrawPlayerBlob(int xpos, int ypos, int col) {
+	static char blines[][2] = { 0,-2, 4,-4, 8,-2, 4,0, 8,2, 4,4, 0,2, -4,4, -8,2, -4,0, -8,-2, -4,-4, 0,-2 };
+	for (int i = 0; i < ARRAYSIZE(blines) - 1; i++) {
+		D2GFX_DrawLine(xpos + blines[i][0], ypos + blines[i][1], xpos + blines[i + 1][0], ypos + blines[i + 1][1], col, 0xff);
+	}
+	POINT Player = { D2CLIENT_GetPlayerUnit()->pPath->xPos, D2CLIENT_GetPlayerUnit()->pPath->yPos };
+	MapToScreenCoords(Player);
+	ScreenToAutomapRelative(&Player, Player.x, Player.y);
+	D2GFX_DrawLine(Player.x, Player.y, xpos, ypos, col, 0xff);
+}
 
 #define QUESTCOLOR 155
 #define OTHER	   152
@@ -130,285 +126,285 @@ void Enum()
 	}
 }
 
-//#define DRAW(f,c) if(fileno==f) { DrawPlayerBlob(xpos,ypos,c);\
-//    if(c==QUESTCOLOR){GlobalVectors.QuestID=ObjID;GlobalVectors.QuestPos.x=rx;GlobalVectors.QuestPos.y=ry;}\
-//    if(c==OTHER){GlobalVectors.OtherID=ObjID;GlobalVectors.OtherPos.x=rx;GlobalVectors.OtherPos.y=ry;}\
-//    if(c==WP){GlobalVectors.WPID=ObjID;GlobalVectors.WPPos.x=rx;GlobalVectors.WPPos.y=ry;}}
+#define DRAW(f,c) if(fileno==f) { DrawPlayerBlob(xpos,ypos,c);\
+    if(c==QUESTCOLOR){GlobalVectors.QuestID=ObjID;GlobalVectors.QuestPos.x=rx;GlobalVectors.QuestPos.y=ry;}\
+    if(c==OTHER){GlobalVectors.OtherID=ObjID;GlobalVectors.OtherPos.x=rx;GlobalVectors.OtherPos.y=ry;}\
+    if(c==WP){GlobalVectors.WPID=ObjID;GlobalVectors.WPPos.x=rx;GlobalVectors.WPPos.y=ry;}}
 
-//void MiniMapCell(int xpos, int ypos, int actnum, int lvlnum, int fileno, long rx, long ry, DWORD ObjID) {
-//	struct BlobStruct {
-//		DWORD Act;
-//		DWORD Area;
-//		DWORD dwNumber;
-//		DWORD Color;
-//	};
-//	lvlnum = D2CLIENT_GetPlayerUnit()->pAct->pRoom1->pRoom2->pLevel->dwLevelNo;
-//	actnum = D2CLIENT_GetPlayerUnit()->dwAct + 1;
-//
-//	if (actnum == 1) { // Act 1
-//		if (lvlnum == LEVEL_ROGUE_ENCAMPMENT)
-//			DRAW(148, QUESTCOLOR) // Akara
-//			DRAW(119, WP) // Town WP
-//
-//			if (lvlnum == LEVEL_BLOOD_MOOR) {
-//				DRAW(3, QUESTCOLOR)
-//					DRAW(266, OTHER)
-//			}
-//		if (lvlnum == LEVEL_DEN_OF_EVIL)
-//			DRAW(4, OTHER)
-//
-//			if (lvlnum == LEVEL_HOLE_LEVEL_1) {
-//				DRAW(5, OTHER)
-//			}
-//
-//		if (lvlnum == LEVEL_COLD_PLAINS) {
-//			DRAW(119, WP)
-//				//	DRAW(2,OTHER) // MAYBE NOT§
-//		}
-//		if (lvlnum == LEVEL_TAMOE_HIGHLAND)
-//			DRAW(3, OTHER)
-//
-//			if (lvlnum == LEVEL_BURIAL_GROUNDS)
-//				DRAW(805, QUESTCOLOR) //raven
-//
-//				if (lvlnum == LEVEL_OUTER_CLOISTER)
-//					DRAW(24, QUESTCOLOR)
-//
-//					if (lvlnum == LEVEL_BARRACKS)
-//						DRAW(108, OTHER)
-//						DRAW(14, QUESTCOLOR)
-//
-//						if (lvlnum == LEVEL_JAIL_LEVEL_1)
-//							//		DRAW(14,QUESTCOLOR)
-//
-//							if (lvlnum == LEVEL_JAIL_LEVEL_3)
-//								DRAW(13, OTHER)
-//
-//								if (lvlnum == LEVEL_CATHEDRAL) {
-//									DRAW(15, OTHER)
-//										DRAW(119, WP)
-//								}
-//
-//		if (lvlnum == LEVEL_CATACOMBS_LEVEL_1) {
-//			DRAW(18, QUESTCOLOR)
-//				//	DRAW(16,OTHER)
-//		}
-//		if (lvlnum == LEVEL_STONY_FIELD) {
-//			DRAW(1, OTHER)
-//				//	DRAW(737,QUESTCOLOR) //red wp
-//		}
-//		if (lvlnum == LEVEL_DARK_WOOD) {
-//			DRAW(30, QUESTCOLOR)
-//				DRAW(1, OTHER)
-//		}
-//		if (lvlnum == LEVEL_BLACK_MARSH) {
-//			DRAW(10, QUESTCOLOR)
-//				DRAW(119, WP)
-//				DRAW(3, OTHER)
-//		}
-//		if (lvlnum == LEVEL_FORGOTTEN_TOWER) {
-//			DRAW(12, QUESTCOLOR)
-//				DRAW(11, OTHER)
-//		}
-//		if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_1)
-//			DRAW(8, OTHER)
-//			DRAW(9, QUESTCOLOR)
-//
-//			if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_2)
-//				DRAW(8, OTHER)
-//				DRAW(9, QUESTCOLOR)
-//
-//				if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_3)
-//					DRAW(8, OTHER)
-//					DRAW(9, QUESTCOLOR)
-//
-//					if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_4)
-//						DRAW(8, OTHER)
-//						DRAW(9, QUESTCOLOR)
-//
-//						if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_5) {
-//							DRAW(8, OTHER)
-//								DRAW(580, QUESTCOLOR)
-//						}
-//		if (lvlnum == LEVEL_UNDERGROUND_PASSAGE_LEVEL_1)
-//			DRAW(4, OTHER)
-//			DRAW(4, QUESTCOLOR)
-//
-//			//	if(lvlnum==LEVEL_TAMOE_HIGHLAND)
-//			if (lvlnum == LEVEL_MONASTERY_GATE)
-//				DRAW(24, OTHER)
-//
-//				if (lvlnum == LEVEL_BLACK_MARSH)
-//					DRAW(10, QUESTCOLOR)
-//
-//					if (lvlnum == LEVEL_TRISTRAM)
-//						DRAW(268, OTHER)
-//						DRAW(26, QUESTCOLOR)
-//
-//						if (lvlnum == LEVEL_CATACOMBS_LEVEL_2 || lvlnum == LEVEL_CATACOMBS_LEVEL_3 || lvlnum == LEVEL_CATACOMBS_LEVEL_4)
-//							DRAW(17, OTHER)
-//							DRAW(18, QUESTCOLOR)
-//							DRAW(157, WP)
-//
-//							if (lvlnum == LEVEL_CATACOMBS_LEVEL_4)
-//								DRAW(156, QUESTCOLOR)
-//	} // clsing Act1 vectors
-//	else if (actnum == 2) {
-//		DRAW(178, QUESTCOLOR)
-//			DRAW(156, WP)
-//			DRAW(323, WP)
-//			DRAW(288, WP)
-//			DRAW(402, WP)
-//			DRAW(298, WP)
-//			DRAW(357, QUESTCOLOR)
-//			if (lvlnum == LEVEL_DRY_HILLS)
-//				DRAW(33, QUESTCOLOR) // Halls of the dead
-//				DRAW(36, QUESTCOLOR) // Halls of the dead
-//				if (lvlnum == LEVEL_LOST_CITY)
-//					DRAW(74, OTHER) // Anc. Tunnels
-//					if (lvlnum == LEVEL_ANCIENT_TUNNELS)
-//						DRAW(22, OTHER) // Exit Anc. Tunnels
-//						DRAW(397, QUESTCOLOR) // Exit Anc. Tunnels
-//						if (lvlnum == LEVEL_HAREM_LEVEL_1)
-//							DRAW(29, QUESTCOLOR) // Level 2
-//							DRAW(25, OTHER) //Luth GOlain
-//							if (lvlnum == LEVEL_HAREM_LEVEL_2)
-//								DRAW(27, OTHER) //Back to Harem Level 1
-//								DRAW(29, QUESTCOLOR) // Down to Palace Cellar lvl 1
-//								if (lvlnum == LEVEL_PALACE_CELLAR_LEVEL_1)
-//									DRAW(27, OTHER) //Back to Harem Level 2
-//									DRAW(32, QUESTCOLOR) //Palace cellar lvl 2
-//									if (lvlnum == LEVEL_PALACE_CELLAR_LEVEL_2)
-//										DRAW(31, OTHER) //Back to Cellar lvl 1
-//										DRAW(32, OTHER) //Downt to cellar lvl 3
-//										if (lvlnum == LEVEL_PALACE_CELLAR_LEVEL_3)
-//											DRAW(31, OTHER) //Back to Cellar lvl 2
-//											if (lvlnum == LEVEL_HALLS_OF_THE_DEAD_LEVEL_1)
-//												DRAW(45, OTHER) // MAGGOT ENTRANCE
-//												DRAW(46, QUESTCOLOR)
-//												if (lvlnum == LEVEL_HALLS_OF_THE_DEAD_LEVEL_2)
-//													DRAW(45, OTHER) // MAGGOT ENTRANCE
-//													DRAW(46, QUESTCOLOR)
-//													if (lvlnum == LEVEL_HALLS_OF_THE_DEAD_LEVEL_3)
-//														DRAW(354, QUESTCOLOR)
-//														if (lvlnum == LEVEL_FAR_OASIS)
-//															DRAW(47, QUESTCOLOR) // MAGGOT ENTRANCE
-//															if (lvlnum == LEVEL_MAGGOT_LAIR_LEVEL_1)
-//																DRAW(48, OTHER) // MAGGOT ENTRANCE
-//																DRAW(49, QUESTCOLOR) // MAGGOT lvl 2
-//																if (lvlnum == LEVEL_MAGGOT_LAIR_LEVEL_2)
-//																	DRAW(48, OTHER) // MAGGOT LVL 1
-//																	DRAW(49, QUESTCOLOR) // MAGGOT lvl 3
-//																	if (lvlnum == LEVEL_MAGGOT_LAIR_LEVEL_3)
-//																		DRAW(48, OTHER) // MAGGOT LVL 2
-//																		DRAW(356, QUESTCOLOR) // cHEST
-//																		if (lvlnum == LEVEL_SEWERS_LEVEL_1)
-//																			DRAW(22, OTHER) // lvl 1
-//																			DRAW(23, QUESTCOLOR) // lvl 2
-//																			if (lvlnum == LEVEL_SEWERS_LEVEL_2)
-//																				DRAW(22, OTHER) // lvl 1
-//																				if (lvlnum == LEVEL_SEWERS_LEVEL_3)
-//																					DRAW(22, OTHER)
-//																					DRAW(356, QUESTCOLOR)
-//																					DRAW(355, QUESTCOLOR)
-//																					if (lvlnum == LEVEL_ROCKY_WASTE)
-//																						DRAW(34, OTHER)
-//																						if (lvlnum == LEVEL_VALLEY_OF_SNAKES)
-//																							DRAW(37, QUESTCOLOR) // lvl 1
-//																							if (lvlnum == LEVEL_CLAW_VIPER_TEMPLE_LEVEL_1)
-//																								DRAW(46, QUESTCOLOR) // lvl 1
-//																								if (lvlnum == LEVEL_CLAW_VIPER_TEMPLE_LEVEL_2)
-//																									DRAW(149, QUESTCOLOR) // lvl 1
-//																									if (lvlnum == LEVEL_TAL_RASHAS_TOMB1 || lvlnum == LEVEL_TAL_RASHAS_TOMB2 || LEVEL_TAL_RASHAS_TOMB3 || LEVEL_TAL_RASHAS_TOMB4 || LEVEL_TAL_RASHAS_TOMB5 || LEVEL_TAL_RASHAS_TOMB6 || LEVEL_TAL_RASHAS_TOMB7)
-//																										DRAW(152, QUESTCOLOR) // orifice
-//																										DRAW(45, OTHER)
-//																										if (lvlnum == LEVEL_DURIELS_LAIR)
-//																											DRAW(251, QUESTCOLOR) // lvl 1
-//	} //clsing Act2 Vectors
-//	else if (actnum == 3) {
-//		DRAW(237, WP)
-//			DRAW(324, WP)
-//			DRAW(237, WP)
-//			DRAW(255, QUESTCOLOR) //Ormus
-//			if (lvlnum == LEVEL_SPIDER_FOREST)
-//				DRAW(51, OTHER)
-//				if (lvlnum == LEVEL_KURAST_BAZAAR)
-//					DRAW(195, QUESTCOLOR)
-//					if (lvlnum == LEVEL_RUINED_TEMPLE)
-//						DRAW(193, QUESTCOLOR)
-//						if (lvlnum == LEVEL_TRAVINCAL)
-//							DRAW(64, QUESTCOLOR) // entrance to durance
-//							if (lvlnum == LEVEL_DURANCE_OF_HATE_LEVEL_1)
-//								DRAW(66, OTHER)
-//								DRAW(65, OTHER)
-//								DRAW(66, OTHER)
-//								DRAW(67, QUESTCOLOR)
-//								DRAW(68, QUESTCOLOR)
-//								if (lvlnum == LEVEL_DURANCE_OF_HATE_LEVEL_2)
-//									DRAW(65, OTHER)
-//									DRAW(66, OTHER)
-//									DRAW(67, QUESTCOLOR)
-//									DRAW(68, QUESTCOLOR)
-//									if (lvlnum == LEVEL_DURANCE_OF_HATE_LEVEL_3)
-//										DRAW(66, OTHER)
-//										DRAW(242, QUESTCOLOR)
-//										DRAW(342, WP)
-//	} // closing Act3
-//	else if (actnum == 4) {
-//		DRAW(405, QUESTCOLOR)
-//			DRAW(398, WP)
-//			DRAW(238, WP)
-//			if (lvlnum == LEVEL_PLAINS_OF_DESPAIR)
-//				DRAW(256, QUESTCOLOR)
-//				if (lvlnum == LEVEL_RIVER_OF_FLAME)
-//					DRAW(376, QUESTCOLOR)
-//					//	DRAW(70,OTHER)
-//					if (lvlnum == LEVEL_CHAOS_SANCTUM)
-//						DRAW(255, QUESTCOLOR) // DIABLO
-//						if (lvlnum == LEVEL_CITY_OF_THE_DAMNED)
-//							DRAW(69, QUESTCOLOR) // DIABLO
-//	} // closing Act4
-//	else {
-//		DRAW(255, QUESTCOLOR)
-//			DRAW(429, WP)
-//			DRAW(496, WP)
-//			DRAW(494, WP)
-//			DRAW(511, WP) // Glacial Trail
-//			DRAW(513, QUESTCOLOR)
-//			DRAW(563, QUESTCOLOR)
-//			DRAW(81, OTHER) // Go out!
-//			DRAW(82, QUESTCOLOR) // Way to throne
-//			if (lvlnum == LEVEL_BLOODY_FOOTHILLS)
-//				DRAW(776, QUESTCOLOR)// way to Shenk
-//				if (lvlnum == LEVEL_RIGID_HIGHLANDS)
-//					//	DRAW(434,QUESTCOLOR)
-//					//	DRAW(473,OTHER)
-//					if (lvlnum == LEVEL_ARREAT_PLATEAU) {
-//						DRAW(71, QUESTCOLOR)
-//					}
-//		if (lvlnum == LEVEL_TUNDRA_WASTELANDS)
-//			DRAW(71, QUESTCOLOR)
-//			if (lvlnum == LEVEL_ROCKY_SUMMIT)
-//				DRAW(546, QUESTCOLOR)
-//				DRAW(547, WP)
-//				DRAW(564, OTHER)
-//				if (lvlnum == LEVEL_HALLS_OF_DEATHS_CALLING)
-//					DRAW(77, QUESTCOLOR)// way to Nila
-//					if (lvlnum == LEVEL_HALLS_OF_VAUGHT)
-//						DRAW(462, QUESTCOLOR)// WHere nila sits.
-//						if (lvlnum == LEVEL_CRYSTALIZED_CAVERN_LEVEL_1) // CRYSTALINE PASSAGE
-//						//	DRAW(73,QUESTCOLOR)// Way to frozen river from crystaline passage
-//							DRAW(75, QUESTCOLOR)// Way to frozen river from crystaline passage
-//							DRAW(74, OTHER)// Way to Glacial Trail.
-//							if (lvlnum == LEVEL_CELLAR_OF_PITY)
-//								DRAW(460, QUESTCOLOR)// Pathing to Anya.
-//								DRAW(73, OTHER)
-//								if (lvlnum == LEVEL_THE_WORLDSTONE_CHAMBER)
-//									DRAW(544, QUESTCOLOR)// Pathing to Baal.
-//	} // Closing Act5
-//	 // Always draw the below
-//	DRAW(267, OTHER) // Stash
-//}
+void MiniMapCell(int xpos, int ypos, int actnum, int lvlnum, int fileno, long rx, long ry, DWORD ObjID) {
+	struct BlobStruct {
+		DWORD Act;
+		DWORD Area;
+		DWORD dwNumber;
+		DWORD Color;
+	};
+	lvlnum = D2CLIENT_GetPlayerUnit()->pAct->pRoom1->pRoom2->pLevel->dwLevelNo;
+	actnum = D2CLIENT_GetPlayerUnit()->dwAct + 1;
+
+	if (actnum == 1) { // Act 1
+		if (lvlnum == LEVEL_ROGUE_ENCAMPMENT)
+			DRAW(148, QUESTCOLOR) // Akara
+			DRAW(119, WP) // Town WP
+
+			if (lvlnum == LEVEL_BLOOD_MOOR) {
+				DRAW(3, QUESTCOLOR)
+					DRAW(266, OTHER)
+			}
+		if (lvlnum == LEVEL_DEN_OF_EVIL)
+			DRAW(4, OTHER)
+
+			if (lvlnum == LEVEL_HOLE_LEVEL_1) {
+				DRAW(5, OTHER)
+			}
+
+		if (lvlnum == LEVEL_COLD_PLAINS) {
+			DRAW(119, WP)
+				//	DRAW(2,OTHER) // MAYBE NOT§
+		}
+		if (lvlnum == LEVEL_TAMOE_HIGHLAND)
+			DRAW(3, OTHER)
+
+			if (lvlnum == LEVEL_BURIAL_GROUNDS)
+				DRAW(805, QUESTCOLOR) //raven
+
+				if (lvlnum == LEVEL_OUTER_CLOISTER)
+					DRAW(24, QUESTCOLOR)
+
+					if (lvlnum == LEVEL_BARRACKS)
+						DRAW(108, OTHER)
+						DRAW(14, QUESTCOLOR)
+
+						if (lvlnum == LEVEL_JAIL_LEVEL_1)
+							//		DRAW(14,QUESTCOLOR)
+
+							if (lvlnum == LEVEL_JAIL_LEVEL_3)
+								DRAW(13, OTHER)
+
+								if (lvlnum == LEVEL_CATHEDRAL) {
+									DRAW(15, OTHER)
+										DRAW(119, WP)
+								}
+
+		if (lvlnum == LEVEL_CATACOMBS_LEVEL_1) {
+			DRAW(18, QUESTCOLOR)
+				//	DRAW(16,OTHER)
+		}
+		if (lvlnum == LEVEL_STONY_FIELD) {
+			DRAW(1, OTHER)
+				//	DRAW(737,QUESTCOLOR) //red wp
+		}
+		if (lvlnum == LEVEL_DARK_WOOD) {
+			DRAW(30, QUESTCOLOR)
+				DRAW(1, OTHER)
+		}
+		if (lvlnum == LEVEL_BLACK_MARSH) {
+			DRAW(10, QUESTCOLOR)
+				DRAW(119, WP)
+				DRAW(3, OTHER)
+		}
+		if (lvlnum == LEVEL_FORGOTTEN_TOWER) {
+			DRAW(12, QUESTCOLOR)
+				DRAW(11, OTHER)
+		}
+		if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_1)
+			DRAW(8, OTHER)
+			DRAW(9, QUESTCOLOR)
+
+			if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_2)
+				DRAW(8, OTHER)
+				DRAW(9, QUESTCOLOR)
+
+				if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_3)
+					DRAW(8, OTHER)
+					DRAW(9, QUESTCOLOR)
+
+					if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_4)
+						DRAW(8, OTHER)
+						DRAW(9, QUESTCOLOR)
+
+						if (lvlnum == LEVEL_TOWER_CELLAR_LEVEL_5) {
+							DRAW(8, OTHER)
+								DRAW(580, QUESTCOLOR)
+						}
+		if (lvlnum == LEVEL_UNDERGROUND_PASSAGE_LEVEL_1)
+			DRAW(4, OTHER)
+			DRAW(4, QUESTCOLOR)
+
+			//	if(lvlnum==LEVEL_TAMOE_HIGHLAND)
+			if (lvlnum == LEVEL_MONASTERY_GATE)
+				DRAW(24, OTHER)
+
+				if (lvlnum == LEVEL_BLACK_MARSH)
+					DRAW(10, QUESTCOLOR)
+
+					if (lvlnum == LEVEL_TRISTRAM)
+						DRAW(268, OTHER)
+						DRAW(26, QUESTCOLOR)
+
+						if (lvlnum == LEVEL_CATACOMBS_LEVEL_2 || lvlnum == LEVEL_CATACOMBS_LEVEL_3 || lvlnum == LEVEL_CATACOMBS_LEVEL_4)
+							DRAW(17, OTHER)
+							DRAW(18, QUESTCOLOR)
+							DRAW(157, WP)
+
+							if (lvlnum == LEVEL_CATACOMBS_LEVEL_4)
+								DRAW(156, QUESTCOLOR)
+	} // clsing Act1 vectors
+	else if (actnum == 2) {
+		DRAW(178, QUESTCOLOR)
+			DRAW(156, WP)
+			DRAW(323, WP)
+			DRAW(288, WP)
+			DRAW(402, WP)
+			DRAW(298, WP)
+			DRAW(357, QUESTCOLOR)
+			if (lvlnum == LEVEL_DRY_HILLS)
+				DRAW(33, QUESTCOLOR) // Halls of the dead
+				DRAW(36, QUESTCOLOR) // Halls of the dead
+				if (lvlnum == LEVEL_LOST_CITY)
+					DRAW(74, OTHER) // Anc. Tunnels
+					if (lvlnum == LEVEL_ANCIENT_TUNNELS)
+						DRAW(22, OTHER) // Exit Anc. Tunnels
+						DRAW(397, QUESTCOLOR) // Exit Anc. Tunnels
+						if (lvlnum == LEVEL_HAREM_LEVEL_1)
+							DRAW(29, QUESTCOLOR) // Level 2
+							DRAW(25, OTHER) //Luth GOlain
+							if (lvlnum == LEVEL_HAREM_LEVEL_2)
+								DRAW(27, OTHER) //Back to Harem Level 1
+								DRAW(29, QUESTCOLOR) // Down to Palace Cellar lvl 1
+								if (lvlnum == LEVEL_PALACE_CELLAR_LEVEL_1)
+									DRAW(27, OTHER) //Back to Harem Level 2
+									DRAW(32, QUESTCOLOR) //Palace cellar lvl 2
+									if (lvlnum == LEVEL_PALACE_CELLAR_LEVEL_2)
+										DRAW(31, OTHER) //Back to Cellar lvl 1
+										DRAW(32, OTHER) //Downt to cellar lvl 3
+										if (lvlnum == LEVEL_PALACE_CELLAR_LEVEL_3)
+											DRAW(31, OTHER) //Back to Cellar lvl 2
+											if (lvlnum == LEVEL_HALLS_OF_THE_DEAD_LEVEL_1)
+												DRAW(45, OTHER) // MAGGOT ENTRANCE
+												DRAW(46, QUESTCOLOR)
+												if (lvlnum == LEVEL_HALLS_OF_THE_DEAD_LEVEL_2)
+													DRAW(45, OTHER) // MAGGOT ENTRANCE
+													DRAW(46, QUESTCOLOR)
+													if (lvlnum == LEVEL_HALLS_OF_THE_DEAD_LEVEL_3)
+														DRAW(354, QUESTCOLOR)
+														if (lvlnum == LEVEL_FAR_OASIS)
+															DRAW(47, QUESTCOLOR) // MAGGOT ENTRANCE
+															if (lvlnum == LEVEL_MAGGOT_LAIR_LEVEL_1)
+																DRAW(48, OTHER) // MAGGOT ENTRANCE
+																DRAW(49, QUESTCOLOR) // MAGGOT lvl 2
+																if (lvlnum == LEVEL_MAGGOT_LAIR_LEVEL_2)
+																	DRAW(48, OTHER) // MAGGOT LVL 1
+																	DRAW(49, QUESTCOLOR) // MAGGOT lvl 3
+																	if (lvlnum == LEVEL_MAGGOT_LAIR_LEVEL_3)
+																		DRAW(48, OTHER) // MAGGOT LVL 2
+																		DRAW(356, QUESTCOLOR) // cHEST
+																		if (lvlnum == LEVEL_SEWERS_LEVEL_1)
+																			DRAW(22, OTHER) // lvl 1
+																			DRAW(23, QUESTCOLOR) // lvl 2
+																			if (lvlnum == LEVEL_SEWERS_LEVEL_2)
+																				DRAW(22, OTHER) // lvl 1
+																				if (lvlnum == LEVEL_SEWERS_LEVEL_3)
+																					DRAW(22, OTHER)
+																					DRAW(356, QUESTCOLOR)
+																					DRAW(355, QUESTCOLOR)
+																					if (lvlnum == LEVEL_ROCKY_WASTE)
+																						DRAW(34, OTHER)
+																						if (lvlnum == LEVEL_VALLEY_OF_SNAKES)
+																							DRAW(37, QUESTCOLOR) // lvl 1
+																							if (lvlnum == LEVEL_CLAW_VIPER_TEMPLE_LEVEL_1)
+																								DRAW(46, QUESTCOLOR) // lvl 1
+																								if (lvlnum == LEVEL_CLAW_VIPER_TEMPLE_LEVEL_2)
+																									DRAW(149, QUESTCOLOR) // lvl 1
+																									if (lvlnum == LEVEL_TAL_RASHAS_TOMB1 || lvlnum == LEVEL_TAL_RASHAS_TOMB2 || LEVEL_TAL_RASHAS_TOMB3 || LEVEL_TAL_RASHAS_TOMB4 || LEVEL_TAL_RASHAS_TOMB5 || LEVEL_TAL_RASHAS_TOMB6 || LEVEL_TAL_RASHAS_TOMB7)
+																										DRAW(152, QUESTCOLOR) // orifice
+																										DRAW(45, OTHER)
+																										if (lvlnum == LEVEL_DURIELS_LAIR)
+																											DRAW(251, QUESTCOLOR) // lvl 1
+	} //clsing Act2 Vectors
+	else if (actnum == 3) {
+		DRAW(237, WP)
+			DRAW(324, WP)
+			DRAW(237, WP)
+			DRAW(255, QUESTCOLOR) //Ormus
+			if (lvlnum == LEVEL_SPIDER_FOREST)
+				DRAW(51, OTHER)
+				if (lvlnum == LEVEL_KURAST_BAZAAR)
+					DRAW(195, QUESTCOLOR)
+					if (lvlnum == LEVEL_RUINED_TEMPLE)
+						DRAW(193, QUESTCOLOR)
+						if (lvlnum == LEVEL_TRAVINCAL)
+							DRAW(64, QUESTCOLOR) // entrance to durance
+							if (lvlnum == LEVEL_DURANCE_OF_HATE_LEVEL_1)
+								DRAW(66, OTHER)
+								DRAW(65, OTHER)
+								DRAW(66, OTHER)
+								DRAW(67, QUESTCOLOR)
+								DRAW(68, QUESTCOLOR)
+								if (lvlnum == LEVEL_DURANCE_OF_HATE_LEVEL_2)
+									DRAW(65, OTHER)
+									DRAW(66, OTHER)
+									DRAW(67, QUESTCOLOR)
+									DRAW(68, QUESTCOLOR)
+									if (lvlnum == LEVEL_DURANCE_OF_HATE_LEVEL_3)
+										DRAW(66, OTHER)
+										DRAW(242, QUESTCOLOR)
+										DRAW(342, WP)
+	} // closing Act3
+	else if (actnum == 4) {
+		DRAW(405, QUESTCOLOR)
+			DRAW(398, WP)
+			DRAW(238, WP)
+			if (lvlnum == LEVEL_PLAINS_OF_DESPAIR)
+				DRAW(256, QUESTCOLOR)
+				if (lvlnum == LEVEL_RIVER_OF_FLAME)
+					DRAW(376, QUESTCOLOR)
+					//	DRAW(70,OTHER)
+					if (lvlnum == LEVEL_CHAOS_SANCTUM)
+						DRAW(255, QUESTCOLOR) // DIABLO
+						if (lvlnum == LEVEL_CITY_OF_THE_DAMNED)
+							DRAW(69, QUESTCOLOR) // DIABLO
+	} // closing Act4
+	else {
+		DRAW(255, QUESTCOLOR)
+			DRAW(429, WP)
+			DRAW(496, WP)
+			DRAW(494, WP)
+			DRAW(511, WP) // Glacial Trail
+			DRAW(513, QUESTCOLOR)
+			DRAW(563, QUESTCOLOR)
+			DRAW(81, OTHER) // Go out!
+			DRAW(82, QUESTCOLOR) // Way to throne
+			if (lvlnum == LEVEL_BLOODY_FOOTHILLS)
+				DRAW(776, QUESTCOLOR)// way to Shenk
+				if (lvlnum == LEVEL_RIGID_HIGHLANDS)
+					//	DRAW(434,QUESTCOLOR)
+					//	DRAW(473,OTHER)
+					if (lvlnum == LEVEL_ARREAT_PLATEAU) {
+						DRAW(71, QUESTCOLOR)
+					}
+		if (lvlnum == LEVEL_TUNDRA_WASTELANDS)
+			DRAW(71, QUESTCOLOR)
+			if (lvlnum == LEVEL_ROCKY_SUMMIT)
+				DRAW(546, QUESTCOLOR)
+				DRAW(547, WP)
+				DRAW(564, OTHER)
+				if (lvlnum == LEVEL_HALLS_OF_DEATHS_CALLING)
+					DRAW(77, QUESTCOLOR)// way to Nila
+					if (lvlnum == LEVEL_HALLS_OF_VAUGHT)
+						DRAW(462, QUESTCOLOR)// WHere nila sits.
+						if (lvlnum == LEVEL_CRYSTALIZED_CAVERN_LEVEL_1) // CRYSTALINE PASSAGE
+						//	DRAW(73,QUESTCOLOR)// Way to frozen river from crystaline passage
+							DRAW(75, QUESTCOLOR)// Way to frozen river from crystaline passage
+							DRAW(74, OTHER)// Way to Glacial Trail.
+							if (lvlnum == LEVEL_CELLAR_OF_PITY)
+								DRAW(460, QUESTCOLOR)// Pathing to Anya.
+								DRAW(73, OTHER)
+								if (lvlnum == LEVEL_THE_WORLDSTONE_CHAMBER)
+									DRAW(544, QUESTCOLOR)// Pathing to Baal.
+	} // Closing Act5
+	 // Always draw the below
+	DRAW(267, OTHER) // Stash
+}
 
 void NewEnum()
 {
@@ -437,7 +433,7 @@ void NewEnum()
 			}
 			MapToScreenCoords(Calc);
 			ScreenToAutomapRelative(&DrawCalc, Calc.x, Calc.y);
-			//MiniMapCell(DrawCalc.x, DrawCalc.y, D2CLIENT_GetPlayerUnit()->dwAct + 1, GetPlayerArea(), pu.dwTxtFileNo, pu.dwPosX, pu.dwPosY, UnitID);
+			MiniMapCell(DrawCalc.x, DrawCalc.y, D2CLIENT_GetPlayerUnit()->dwAct + 1, GetPlayerArea(), pu.dwTxtFileNo, pu.dwPosX, pu.dwPosY, UnitID);
 			if (Units) {
 				DrawTextToScreen(mitoa(unit->dwTxtFileNo), Calc.x, Calc.y, 1, 4); // Prints Type
 				DrawTextToScreen(mitoa(unit->dwType), Calc.x, Calc.y + 10, 2, 4);; // PrintsUnitTypes
@@ -451,7 +447,7 @@ void NewEnum()
 
 extern int Players() {
 	int i;
-	RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;
+	RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList;
 	for (i = 0; pUnit != NULL; i++)
 		pUnit = pUnit->pNext;
 	return i;
@@ -464,50 +460,50 @@ void DrawPos(void)
 	DrawTextToScreen(MyPos, 115, 550, 1, 4);
 }
 
-//void DrawPlines(void)
-//{
-//	if (!D2CLIENT_GetUiVar(2)) {
-//		if (!D2CLIENT_GetUiVar(1)) {
-//			if (!D2CLIENT_GetUiVar(0x18)) {
-//				POINT Player;
-//				POINT Target;
-//				if (Auto.GetPlayerID() != GetPlayerID())
-//					if (FindUnit(Auto.GetPlayerID(), 0))
-//						if (((UnitAny*)FindUnit(Auto.GetPlayerID(), 0))->pPath) {
-//							UnitAny* NearstPlayer = (UnitAny*)FindUnit(Auto.GetPlayerID(), 0);
-//							if (NearstPlayer->pPlayerData) {
-//								if (!CheckPlayerFriend(NearstPlayer->pPlayerData->szName)) {
-//									Player.x = GetPlayerX(GetPlayerID());
-//									Player.y = GetPlayerY(GetPlayerID());
-//									Target.x = NearstPlayer->pPath->xPos;
-//									Target.y = NearstPlayer->pPath->yPos;
-//									POINT DrawCalc, TargetCalc;
-//									MapToScreenCoords(Player);
-//									ScreenToAutomapRelative(&DrawCalc, Player.x, Player.y);
-//									MapToScreenCoords(Target);
-//									ScreenToAutomapRelative(&TargetCalc, Target.x, Target.y);
-//									D2DrawLine(DrawCalc.x, DrawCalc.y, TargetCalc.x, TargetCalc.y, 11);
-//									//DrawPlayerBlob(TargetCalc.x,TargetCalc.y,8);
-//								}
-//								if (Units) {
-//									POINT DrawCalc, TargetCalc;
-//									Player.x = NearstPlayer->pPath->xPos;
-//									Player.y = NearstPlayer->pPath->yPos;
-//									Target.x = NearstPlayer->pPath->xTarget;
-//									Target.y = NearstPlayer->pPath->yTarget;
-//
-//									MapToScreenCoords(Player);
-//									ScreenToAutomapRelative(&DrawCalc, Player.x, Player.y);
-//									MapToScreenCoords(Target);
-//									ScreenToAutomapRelative(&TargetCalc, Target.x, Target.y);
-//									D2DrawLine(DrawCalc.x, DrawCalc.y, TargetCalc.x, TargetCalc.y, 222);
-//								}
-//							}
-//						}
-//			}
-//		}
-//	}
-//}
+void DrawPlines(void)
+{
+	/*if (!D2CLIENT_GetUiVar(2)) {
+		if (!D2CLIENT_GetUiVar(1)) {
+			if (!D2CLIENT_GetUiVar(0x18)) {
+				POINT Player;
+				POINT Target;
+				if (Auto.GetPlayerID() != GetPlayerID())
+					if (FindUnit(Auto.GetPlayerID(), 0))
+						if (((UnitAny*)FindUnit(Auto.GetPlayerID(), 0))->pPath) {
+							UnitAny* NearstPlayer = (UnitAny*)FindUnit(Auto.GetPlayerID(), 0);
+							if (NearstPlayer->pPlayerData) {
+								if (!CheckPlayerFriend(NearstPlayer->pPlayerData->szName)) {
+									Player.x = GetPlayerX(GetPlayerID());
+									Player.y = GetPlayerY(GetPlayerID());
+									Target.x = NearstPlayer->pPath->xPos;
+									Target.y = NearstPlayer->pPath->yPos;
+									POINT DrawCalc, TargetCalc;
+									MapToScreenCoords(Player);
+									ScreenToAutomapRelative(&DrawCalc, Player.x, Player.y);
+									MapToScreenCoords(Target);
+									ScreenToAutomapRelative(&TargetCalc, Target.x, Target.y);
+									D2DrawLine(DrawCalc.x, DrawCalc.y, TargetCalc.x, TargetCalc.y, 11);
+									//DrawPlayerBlob(TargetCalc.x,TargetCalc.y,8);
+								}
+								if (Units) {
+									POINT DrawCalc, TargetCalc;
+									Player.x = NearstPlayer->pPath->xPos;
+									Player.y = NearstPlayer->pPath->yPos;
+									Target.x = NearstPlayer->pPath->xTarget;
+									Target.y = NearstPlayer->pPath->yTarget;
+
+									MapToScreenCoords(Player);
+									ScreenToAutomapRelative(&DrawCalc, Player.x, Player.y);
+									MapToScreenCoords(Target);
+									ScreenToAutomapRelative(&TargetCalc, Target.x, Target.y);
+									D2DrawLine(DrawCalc.x, DrawCalc.y, TargetCalc.x, TargetCalc.y, 222);
+								}
+							}
+						}
+			}
+		}
+	}*/
+}
 
 void  AbsToScreenCoords(POINT& rMapPosition)
 {
@@ -770,7 +766,7 @@ void DrawUIVars(void)
 
 void DrawWelcomeText(void)
 {
-	/*if (PKInfo.Ready)
+	if (PKInfo.Ready)
 		if (TimeOn <= 1000) {
 			char Buffer[2048] = { 0 };
 			sprintf(Buffer, "Welcome %s to EuroTPPK", PKInfo.ForumName);
@@ -788,7 +784,7 @@ void DrawWelcomeText(void)
 	else PKInfo.Ready = false;
 	TimeOn++;
 	TimeOn1++;
-	Killed = false;*/
+	Killed = false;
 }
 
 //
@@ -967,6 +963,7 @@ void Boxes(void) {
 		}
 	}
 }
+
 void DT(void) {
 	char Buffer[200];
 	if (Killed)
@@ -977,11 +974,11 @@ void DT(void) {
 			Killed = false;
 			return;
 		}
-	UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
+	/*UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
 	sprintf(Buffer, "FrameRate: %d", pUnit->wFrameRate);
-	//DrawTextToScreen(Buffer,300,100,2,0);
+	DrawTextToScreen(Buffer, 300, 100, 2, 0);
 	sprintf(Buffer, "FrameRemain: %d", pUnit->dwFrameRemain);
-	//DrawTextToScreen(Buffer,300,110,1,0);
+	DrawTextToScreen(Buffer, 300, 110, 1, 0);*/
 
 	if (D2CLIENT_GetUiVar(0x01))
 	{
@@ -993,16 +990,6 @@ void DT(void) {
 	{
 		ClipCursor(0);
 		return;
-	}
-}
-void DrawWinamp(void)
-{
-	if (v_DrawSongTitle) {
-		if (!D2CLIENT_GetUiVar(0x1a))
-			if (!D2CLIENT_GetUiVar(0x19))
-				if (!D2CLIENT_GetUiVar(0x02))
-					if (!D2CLIENT_GetUiVar(0x18))
-						PanelDraw();
 	}
 }
 
@@ -1024,9 +1011,9 @@ void GameDraw(void)
 		ConfBoxx();
 		ExpBox();
 		PreCastsBox();
-		/*TargetInfoBoxxx();
-		MovableTargets();*/
-		//WinAmpBox();
+		TargetInfoBoxxx();
+		MovableTargets();
+		WinAmpBox();
 	}
 	DrawMessageConsole();
 	DrawConsole();
@@ -1036,8 +1023,7 @@ void GameDraw(void)
 	Screenhooks();
 	Boxes();
 	//DrawPlayerInventoryHook();
-	//	DrawWinamp();
-	//	DrawWelcomeText();
+	DrawWelcomeText();
 	WelcomeBox();
 	//if (D2CLIENT_AutomapOn) // The Automap is tabbed ON
 	//	AutoTeleDraw();		 // Draw while auto teleporting

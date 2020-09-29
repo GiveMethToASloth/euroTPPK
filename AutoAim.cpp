@@ -29,7 +29,7 @@ int AutoAim::GetPlayerArea() {
 	return pUnit->dwLevelId;
 }
 bool AutoAim::SelectPlayer(DWORD PID) {
-	pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;//0x6FBCC080;
+	pUnit = *p_D2CLIENT_PlayerUnitList;//0x6FBCC080;
 	while (pUnit) {
 		if (pUnit->dwUnitId == PID)
 			return true;
@@ -38,7 +38,7 @@ bool AutoAim::SelectPlayer(DWORD PID) {
 	return false;
 }
 bool AutoAim::SelectPlayerByName(char* Name) {
-	pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;//0x6FBCC080;
+	pUnit = *p_D2CLIENT_PlayerUnitList;//0x6FBCC080;
 	while (pUnit) {
 		if (!_strcmpi(pUnit->szName, Name))
 			return true;
@@ -48,7 +48,7 @@ bool AutoAim::SelectPlayerByName(char* Name) {
 }
 
 void AutoAim::Init() {
-	pUnit = (RosterUnit*)*(DWORD*)PlayerRoster;//0x6FBCC080;
+	pUnit = *p_D2CLIENT_PlayerUnitList;//0x6FBCC080;
 	Current = 1;
 }
 

@@ -2,7 +2,7 @@
 //
 //bool ListOnce = false; // Players
 //bool GainOnce = false; // Authing
-//PKInfoStruct PKInfo;
+PKInfoStruct PKInfo;
 //LastPKStruct LPK;
 AUTHNUMBER Authn;
 //

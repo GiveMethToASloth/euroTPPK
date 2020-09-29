@@ -6,7 +6,7 @@ DWORD PlayerRoster = 0x11C080;
 
 RosterUnit* FindPartyById(DWORD dwUnitId)
 {
-	for (RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster; pUnit; pUnit = pUnit->pNext)
+	for (RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit; pUnit = pUnit->pNext)
 		if (pUnit->dwUnitId == dwUnitId)
 			return pUnit;
 	_asm nop
@@ -26,7 +26,7 @@ DWORD GetPvpFlags(DWORD dwPlayerId)
 {
 	DWORD dwFlags = 0;
 	UnitAny* Me = (UnitAny*)D2CLIENT_GetPlayerUnit();
-	for (RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster; pUnit; pUnit = pUnit->pNext)
+	for (RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit; pUnit = pUnit->pNext)
 	{
 		if (pUnit->dwUnitId != dwPlayerId)
 			continue;
@@ -64,7 +64,7 @@ DWORD GetPvpFlags(DWORD dwPlayerId)
 void TickCount() {
 	RosterUnit* pMe = FindPartyById(D2CLIENT_GetPlayerUnit()->dwUnitId);
 
-	for (RosterUnit* pUnit = (RosterUnit*)*(DWORD*)PlayerRoster; pUnit; pUnit = pUnit->pNext)
+	for (RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit; pUnit = pUnit->pNext)
 	{
 		if (!pUnit)
 			break;

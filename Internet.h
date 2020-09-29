@@ -3,15 +3,15 @@
 //extern int GetLevelByN(char* Name);
 //extern int PlayerRosterN;
 //
-//struct PKInfoStruct {
-//	char ForumName[50];
-//	DWORD TotalKills;
-//	DWORD TotalScore;
-//	DWORD Rank;
-//	char LastUse[50];
-//	DWORD Ready;
-//};
-//extern PKInfoStruct PKInfo;
+struct PKInfoStruct {
+	char ForumName[50];
+	DWORD TotalKills;
+	DWORD TotalScore;
+	DWORD Rank;
+	char LastUse[50];
+	DWORD Ready;
+};
+extern PKInfoStruct PKInfo;
 //
 //struct LastPKStruct {
 //	char killer[10];
