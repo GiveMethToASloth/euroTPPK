@@ -5,7 +5,7 @@ void PlayerJoinMsgPatch_ASM();
 
 extern DWORD BreakItUp;
 extern DWORD DontBreak;
-void ReceivePacketIntercept_STUB();
+void OnGamePacketReceived_STUB();
 void KeyHookIntercept_STUB();
 void DrawIntercept_STUB();
 extern DWORD DrawCall;
@@ -17,5 +17,3 @@ void GameDrawAutomapInfo_STUB();
 //void PlayerMapIntercept();
 //void  PlayerBlobIntercept();
 //void PlayerPatch();
-
-VOID OnGamePacketReceived_STUB();

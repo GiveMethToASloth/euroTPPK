@@ -20,6 +20,7 @@ DWORD BookTimer;
 DWORD ssTimer;
 bool Units = false;
 Vector GlobalVectors;
+
 void D2DrawLine(int x, int y, int x2, int y2, DWORD color) {
 	D2GFX_DrawLine(x, y, x2, y2, color, 0xff);
 }
@@ -55,6 +56,7 @@ extern DWORD GetUnitIDByXY(LONG Wx, LONG Wy, Room2* pRoom2) {
 	}
 	return 0;
 }
+
 Level* GetLevelPointerD(ActMisc* pActMisc, int nLevel)
 {
 	if ((!pActMisc) || (nLevel < 0))
@@ -70,6 +72,7 @@ Level* GetLevelPointerD(ActMisc* pActMisc, int nLevel)
 	}
 	return D2COMMON_GetLevel(pActMisc, nLevel);
 }
+
 //void DrawPlayerBlob(int xpos, int ypos, int col) {
 //	static char blines[][2] = { 0,-2, 4,-4, 8,-2, 4,0, 8,2, 4,4, 0,2, -4,4, -8,2, -4,0, -8,-2, -4,-4, 0,-2 };
 //	for (int i = 0; i < ARRAYSIZE(blines) - 1; i++) {
@@ -460,6 +463,7 @@ void DrawPos(void)
 	sprintf(MyPos, "%d:%d", GetPosition().x, GetPosition().y);
 	DrawTextToScreen(MyPos, 115, 550, 1, 4);
 }
+
 //void DrawPlines(void)
 //{
 //	if (!D2CLIENT_GetUiVar(2)) {
@@ -504,6 +508,7 @@ void DrawPos(void)
 //		}
 //	}
 //}
+
 void  AbsToScreenCoords(POINT& rMapPosition)
 {
 	D2COMMON_AbsScreenToMap(&rMapPosition.x, &rMapPosition.y);
@@ -704,6 +709,7 @@ void AutoTeleDraw(void)
 		}
 	}
 }
+
 void DrawUIVars(void)
 {
 	UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
@@ -761,6 +767,7 @@ void DrawUIVars(void)
 //		DrawStatBox(Auto.GetPlayerID());
 //	else if (ToggleInfo) DrawStatBox(GetPlayerID());*/
 //}
+
 void DrawWelcomeText(void)
 {
 	/*if (PKInfo.Ready)
@@ -827,36 +834,42 @@ void Boxes(void) {
 	int j1 = 531;
 	int i2 = 470;
 	int j2 = 549;
+
 	// CONFIGS
 	if (!ConfigPlayerInfo) {
 		D2GFX_DrawRectangle(a1, b1, a2, b2, 0, 100);
 		D2DrawRectFrame(a1, b1, a2, b2);
 		DrawTextToScreen("Config", a1 + 3, b2 - 2, FONTCOLOR_WHITE, 6);
 	}
+
 	// TARGETS
 	if (!TargetList) {
 		D2GFX_DrawRectangle(x1, y1, x2, y2, 0, 100);
 		D2DrawRectFrame(x1, y1, x2, y2);
 		DrawTextToScreen("Targets", x1 + 3, y2 - 2, FONTCOLOR_WHITE, 6);
 	}
+
 	// PRECASTS
 	if (!Precasts) {
 		D2GFX_DrawRectangle(c1, d1, c2, d2, 0, 100);
 		D2DrawRectFrame(c1, d1, c2, d2);
 		DrawTextToScreen("Precasts", c1 + 3, d2 - 2, FONTCOLOR_WHITE, 6);
 	}
+
 	// Level
 	if (!LevelBox) {
 		D2GFX_DrawRectangle(e1, f1, e2, f2, 0, 100);
 		D2DrawRectFrame(e1, f1, e2, f2);
 		DrawTextToScreen("Level", e1 + 3, f2 - 2, FONTCOLOR_WHITE, 6);
 	}
+
 	// Winamp
 	if (!v_DrawSongTitle) {
 		D2GFX_DrawRectangle(g1, h1, g2, h2, 0, 100);
 		D2DrawRectFrame(g1, h1, g2, h2);
 		DrawTextToScreen("Winamp", g1 + 3, h2 - 2, FONTCOLOR_WHITE, 6);
 	}
+
 	// Console
 	if (!v_ConsoleLogs) {
 		D2GFX_DrawRectangle(i1, j1, i2, j2, 0, 100);
@@ -895,6 +908,7 @@ void Boxes(void) {
 			}
 		}
 	}
+
 	// Precasts
 	if (!Precasts) {
 		if (D2CLIENT_MouseX >= c1 && D2CLIENT_MouseX <= c2) {
@@ -909,6 +923,7 @@ void Boxes(void) {
 			}
 		}
 	}
+
 	// EXP
 	if (!LevelBox) {
 		if (D2CLIENT_MouseX >= e1 && D2CLIENT_MouseX <= e2) {
@@ -1008,8 +1023,8 @@ void GameDraw(void)
 	{
 		ConfBoxx();
 		ExpBox();
-		/*PreCastsBox();
-		TargetInfoBoxxx();
+		PreCastsBox();
+		/*TargetInfoBoxxx();
 		MovableTargets();*/
 		//WinAmpBox();
 	}

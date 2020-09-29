@@ -17,10 +17,9 @@ void PreCastsBox(void) {
 						xstar = 545;
 						xstar2 = 640; // 95 lång
 						ystar = 395; //
-						/*if (Authn.totalVars != 0)
+						if (Authn.totalVars != 0)
 							ystar2 = 410 + (10 * Authn.totalVars);
-						else */
-						ystar2 = 420;
+						else ystar2 = 420;
 						int ystar3 = 520;
 
 						if (!Moo)
@@ -64,10 +63,10 @@ void PreCastsBox(void) {
 							D2GFX_DrawRectangle(xstar, ystar, xstar2, ystar2, 0, 1);
 							D2DrawRectFrame(xstar, ystar, xstar2, ystar2);
 							DrawTextToScreen("X", xstar2 - 10, ystar + 13, fontNew, 6);
-							//sprintf(Buf, "Authn.totalVars = %d", Authn.totalVars);
-							//DrawTextToScreen(Buf,200,200,8,4);
+							sprintf(Buf, "Authn.totalVars = %d", Authn.totalVars);
+							//DrawTextToScreen(Buf, 200, 200, 8, 4);
 
-						//	if(!Moved1Pre) {
+							//	if(!Moved1Pre) {
 							DrawTextToScreen("Precasts", xstar + 5, ystar + 12, FONTCOLOR_GOLD, 6);
 							y = ystar + 14;
 							x = xstar + 5;
@@ -76,10 +75,10 @@ void PreCastsBox(void) {
 							y += 10;
 
 							// Barbs
-							//if (Authn.totalVars == 0) {
-							//	DrawTextToScreen("- None -", x, y, FONTCOLOR_WHITE, 6);
-							//	//y+=10;
-							//}
+							if (Authn.totalVars == 0) {
+								DrawTextToScreen("- None -", x, y, FONTCOLOR_WHITE, 6);
+								//y+=10;
+							}
 
 							if (GotBc) { // Battle Command
 								DrawTextToScreen("Battle Command", x, y, FONTCOLOR_WHITE, 6);
@@ -201,16 +200,14 @@ void PreCastsBox(void) {
 														ClickMapConfig(9, D2CLIENT_MouseX, D2CLIENT_MouseY, 1);
 														while (KEYDOWN(MK_LBUTTON)) {
 															GetD2MousePos(PreBoxxx);
-															/*if (Authn.totalVars != 0) {
+															if (Authn.totalVars != 0) {
 																D2GFX_DrawRectangle(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 15 + (10 * Authn.totalVars), 0, 1);
 																D2DrawRectFrame(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 15 + (10 * Authn.totalVars));
 															}
 															else {
 																D2GFX_DrawRectangle(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25, 0, 1);
 																D2DrawRectFrame(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25);
-															}*/
-															D2GFX_DrawRectangle(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25, 0, 1);
-															D2DrawRectFrame(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25);
+															}
 															DrawTextToScreen("X", PreBoxxx.x + 85, PreBoxxx.y + 13, fontNew, 6);
 
 															y = PreBoxxx.y + 15;
@@ -224,10 +221,10 @@ void PreCastsBox(void) {
 
 															y += 10;
 															y2 += 7;
-															//if (Authn.totalVars == 0) {
-															//	DrawTextToScreen("- None -", x, y, FONTCOLOR_WHITE, 6);
-															//	//y+=10;
-															//}
+															if (Authn.totalVars == 0) {
+																DrawTextToScreen("- None -", x, y, FONTCOLOR_WHITE, 6);
+																//y+=10;
+															}
 															// Barbs
 															if (GotBc) { // Battle Command
 																DrawTextToScreen("Battle Command", x, y, FONTCOLOR_WHITE, 6);
@@ -296,17 +293,14 @@ void PreCastsBox(void) {
 								}
 							}
 							MooPre = false;
-							/*if (Authn.totalVars != 0) {
+							if (Authn.totalVars != 0) {
 								D2GFX_DrawRectangle(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 15 + (10 * Authn.totalVars), 0, 1);
 								D2DrawRectFrame(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 15 + (10 * Authn.totalVars));
 							}
 							else {
 								D2GFX_DrawRectangle(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25, 0, 1);
 								D2DrawRectFrame(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25);
-							}*/
-
-							D2GFX_DrawRectangle(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25, 0, 1);
-							D2DrawRectFrame(PreBoxxx.x, PreBoxxx.y, PreBoxxx.x + 95, PreBoxxx.y + 25);
+							}
 
 							DrawTextToScreen("X", PreBoxxx.x + 85, PreBoxxx.y + 13, fontNew, 6);
 
@@ -321,10 +315,10 @@ void PreCastsBox(void) {
 
 							ys += 10;
 							y2s += 7;
-							//if (Authn.totalVars == 0) {
-							//	DrawTextToScreen("- None -", xs, ys, FONTCOLOR_WHITE, 6);
-							//	//ys+=10;
-							//}
+							if (Authn.totalVars == 0) {
+								DrawTextToScreen("- None -", xs, ys, FONTCOLOR_WHITE, 6);
+								//ys+=10;
+							}
 							// Barbs
 							if (GotBc) { // Battle Command
 								DrawTextToScreen("Battle Command", xs, ys, FONTCOLOR_WHITE, 6);

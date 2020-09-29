@@ -132,7 +132,7 @@ DWORD GetExpLeft() {
 		3229426756, 3520485254
 	};
 
-	return Experience[D2COMMON_GetUnitStat(pUnit, 0x0C, 0)];
+	return Experience[D2COMMON_GetUnitStat(pUnit, 0x0C, 0)] - D2COMMON_GetUnitStat(pUnit, 0x0D, 0);
 	//D2COMMON_GetUnitState3(2, D2COMMON_GetUnitState2(pUnit, 0x0C, 0));
 }
 

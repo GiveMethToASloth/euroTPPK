@@ -22,11 +22,11 @@
 //};
 //extern LastPKStruct LPK;
 //
-////struct AUTHNUMBER {
-////	int LifeAddr1; // 0x6FD856E0
-////	int totalVars;
-////};
-////extern AUTHNUMBER Authn;
+struct AUTHNUMBER {
+	int LifeAddr1; // 0x6FD856E0
+	int totalVars;
+};
+extern AUTHNUMBER Authn;
 //
 //// Playeers
 //void GetPlayers();

@@ -1,10 +1,10 @@
-//#include "EuroTPPK.h"
+#include "EuroTPPK.h"
 //
 //bool ListOnce = false; // Players
 //bool GainOnce = false; // Authing
 //PKInfoStruct PKInfo;
 //LastPKStruct LPK;
-//AUTHNUMBER Authn;
+AUTHNUMBER Authn;
 //
 //#define INTERNET_OPEN_TYPE_PRECONFIG      0
 ////#define INTERNET_FLAG_EXISTING_CONNECT 536870912

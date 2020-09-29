@@ -49,22 +49,6 @@
 //	return dwFlags1;
 //}
 
-void __declspec(naked) ReceivePacketIntercept_STUB() {
-	__asm {
-		pushad
-		call RecvPacket
-		cmp eax, 0xffffffff
-		jne allesok
-		popad
-		retn
-		allesok :
-		popad
-			CALL EAX
-			MOVZX EAX, WORD PTR SS : [ESP + 0x14]
-			retn
-	}
-}
-
 DWORD BreakItUp = 0x6F9B/*704B*/; // 704B+6FBF0000 6FBF704B 6FBF6F9B-6FBF0000
 DWORD DontBreak = 0x6F9E/*704E*/; // 6FBF704E 0x704E+6FBF0000 6FBF6F9E-6FBF0000
 
@@ -443,12 +427,11 @@ void __declspec(naked)  DrawIntercept_STUB() {
 		}
 }
 */
-/*
-VOID __declspec(naked) OnGamePacketReceived_STUB()
+
+void __declspec(naked) OnGamePacketReceived_STUB()
 {
 	__asm
 	{
-		pop ebp;
 		pushad;
 
 		call RecvPacket;
@@ -459,34 +442,11 @@ VOID __declspec(naked) OnGamePacketReceived_STUB()
 
 		mov edx, 0;
 
-OldCode:
-		call D2NET_ReceivePacket_I;
-
-		push ebp;
-		ret;
-	}
-}
-*/
-
-void __declspec(naked) OnGamePacketReceived_STUB()
-{
-	__asm
-	{
-		pop ebp;
-		pushad;
-
-		call OnGamePacketReceived;
-		test eax, eax;
-
-		popad;
-		jnz OldCode;
-
-		mov edx, 0;
-
 	OldCode:
+		mov eax, [esp + 4];
+		push eax;
 		call D2NET_ReceivePacket_I;
 
-		push ebp;
-		ret;
+		ret 4;
 	}
 }
