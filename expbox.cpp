@@ -58,34 +58,27 @@ char* ConvertIntegers(int in) {
 
 void ExpBox(void) {
 	UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
-
+	if (!pUnit) return;
 	DWORD dwLevel = D2COMMON_GetUnitStat(pUnit, 12, 0);
 	DWORD dwExp = D2COMMON_GetUnitStat(pUnit, 13, 0);
 	DWORD dwMaxExp = nLevelExp[dwLevel];
 	DWORD dwExpLeft = GetExpLeft();
 	DWORD dwExpPercent = DWORD(abs((double(dwExp - nLevelExp[dwLevel - 1]) / double(dwMaxExp - nLevelExp[dwLevel - 1])) * 100.0));
+	DWORD dwGainedExp = dwExp - dwCurrentExp;
+	DWORD dwGamesRemain = 0;
 
 	char szExpPercent[50];
 	sprintf_s(szExpPercent, "%d", dwExpPercent);
 
-	DWORD CurrentExpierences = D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0) - dwCurrentExp;
-	DWORD MaxExp = GetExpLeft() - D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0);
+	char szGainedExp[200];
+	sprintf(szGainedExp, "%s", ConvertIntegers(dwGainedExp));
 
-	char GainedExp[200];
-	// Get this working!!
-	//sprintf(GainedExp, "%s", ConvertIntegers(D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0) - dwCurrentExp));
-	sprintf(GainedExp, "%s", ConvertIntegers(D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0)));
+	char szGamesLeft[200];
+	if (dwMaxExp != NULL && dwGainedExp != NULL) dwGamesRemain = dwMaxExp / dwGainedExp;
+	if (dwCurrentExp != 0) sprintf_s(szGamesLeft, 200, "%d", dwGamesRemain);
 
-	DWORD GamesLe = 0;
-	char GamesL[200];
-	if (MaxExp != NULL && CurrentExpierences != NULL)
-		GamesLe = MaxExp / CurrentExpierences;
-	if (dwCurrentExp != 0) {
-		sprintf_s(GamesL, 200, "%d", GamesLe);
-	}
-
-	char ExpRemaining[20];
-	sprintf(ExpRemaining, "%s", ConvertIntegers(dwExpLeft));
+	char szExpRemaining[20];
+	sprintf(szExpRemaining, "%s", ConvertIntegers(dwExpLeft));
 
 	char Buf[512];
 	if (!D2CLIENT_GetUiVar(0x01))
@@ -159,13 +152,13 @@ void ExpBox(void) {
 								sprintf(Buf, "Total: %s%%", szExpPercent);
 								DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 								y += 10;
-								sprintf(Buf, "Gained: %s", GainedExp);
+								sprintf(Buf, "Gained: %s", szGainedExp);
 								DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 								y += 10;
-								sprintf(Buf, "Left: %s", ExpRemaining);
+								sprintf(Buf, "Left: %s", szExpRemaining);
 								DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 								y += 10;
-								sprintf(Buf, "Games: %s", GamesL);
+								sprintf(Buf, "Games: %s", szGamesLeft);
 								DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 							}
 						}
@@ -250,13 +243,13 @@ void ExpBox(void) {
 															sprintf(Buf, "Total: %s%%", szExpPercent);
 															DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 															y += 10;
-															sprintf(Buf, "Gained: %s", GainedExp);
+															sprintf(Buf, "Gained: %s", szGainedExp);
 															DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 															y += 10;
-															sprintf(Buf, "Left: %s", ExpRemaining);
+															sprintf(Buf, "Left: %s", szExpRemaining);
 															DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 															y += 10;
-															sprintf(Buf, "Games: %s", GamesL);
+															sprintf(Buf, "Games: %s", szGamesLeft);
 															DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 															return;
 														}
@@ -286,13 +279,13 @@ void ExpBox(void) {
 							sprintf(Buf, "Total: %s%%", szExpPercent);
 							DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 							y += 10;
-							sprintf(Buf, "Gained: %s", GainedExp);
+							sprintf(Buf, "Gained: %s", szGainedExp);
 							DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 							y += 10;
-							sprintf(Buf, "Left: %s", ExpRemaining);
+							sprintf(Buf, "Left: %s", szExpRemaining);
 							DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 							y += 10;
-							sprintf(Buf, "Games: %s", GamesL);
+							sprintf(Buf, "Games: %s", szGamesLeft);
 							DrawTextToScreen(Buf, x, y, FONTCOLOR_WHITE, 6);
 						}
 					}

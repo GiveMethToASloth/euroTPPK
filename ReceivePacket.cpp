@@ -162,7 +162,7 @@ DWORD __fastcall RecvPacket(byte* data, DWORD len) {
 			//Auto.Init();
 			//RevealAct();
 			//GetPlayers();
-			nGameTimer = GetTickCount();
+			nGameTimer = GetTickCount64();
 			SaveGameName();
 			dwCurrentExp = D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0);
 			TimeOn++;

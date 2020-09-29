@@ -1056,6 +1056,7 @@ VOID DrawCross(INT nX, INT nY, DWORD dwColor, BOOL Automap)
 	for (INT x = 0; x < ArraySize(szLines) - 1; x++)
 		D2GFX_DrawLine(nPos.x + szLines[x][0], nPos.y + szLines[x][1], nPos.x + szLines[x + 1][0], nPos.y + szLines[x + 1][1], dwColor, -1);
 }
+
 void TextHook(INT xPos, INT yPos, DWORD dwColor, BOOL Automap, INT dwFont, INT dwCenter, LPSTR Text, ...)
 {
 	//Setup a point variable
