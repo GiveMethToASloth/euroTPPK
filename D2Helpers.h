@@ -48,7 +48,7 @@ void fpEnumUnits(fp EnumFunction, DWORD Type);
 char* GetD2ClassName(DWORD ClassID);
 char* D2ClassName(DWORD ClassID);
 char* GetD2LevelName(DWORD LevelID);
-BOOL MakeTP();
+bool MakeTP(void);
 DWORD GetTPs();
 DWORD GetPlayerArea(VOID);
 

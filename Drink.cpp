@@ -59,6 +59,33 @@ UnitAny* __fastcall FindItem(DWORD dwCode, int nLoc)
 	}
 }
 
+DWORD UseItemIds(int nLoc)
+{
+	UnitAny* pPlayer = D2CLIENT_GetPlayerUnit();
+
+	if (!pPlayer) return NULL;
+
+	if (pPlayer->pInventory->dwLeftItemUid)
+		return pPlayer->pInventory->dwLeftItemUid;
+
+	for (UnitAny* Item = pPlayer->pInventory->pFirstItem; Item; Item = Item->pItemData->pNextInvItem)
+	{
+		if (Item->dwType == UNIT_TYPE_ITEM && Item->dwUnitId)
+		{
+			if (Item->pInventory)
+			{
+				if (GetItemLocation(Item) != nLoc)
+					return Item->dwUnitId;
+			}
+		}
+	}
+
+	if (pPlayer->pInventory->pLastItem)
+		return pPlayer->pInventory->pLastItem->dwUnitId;
+
+	return NULL;
+}
+
 void UseItem(UnitAny* pItem) {
 #pragma pack(push,1)
 	struct pInvBelt {
@@ -67,16 +94,29 @@ void UseItem(UnitAny* pItem) {
 		DWORD dwX;
 		DWORD dwY;
 	};
+
+	struct pStashCube {
+		BYTE header;
+		DWORD dwItemId;
+		DWORD dwUnitId;
+	};
 #pragma pack(pop)
 	if (pItem) {
 		int nLoc = GetItemLocation(pItem);
-		if (nLoc == STORAGE_INVENTORY) {
-			pInvBelt pPacket = { 0x20, pItem->dwUnitId, D2CLIENT_GetPlayerUnit()->pPath->xPos, D2CLIENT_GetPlayerUnit()->pPath->yPos };
-			D2NET_SendPacket(sizeof(pPacket), 1, (BYTE*)&pPacket);
-		}
-		else if (nLoc == STORAGE_BELT) {
-			pInvBelt pPacket = { 0x26, pItem->dwUnitId, NULL, NULL };
-			D2NET_SendPacket(sizeof(pPacket), 1, (BYTE*)&pPacket);
+		UnitAny* pPlayer = D2CLIENT_GetPlayerUnit();
+		if (pPlayer) {
+			if (nLoc == STORAGE_INVENTORY) {
+				pInvBelt pPacket = { 0x20, pItem->dwUnitId, pPlayer->pPath->xPos, pPlayer->pPath->yPos };
+				D2NET_SendPacket(sizeof(pPacket), 1, (BYTE*)&pPacket);
+			}
+			else if (nLoc == STORAGE_BELT) {
+				pInvBelt pPacket = { 0x26, pItem->dwUnitId, NULL, NULL };
+				D2NET_SendPacket(sizeof(pPacket), 1, (BYTE*)&pPacket);
+			}
+			else if (nLoc == STORAGE_STASH || nLoc == STORAGE_CUBE) {
+				pStashCube pPacket = { 0x27, UseItemIds(nLoc), pPlayer->dwUnitId };
+				D2NET_SendPacket(sizeof(pPacket), 1, (BYTE*)&pPacket);
+			}
 		}
 	}
 }

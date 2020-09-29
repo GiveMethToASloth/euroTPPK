@@ -25,7 +25,7 @@ BOOL ClickMap(DWORD dwClickType, WORD wX, WORD wY, BOOL bShift)
 
 void TimerTick()
 {
-	//ChickenCheck(); //starting Chicken.
+	ChickenCheck(); //starting Chicken.
 	DrinkCheck(); //starting Drinking.
 	//Delay++;
 	Count++;

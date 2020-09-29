@@ -900,37 +900,36 @@ BOOL IsTownLevel(INT nLevel)
 }
 
 //TPBook finding function
-DWORD FindTPBook(VOID) {
+UnitAny* FindTPBook(VOID) {
 	UnitAny* pPlayer = D2CLIENT_GetPlayerUnit();
 	if (pPlayer) {
 		if (pPlayer->pInventory) {
-			UnitAny* p = D2COMMON_GetItemFromInventory(pPlayer->pInventory);
-			BOOL bFoundTPBook = FALSE;
-			while (p) {
-				if (p->pItemData)
-					if (p->pItemData->ItemLocation == STORAGE_INVENTORY) {
-						ItemTxt* pTxt = D2COMMON_GetItemText(p->dwTxtFileNo);
-						if (pTxt) {
-							char szCode[4];
-							strncpy(szCode, pTxt->szCode, 3);
-							szCode[3] = '\0';
-							if (!_strcmpi(szCode, "tbk"))
-								if (D2COMMON_GetUnitStat(p, QUANTITY_STAT_ID, 0))
-									return p->dwUnitId;
-								else
-									bFoundTPBook = TRUE;
-						}
+			UnitAny* pItem = D2COMMON_GetItemFromInventory(pPlayer->pInventory);
+			bool bFoundTPBook = false;
+			while (pItem) {
+				if (pItem->pItemData) {
+					ItemTxt* pTxt = D2COMMON_GetItemText(pItem->dwTxtFileNo);
+					if (pTxt) {
+						char szCode[4];
+						strncpy(szCode, pTxt->szCode, 3);
+						szCode[3] = '\0';
+						if (!_strcmpi(szCode, "tbk"))
+							if (D2COMMON_GetUnitStat(pItem, QUANTITY_STAT_ID, 0))
+								return pItem;
+							else
+								bFoundTPBook = true;
 					}
-				p = D2COMMON_GetNextItemFromInventory(p);
+				}
+				pItem = D2COMMON_GetNextItemFromInventory(pItem);
 			}
 			if (bFoundTPBook) {
 				PrintMessage("::ÿc  Your TP books are empty!", 1);
-				return NULL;
+				return nullptr;
 			}
 		}
 	}
 	PrintMessage("::ÿc  Couldn't find any TP book.", 1);
-	return NULL;
+	return nullptr;
 }
 
 //Get amount of TP's in the Book.
@@ -938,50 +937,58 @@ DWORD GetTPs() {
 	UnitAny* pPlayer = D2CLIENT_GetPlayerUnit();
 	if (pPlayer)
 		if (pPlayer->pInventory) {
-			UnitAny* p = D2COMMON_GetItemFromInventory(pPlayer->pInventory);
+			UnitAny* pItem = D2COMMON_GetItemFromInventory(pPlayer->pInventory);
 			bool bFoundTPBook = false;
-			while (p) {
-				if (p->pItemData)
-					if (p->pItemData->ItemLocation == STORAGE_INVENTORY) {
-						ItemTxt* pTxt = D2COMMON_GetItemText(p->dwTxtFileNo);
-						if (pTxt) {
-							char szCode[4];
-							strncpy(szCode, pTxt->szCode, 3);
-							szCode[3] = '\0';
-							if (!_strcmpi(szCode, "tbk"))
-								if (D2COMMON_GetUnitStat(p, QUANTITY_STAT_ID, 0))
-									return D2COMMON_GetUnitStat(p, QUANTITY_STAT_ID, 0);
-								else
-									return 0;
-						}
+			while (pItem) {
+				if (pItem->pItemData) {
+					ItemTxt* pTxt = D2COMMON_GetItemText(pItem->dwTxtFileNo);
+					if (pTxt) {
+						char szCode[4];
+						strncpy(szCode, pTxt->szCode, 3);
+						szCode[3] = '\0';
+						if (!_strcmpi(szCode, "tbk"))
+							if (D2COMMON_GetUnitStat(pItem, QUANTITY_STAT_ID, 0))
+								return D2COMMON_GetUnitStat(pItem, QUANTITY_STAT_ID, 0);
+							else
+								return 0;
 					}
-				p = D2COMMON_GetNextItemFromInventory(p);
+				}
+				pItem = D2COMMON_GetNextItemFromInventory(pItem);
 			}
 		}
 	return NULL;
 }
 
 // Create a TP based on the FindTPBook values.
-BOOL MakeTP(VOID) {
-	if (IsTownLevel(GetPlayerArea()) == true) {
-		//PrintMessage("ÿc1::ÿc  Abort MakeTP, You are in town!",0);
-		return FALSE;
-	}
+bool MakeTP(void) {
+	if (IsTownLevel(GetPlayerArea()))
+		return false;
 	UnitAny* pPlayer = D2CLIENT_GetPlayerUnit();
 	if (pPlayer) {
 		if (pPlayer->pPath) {
-			BYTE CastTP[13] = { 0x20,0,0,0,0,0,0,0x00,0x00,0,0,0x00,0x00 };
-			*(WORD*)&CastTP[5] = pPlayer->pPath->xPos;
-			*(WORD*)&CastTP[9] = pPlayer->pPath->yPos;
-			DWORD dwID = FindTPBook();
-			if (dwID) {
-				*(DWORD*)&CastTP[1] = dwID;
-				SendGAMEPacket(CastTP, sizeof(CastTP));
-				return TRUE;
+			UnitAny* pItem = FindTPBook();
+			if (pItem) {
+				UseItem(pItem);
+				DWORD dwTpsLeft = GetTPs();
+
+				if (dwTpsLeft <= 5) {
+					char lpszText[100];
+					sprintf(lpszText, "TPs running out! %d", dwTpsLeft);
+					if (lpszText && lpszText[0]) {
+						UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
+						OverheadMsg* pMsg = D2COMMON_GenerateOverheadMsg(NULL, lpszText, *p_D2CLIENT_OverheadTrigger);
+						if (pMsg)
+						{
+							D2COMMON_FixOverheadMsg(pMsg, NULL);
+							pUnit->pOMsg = pMsg;
+						}
+					}
+				}
+				return true;
 			}
 		}
 	}
-	return FALSE;
+	return false;
 }
 
 /*if(TakeNextTP) {
