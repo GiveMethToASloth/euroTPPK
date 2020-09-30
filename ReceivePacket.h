@@ -1,5 +1,4 @@
-
-DWORD __fastcall RecvPacket(byte* Packet,DWORD len);
+DWORD __fastcall RecvPacket(byte* Packet, DWORD len);
 extern DWORD WINAPI AutoPartyMemberThread(LPVOID P);
 extern	bool EnchBot;
 extern DWORD InGame;

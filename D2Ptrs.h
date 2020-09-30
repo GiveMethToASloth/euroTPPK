@@ -80,6 +80,7 @@ FUNCPTR(D2CLIENT, Transmute, VOID __fastcall, (VOID), 0x8A0D0)
 
 FUNCPTR(D2CLIENT, HostiledByMe, bool __fastcall, (DWORD id1, DWORD id2), 0x7A070)
 FUNCPTR(D2CLIENT, HostiledByUnit, bool __fastcall, (DWORD id), 0x7A170)
+FUNCPTR(D2CLIENT, SendInteract, void __fastcall, (DWORD pUnitType, DWORD pUnitId), 0x80930)
 
 VARPTR(D2CLIENT, MouseOffsetY, int, 0x3A5208) // Updated
 VARPTR(D2CLIENT, MouseOffsetX, int, 0x3A520C) // Updated
@@ -221,7 +222,7 @@ FUNCPTR(D2COMMON, CheckCollision, DWORD __stdcall, (Room1* pRoom, DWORD dwX, DWO
 //FUNCPTR(D2COMMON, GetUnitMaxHP, DWORD __stdcall, (UnitAny* pUnit), -10445) // Updated
 //FUNCPTR(D2COMMON, CheckUnitSlot, DWORD __stdcall, (Inventory* pInventory, DWORD dwSlot), -10099)
 FUNCPTR(D2COMMON, GetExpToAchiveLvl, int __stdcall, (int ClassId, int ExpLvl), 0x211800)
-
+FUNCPTR(D2COMMON, GetDistance, int __stdcall, (UnitAny* Unit, WORD x, WORD y), 0x2417F0)
 VARPTR(D2CLIENT, PlayerList, RosterUnit*, 0x3BB5C0) //added
 //VARPTR(D2CLIENT, pUnitTable, POINT, 0x11A960) //added
 //VARPTR(D2COMMON, sqptDataTable, DWORD, 0x9B500) // Updated

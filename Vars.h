@@ -9,7 +9,6 @@
 #define MYKEY(name)					int vK_##name;
 CArrayEx<LevelNameInfo*, LevelNameInfo*> LevelNames;
 
-
 #else
 
 #define MYVAR(d1, v1)				extern d1 v_##v1;
@@ -32,6 +31,7 @@ MYVAR(DWORD, ConsoleDelay)
 MYVAR(BOOL, AutoDrink)
 MYVAR(BOOL, PrintFailed)
 
+MYVAR(bool, TakeNextTP)
 MYVAR(INT, AutoDrinkMana)
 MYVAR(INT, AutoDrinkLife)
 MYVAR(INT, AutoDrinkReju)
@@ -80,7 +80,7 @@ MYVAR(INT, AAType)
 
 MYVAR(DWORD, FLASHCYCLE)
 MYVAR(DWORD, AIMCYCLE)
-MYVAR(INT,	AutoPKMissiles)
+MYVAR(INT, AutoPKMissiles)
 MYVAR(BOOL, ShowQuestPackets)
 
 MYVAR(BOOL, InviteMembers)
@@ -126,7 +126,6 @@ MYKEY(PrevSong)
 MYKEY(PlaySong)
 MYKEY(StopSong)
 MYKEY(PrintSong)
-
 
 #undef MYVAR
 #undef MYCARRAY

@@ -4,6 +4,7 @@ extern bool Flash;
 extern bool CastMissles;
 extern HANDLE TimerHandle;
 //	DWORD WINAPI TimerTickThread(LPVOID P);
+void SetInTownVars();
 void TimerTick();
 extern bool Test;
 

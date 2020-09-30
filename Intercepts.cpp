@@ -53,42 +53,42 @@ DWORD BreakItUp = 0x6F9B/*704B*/; // 704B+6FBF0000 6FBF704B 6FBF6F9B-6FBF0000
 DWORD DontBreak = 0x6F9E/*704E*/; // 6FBF704E 0x704E+6FBF0000 6FBF6F9E-6FBF0000
 
 void __declspec(naked) SendPacketIntercept_STUB() {
-	__asm {
-		pushad
-		MOV ECX, DWORD PTR SS : [ESP + 0x30 - 4]
-		MOV EDX, DWORD PTR SS : [ESP + 0x28 - 4]
-		call SendPacket
-		cmp eax, -1
-		je Breakit
-		popad
-		test eax, eax
-		je Breakit2
+  __asm {
+    pushad
+    MOV ECX, DWORD PTR SS : [ESP + 0x30 - 4]
+    MOV EDX, DWORD PTR SS : [ESP + 0x28 - 4]
+    call SendPacket
+    cmp eax, -1
+    je Breakit
+    popad
+    test eax, eax
+    je Breakit2
 
-		jmp DontBreak
+    jmp DontBreak
 
-		retn
+    retn
 
-		Breakit :
-		popad
-			Breakit2 :
-		xor eax, eax
-			jmp BreakItUp
-	}
+    Breakit :
+    popad
+      Breakit2 :
+    xor eax, eax
+      jmp BreakItUp
+  }
 }
 
 void __declspec(naked) KeyHookIntercept_STUB() {
-	__asm {
-		__asm {
-			//edi = ptr to (hwnd, msg, wparam, lparam)
-			mov cl, [edi + 0x08] //nVirtKey (wparam)
-			mov dl, [edi + 0x0c + 3] //lKeyData (lparam)
-			and dl, 0x40 //bit 30 of lKeyData (lparam)
-			call KeyHook
-			//original code
-			test byte ptr[edi + 0x0c + 3], 0x40 //bit 30 of lKeyData (lparam)
-			ret
-		}
-	}
+  __asm {
+    __asm {
+      //edi = ptr to (hwnd, msg, wparam, lparam)
+      mov cl, [edi + 0x08] //nVirtKey (wparam)
+      mov dl, [edi + 0x0c + 3] //lKeyData (lparam)
+      and dl, 0x40 //bit 30 of lKeyData (lparam)
+      call KeyHook
+      //original code
+      test byte ptr[edi + 0x0c + 3], 0x40 //bit 30 of lKeyData (lparam)
+      ret
+    }
+  }
 }
 
 //void __declspec(naked) GameLightRadius_STUB()
@@ -114,15 +114,15 @@ void __declspec(naked) KeyHookIntercept_STUB() {
 
 void __declspec(naked) GameDrawAutomapInfo_STUB()
 {
-	__asm
-	{
-		PUSHAD;
-		CALL DrawAutomapInfos;
-		POPAD;
-		POP EDI;
-		POP ESI;
-		RET;
-	}
+  __asm
+  {
+    PUSHAD;
+    CALL DrawAutomapInfos;
+    POPAD;
+    POP EDI;
+    POP ESI;
+    RET;
+  }
 }
 
 /* GameDraw_STUB ()
@@ -130,14 +130,14 @@ void __declspec(naked) GameDrawAutomapInfo_STUB()
  */
 void __declspec(naked) GameDraw_STUB()
 {
-	__asm
-	{
-		call GameDraw;
-		POP EBX;
-		MOV ESP, EBP;
-		POP EBP;
-		ret
-	}
+  __asm
+  {
+    call GameDraw;
+    POP EBX;
+    MOV ESP, EBP;
+    POP EBP;
+    ret
+  }
 }
 //DWORD GetCommonBase() {
 //	return (DWORD)LoadLibrary("D2Common.dll");
@@ -367,11 +367,11 @@ void __declspec(naked) GameDraw_STUB()
 
 void __declspec(naked) GameFailToJoin_STUB()
 {
-	__asm
-	{
-		cmp esi, 4000;
-		ret;
-	}
+  __asm
+  {
+    cmp esi, 4000;
+    ret;
+  }
 }
 
 // not used
@@ -395,11 +395,11 @@ void __fastcall PlayerJoinMsgPatch(wchar_t *name, wchar_t **acc)
 static wchar_t temp[128];
 PartyPlayer *parpla = 0;
 while (parpla = D2CLIENT_GetNextPartyPlayer(parpla)) {
-	if (!wcscmp(name, wcscpy2(temp, parpla->name2))) break;
+  if (!wcscmp(name, wcscpy2(temp, parpla->name2))) break;
 }
 static wchar_t *typestrs[] = {L"Amazon", L"Sorceress", L"Necromancer", L"Paladin", L"Barbarian", L"Druid", L"Assassin"};
 if (parpla) {
-	wsprintfW(temp, L"%s, lvl %d %s", *acc, parpla->chrlvl, typestrs[parpla->chrtype]);
+  wsprintfW(temp, L"%s, lvl %d %s", *acc, parpla->chrlvl, typestrs[parpla->chrtype]);
 *acc = temp;
 }
 }
@@ -412,41 +412,37 @@ call PlayerJoinMsgPatch
 // FCF,FCC,E37,E38,E39,E3A,E3C,E3D
 mov ecx,0xE3B
 ret
-	}
+  }
 }
 */
 
 /*DWORD DrawCall=0x6FAC32C0-0x6FA80000;
 void __declspec(naked)  DrawIntercept_STUB() {
-	__asm {
-		pushad // Saving to stack
-		call DrawHook // calling my function
-		popad // Poping it back
-		call DrawCall
-		RETN
-		}
+  __asm {
+    pushad // Saving to stack
+    call DrawHook // calling my function
+    popad // Poping it back
+    call DrawCall
+    RETN
+    }
 }
 */
 
 void __declspec(naked) OnGamePacketReceived_STUB()
 {
-	__asm
-	{
-		pushad;
+  __asm
+  {
+    pushad;
 
-		call RecvPacket;
-		test eax, eax;
+    call RecvPacket;
+    test eax, eax;
 
-		popad;
-		jnz OldCode;
+    popad;
+    jnz OldCode;
 
-		mov edx, 0;
+    mov edx, 0;
 
-	OldCode:
-		mov eax, [esp + 4];
-		push eax;
-		call D2NET_ReceivePacket_I;
-
-		ret 4;
-	}
+  OldCode:
+    jmp D2NET_ReceivePacket_I;
+  }
 }
