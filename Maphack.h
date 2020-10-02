@@ -6,7 +6,7 @@ bool GameReady(void);
 bool RevealLevel(Level* pLevel);
 
 AutomapLayer* InitAutomapLayer(DWORD levelno);
-DWORD __fastcall D2CLIENT_InitAutomapLayer_STUB(DWORD nLayerNo);
+AutomapLayer* __fastcall D2CLIENT_InitAutomapLayer_STUB(DWORD nLayerNo);
 
 void DrawPresets(Room2* pRoom2);
 

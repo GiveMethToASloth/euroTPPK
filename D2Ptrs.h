@@ -187,6 +187,7 @@ FUNCPTR(D2COMMON, GetLevelTxt, LevelTxt* __stdcall, (DWORD levelno), 0x21DB70) /
 FUNCPTR(D2COMMON, GetObjectTxt, ObjectTxt* __stdcall, (DWORD objno), 0x240E90) // Updated
 FUNCPTR(D2COMMON, GetLayer, AutomapLayer2* __fastcall, (DWORD dwLevelNo), 0x21E470) // Updated
 FUNCPTR(D2COMMON, GetLevel, Level* __fastcall, (ActMisc* pMisc, DWORD dwLevelNo), 0x242AE0) // Updated
+FUNCPTR(D2COMMON, GetLevelNoByRoom, int __stdcall, (Room1* ptRoom), 0x21A1B0)
 FUNCPTR(D2COMMON, InitLevel, void __stdcall, (Level* pLevel), 0x2424A0) // updated
 FUNCPTR(D2COMMON, GetItemFromInventory, UnitAny* __stdcall, (Inventory* inv), 0x23B2C0) // Updated
 FUNCPTR(D2COMMON, GetNextItemFromInventory, UnitAny* __stdcall, (UnitAny* pItem), 0x23DFA0)// Updated
@@ -294,7 +295,7 @@ VARPTR(D2WIN, FocusedControl, Control*, 0x3D55CC) // Updated
 //#define GetBaseStat(unit, stat)				(D2COMMON_GetBaseStat(unit, stat, 0))
 #define D2CLIENT_GetUIState(dwVarNo)		(D2CLIENT_GetUIVar_STUB(dwVarNo))
 #define D2CLIENT_GetUiVar(dwVarNo)		(D2CLIENT_GetUIVar_STUB(dwVarNo))
-#define D2CLIENT_InitAutomapLayer(layerlvl)	((AutomapLayer*)D2CLIENT_InitAutomapLayer_STUB(layerlvl))
+#define D2CLIENT_InitAutomapLayer(layerlvl)	(D2CLIENT_InitAutomapLayer_STUB(layerlvl))
 #define D2CLIENT_GetUnitName(x)				(wchar_t*)D2CLIENT_GetUnitName_STUB((DWORD)x)
 #define D2CLIENT_SetSelectedUnit(x)			(D2CLIENT_SetSelectedUnit_STUB((DWORD)x))
 #define D2CLIENT_LoadUIImage(x)				((CellFile*)D2CLIENT_LoadUIImage_ASM(x))
