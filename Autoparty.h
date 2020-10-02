@@ -11,6 +11,7 @@
 #define clickParty_Invite 2
 #define clickParty_Leave 3
 
+void CheckParty();
 DWORD WINAPI AutoPartyThread(LPVOID lpParameter);
 
 DWORD WINAPI PKMessage(LPVOID lpParameter);

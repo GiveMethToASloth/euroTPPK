@@ -33,6 +33,7 @@ void TimerTick()
   }
   //Delay++;
   Count++;
+  CheckParty();
   /*if (!strcmp(Auto.GetPlayerNAME(), D2CLIENT_GetPlayerUnit()->pPlayerData->szName))
   {
     RosterUnit* pUnit = (RosterUnit*)*(DWORD*)0x6FBCC080;

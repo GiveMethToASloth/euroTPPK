@@ -1042,6 +1042,7 @@ VOID ScreenToAutomap(POINT* ptPos, int x, int y)
     ptPos->y += 5;
   }
 }
+
 VOID DrawCross(INT nX, INT nY, DWORD dwColor, BOOL Automap)
 {
   POINT nPos = { nX, nY };

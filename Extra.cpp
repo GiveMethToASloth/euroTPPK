@@ -50,6 +50,6 @@ void SetAllFalse(void)
   hammerduel = false;
   Killed = false;
   BookTimer = 0;
-  //Authn.totalVars = 0;
+  Authn.totalVars = 0;
   return;
 }
