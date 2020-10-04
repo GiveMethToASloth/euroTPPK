@@ -1,3 +1,4 @@
+void OnKey();
 void __fastcall KeyHook(BYTE keycode, BYTE repeat);
 extern DWORD NPCID;
 extern bool HostPlayer;

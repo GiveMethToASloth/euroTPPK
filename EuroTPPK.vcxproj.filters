@@ -80,6 +80,15 @@
     <Filter Include="Reveal\Missiles">
       <UniqueIdentifier>{b7891071-072f-493d-afeb-2a680d8b4c5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{e535c881-0616-41d1-a4e6-945c03ace3f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Tabs">
+      <UniqueIdentifier>{0f215a97-2518-4944-8c22-470c2b4aaac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Boxes">
+      <UniqueIdentifier>{37d96e6d-2e13-4ce5-acf9-1d664d3b9b85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EuroTPPK.cpp">
@@ -222,6 +231,12 @@
     </ClCompile>
     <ClCompile Include="Missiles.cpp">
       <Filter>Reveal\Missiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>UI\Tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxManager.cpp">
+      <Filter>UI\Boxes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +410,12 @@
     </ClInclude>
     <ClInclude Include="Missiles.h">
       <Filter>Reveal\Missiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>UI\Tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxManager.h">
+      <Filter>UI\Boxes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

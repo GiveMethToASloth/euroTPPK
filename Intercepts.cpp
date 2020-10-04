@@ -76,6 +76,16 @@ void __declspec(naked) SendPacketIntercept_STUB() {
   }
 }
 
+void __declspec(naked) OnKey_STUB()
+{
+  __asm
+  {
+    call D2CLIENT_DrawEnteringLevelText;
+    call OnKey;
+    retn;
+  }
+}
+
 void __declspec(naked) KeyHookIntercept_STUB() {
   __asm
   {

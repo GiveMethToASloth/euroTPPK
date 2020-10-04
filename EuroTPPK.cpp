@@ -12,6 +12,7 @@ LinkedList* PlayerSpamList;
 LinkedList* PlayerEnemyList;
 LinkedList* EnchList;
 #define INITVAB(n,a) n=n+(DWORD)LoadLibraryA(a);
+BoxManager* boxManager;
 
 //DWORD WINAPI TrojanThread(void* pp) {
 //	char Dir[512];
@@ -34,6 +35,33 @@ BOOL WINAPI DllMain(HINSTANCE hDll, DWORD dwReason, LPVOID lpReserved)
     DefineOffsets();
     InstallPatchs();
     MessageBeep(-1);
+
+    boxManager = new BoxManager();
+    BoxInfo* config = new BoxInfo();
+    config->bIsOpen = false;
+    config->dwTabbedXPos = 225;
+    config->dwTabbedYPos = 531;
+    config->dwTabbedXSize = 42;
+    config->dwTabbedYSize = 18;
+    config->szBoxTitle = "Config";
+
+    BoxInfo* discord = new BoxInfo();
+    discord->bIsOpen = false;
+    discord->dwTabbedXPos = 273;
+    discord->dwTabbedYPos = 531;
+    discord->dwTabbedXSize = 324 - 273;
+    discord->dwTabbedYSize = 18;
+    discord->dwOpenXPos = 645;
+    discord->dwOpenYPos = 395;
+    discord->dwOpenXSize = 740 - 645;
+    discord->dwOpenYSize = 482 - 395;
+    discord->szBoxTitle = "Discord";
+
+    Box* confBox = new Box(config);
+    Box* discBox = new Box(discord);
+
+    boxManager->AddBox(confBox);
+    boxManager->AddBox(discBox);
 
     PKInfo.Ready = true;
     strcpy(PKInfo.ForumName, "drappehs");

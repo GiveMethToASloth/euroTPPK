@@ -98,6 +98,7 @@
     <ClCompile Include="asm.cpp" />
     <ClCompile Include="AutoAim.cpp" />
     <ClCompile Include="Autoparty.cpp" />
+    <ClCompile Include="BoxManager.cpp" />
     <ClCompile Include="BPManager.cpp" />
     <ClCompile Include="CalcTele.cpp" />
     <ClCompile Include="CCommon.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="SendPacket.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="StatBox.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Targetlist.cpp" />
     <ClCompile Include="Team.cpp" />
     <ClCompile Include="TeleportPath.cpp" />
@@ -149,6 +151,7 @@
     <ClInclude Include="asm.h" />
     <ClInclude Include="AutoAim.h" />
     <ClInclude Include="Autoparty.h" />
+    <ClInclude Include="BoxManager.h" />
     <ClInclude Include="BPManager.h" />
     <ClInclude Include="CalcTele.h" />
     <ClInclude Include="CCommon.h" />
@@ -191,6 +194,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="StatBox.h" />
     <ClInclude Include="SyncObj.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Targetlist.h" />
     <ClInclude Include="Team.h" />
     <ClInclude Include="TeleportPath.h" />

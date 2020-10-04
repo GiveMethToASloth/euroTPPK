@@ -85,6 +85,9 @@ extern char szModulePath[259];
 #include "Keylogger.h"
 #include "Settings.h"
 
+#include "BoxManager.h"
+#include "Box.h"
+
 #include "Targetlist.h"
 #include "ConfigBox.h"
 #include "PrecastsBox.h"
@@ -121,6 +124,7 @@ extern char szModulePath[259];
 #define D2FONT_BIGBIGROUGH	3	// Big big rough font
 #define D2FONT_SMOKE		11	// Smoke font
 
+extern BoxManager* boxManager;
 extern AutoAim Auto;
 extern LinkedList* PlayerFriendList;
 extern LinkedList* PlayerEnemyList;

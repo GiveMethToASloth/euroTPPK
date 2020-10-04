@@ -5,6 +5,7 @@ void PlayerJoinMsgPatch_ASM();
 
 extern DWORD BreakItUp;
 extern DWORD DontBreak;
+void OnKey_STUB();
 void KeyHookIntercept_STUB();
 void DrawIntercept_STUB();
 extern DWORD DrawCall;

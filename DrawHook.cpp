@@ -1061,8 +1061,10 @@ void GameDraw()
   /*TestDraw();*/
   DT();
   Screenhooks();
-  Boxes();
+  //Boxes();
   //DrawPlayerInventoryHook();
+
+  boxManager->DrawBoxes();
 
   DrawWelcomeText();
   WelcomeBox();

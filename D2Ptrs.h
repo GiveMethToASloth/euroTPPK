@@ -27,7 +27,7 @@ FUNCPTR(D2CLIENT, PrintPartyString, void __stdcall, (wchar_t* wMessage, int nCol
 
 //FUNCPTR(D2CLIENT, GetPlayerXOffset, int __stdcall, (), 0x5D670) // Updated
 //FUNCPTR(D2CLIENT, GetPlayerYOffset, int __stdcall, (), 0x5D680) // Updated
-
+FUNCPTR(D2CLIENT, DrawEnteringLevelText, void __stdcall, (), 0x55510)
 FUNCPTR(D2CLIENT, SetSelectedUnit_I, void __fastcall, (UnitAny* pUnit), 0x66DE0) // Updated
 FUNCPTR(D2CLIENT, GetSelectedUnit, UnitAny* __stdcall, (), 0x67A10) // Updated
 FUNCPTR(D2CLIENT, GetDifficulty, BYTE __stdcall, (), 0x4DCD0) // Updated
