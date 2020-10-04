@@ -11,8 +11,8 @@ void DrawMissiles() {
         if (pUnit->dwUnitId == pMissile->dwOwnerId) //Check if it is my own missile
           dwColor = v_MyMissile; //151; //Set the missile color to cYourMissileColor
         //Now lets see if it is another player's missile.
-        if ((pUnit->dwOwnerType == UNIT_PLAYER) && (dwColor == -1)) {
-          switch (GetPvPStatus(pUnit->dwOwnerId)) {
+        if ((pMissile->dwOwnerType == UNIT_PLAYER) && (dwColor == -1)) {
+          switch (GetPvPStatus(pMissile->dwOwnerId)) {
           case PVP_NEUTRAL: {
             dwColor = v_NeutralMissile; //153;
           } break;
@@ -24,8 +24,8 @@ void DrawMissiles() {
           } break;
           }
         }
-        if ((pUnit->dwOwnerType == UNIT_MONSTER) && (dwColor == -1)) {
-          UnitAny* pOwner = D2CLIENT_FindServerSideUnit(pUnit->dwOwnerId, pUnit->dwOwnerType);
+        if ((pMissile->dwOwnerType == UNIT_MONSTER) && (dwColor == -1)) {
+          UnitAny* pOwner = D2CLIENT_FindServerSideUnit(pMissile->dwOwnerId, pMissile->dwOwnerType);
           if (!pOwner)
             dwColor = 98;
           else if (D2CLIENT_GetMonsterOwner(pOwner->dwUnitId) != -1) {
@@ -42,7 +42,7 @@ void DrawMissiles() {
             }
           }
         }
-        BoxHook(pUnit->pPath->xPos - 3, pUnit->pPath->yPos - 3, 3, 3, dwColor, 5, true);
+        BoxHook(pMissile->pPath->xPos - 3, pMissile->pPath->yPos - 3, 3, 3, dwColor, 5, true);
       }
     }
   }
