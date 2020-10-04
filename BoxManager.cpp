@@ -46,7 +46,7 @@ void BoxManager::DrawTabbedBoxes() {
     D2GFX_DrawRectangle(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y, 0, 100);
     D2DrawRectFrame(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y);
     strcpy_s(szName, (*it).second->GetBoxName().c_str());
-    DrawTextToScreen(szName, ptPos.x + 3, ptPos.y + ptSize.y - 2, FONTCOLOR_WHITE, 6);
+    DrawTextToScreen(szName, ptPos.x + 3, ptPos.y + ptSize.y - 2, (*it).second->IsBoxOpen() ? FONTCOLOR_GREY : FONTCOLOR_WHITE, 6);
   }
 }
 
