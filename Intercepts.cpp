@@ -77,17 +77,14 @@ void __declspec(naked) SendPacketIntercept_STUB() {
 }
 
 void __declspec(naked) KeyHookIntercept_STUB() {
-  __asm {
-    __asm {
-      //edi = ptr to (hwnd, msg, wparam, lparam)
-      mov cl, [edi + 0x08] //nVirtKey (wparam)
-      mov dl, [edi + 0x0c + 3] //lKeyData (lparam)
-      and dl, 0x40 //bit 30 of lKeyData (lparam)
-      call KeyHook
-      //original code
-      test byte ptr[edi + 0x0c + 3], 0x40 //bit 30 of lKeyData (lparam)
-      ret
-    }
+  __asm
+  {
+    mov cl, [edi + 0x08];
+    mov dl, [edi + 0x0C + 3];
+    and dl, 0x40;
+    call KeyHook;
+    test byte ptr[edi + 0x0C + 3], 0x40;
+    ret;
   }
 }
 

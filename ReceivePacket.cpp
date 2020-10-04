@@ -186,8 +186,8 @@ DWORD __fastcall RecvPacket(byte* data, DWORD len) {
       SayOverHead("EuroTPPK 3.4");
       sprintf(Buffer, "%s Joined game %s", curTime, D2CLIENT_GetGameInfo()->szGameName);
       PrintConsoleString(Buffer);
-      //Auto.Init();
-      //RevealAct();
+      Auto.Init();
+      RevealAct();
       //GetPlayers();
       nGameTimer = GetTickCount64();
       SaveGameName();

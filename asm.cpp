@@ -2,33 +2,46 @@
 
 DWORD __declspec(naked) __fastcall D2CLIENT_clickParty_ASM(DWORD RosterUnit, DWORD Mode)
 {
-	__asm
-	{
-		mov eax, ecx
-		jmp D2CLIENT_clickParty_I
-	}
+  __asm
+  {
+    mov eax, ecx
+    jmp D2CLIENT_clickParty_I
+  }
 }
 
 DWORD __declspec(naked) GetPlayerID(VOID) {
-	__asm {
-		MOV EAX, DWORD PTR DS : [0x6FBCC3D0]
-		MOV ECX, DWORD PTR DS : [EAX + 0xC]
-		mov eax, ecx
-		ret
-	}
+  __asm {
+    MOV EAX, DWORD PTR DS : [0x6FBCC3D0]
+    MOV ECX, DWORD PTR DS : [EAX + 0xC]
+    mov eax, ecx
+    ret
+  }
 }
 DWORD SendPacketAddr = 0x91A0; // 6FB291A0-6FBF0000
 void SendGAMEPacket(BYTE* Packet, DWORD PacketSize) {
-	DWORD size1 = PacketSize;
-	__asm {
-		pushad
-		mov eax, Packet
-		push Packet
-		mov ebx, size1
-		mov edx, 0x6FB291A0
-		call edx
-		popad
-	}
+  DWORD size1 = PacketSize;
+  __asm {
+    pushad
+    mov eax, Packet
+    push Packet
+    mov ebx, size1
+    mov edx, 0x6FB291A0
+    call edx
+    popad
+  }
+}
+
+void __declspec(naked) __fastcall Attack_STUB(AttackStruct* Attack, bool AttackingUnit)
+{
+  __asm
+  {
+    push esi;
+    mov esi, ecx;
+    push edx;
+    call D2CLIENT_Attack;
+    pop esi;
+    ret;
+  }
 }
 
 //DWORD p_D2CLIENT_pUnitTableM=0x6FBCA960; // 6FBCA960 || 6FBCA960-6FAB0000
@@ -53,16 +66,16 @@ void SendGAMEPacket(BYTE* Packet, DWORD PacketSize) {
 //}
 
 WORD GetPlayerX(DWORD ID) {
-	UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
-	if (pUnit != NULL)
-		return pUnit->pPath->xPos;
-	return 0;
+  UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
+  if (pUnit != NULL)
+    return pUnit->pPath->xPos;
+  return 0;
 }
 WORD GetPlayerY(DWORD ID) {
-	UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
-	if (pUnit != NULL)
-		return pUnit->pPath->yPos;
-	return 0;
+  UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
+  if (pUnit != NULL)
+    return pUnit->pPath->yPos;
+  return 0;
 }
 //WORD GetPlayerXTarget(DWORD ID) {
 //	UnitAny* pUnit = (UnitAny*)D2CLIENT_GetUnitFromId_STUB(ID, 0);
@@ -81,15 +94,15 @@ DWORD D2CLIENT_TestPvpFlag_M = 0x30DD0;
 
 DWORD __declspec(naked) __fastcall TestPvpFlag_STUB(DWORD planum1, DWORD planum2, DWORD flagmask)
 {
-	__asm {
-		push esi
-		push[esp + 8] // flagmask
-		mov esi, edx
-		mov edx, ecx
-		call D2CLIENT_TestPvpFlag_M
-		pop esi
-		ret 4
-	}
+  __asm {
+    push esi
+    push[esp + 8] // flagmask
+    mov esi, edx
+    mov edx, ecx
+    call D2CLIENT_TestPvpFlag_M
+    pop esi
+    ret 4
+  }
 }
 
 //DWORD LifeAddr=0x6FD856E0;/*(0x6FD5BB60); 1876448992*/
@@ -149,24 +162,24 @@ DWORD __declspec(naked) __fastcall TestPvpFlag_STUB(DWORD planum1, DWORD planum2
 
 void __fastcall NextGameNamePatch(Control* box, BOOL(__stdcall* FunCallBack)(Control*, DWORD, DWORD))
 {
-	D2WIN_SetControlText(box, wszGameName);
-	D2WIN_SelectEditBoxText(box);
-	D2WIN_SetEditBoxProc(box, FunCallBack);
+  D2WIN_SetControlText(box, wszGameName);
+  D2WIN_SelectEditBoxText(box);
+  D2WIN_SetEditBoxProc(box, FunCallBack);
 }
 void __fastcall NextGamePasswordPatch(Control* box, BOOL(__stdcall* FunCallBack)(Control*, DWORD, DWORD))
 {
-	D2WIN_SetControlText(box, wszGamePassword);
-	D2WIN_SelectEditBoxText(box);
-	D2WIN_SetEditBoxProc(box, FunCallBack);
+  D2WIN_SetControlText(box, wszGamePassword);
+  D2WIN_SelectEditBoxText(box);
+  D2WIN_SetEditBoxProc(box, FunCallBack);
 }
 
 DWORD __declspec(naked) __fastcall D2CLIENT_GetUIVar_STUB(DWORD varno)
 {
-	__asm
-	{
-		mov eax, ecx;
-		jmp D2CLIENT_GetUiVar_I;
-	}
+  __asm
+  {
+    mov eax, ecx;
+    jmp D2CLIENT_GetUiVar_I;
+  }
 }
 
 //VOID __declspec(naked) GameShake1_STUB()
@@ -196,51 +209,51 @@ DWORD __declspec(naked) __fastcall D2CLIENT_GetUIVar_STUB(DWORD varno)
 
 VOID __declspec(naked) __fastcall D2COMMON_DisplayOverheadMsg_ASM(DWORD pUnit)
 {
-	__asm
-	{
-		LEA ESI, [ECX + 0xA4]
-		MOV EAX, [ECX + 0xA4]
+  __asm
+  {
+    LEA ESI, [ECX + 0xA4]
+    MOV EAX, [ECX + 0xA4]
 
-		PUSH EAX
-		PUSH 0
-		call D2COMMON_DisplayOverheadMsg_I
+    PUSH EAX
+    PUSH 0
+    call D2COMMON_DisplayOverheadMsg_I
 
-		RETN
-	}
+    RETN
+  }
 }
 
 void __declspec(naked) __fastcall GameEndPatch_ASM()
 {
-	__asm {
-		call GameEndPatch
-		//original code
-		mov ecx, 0xb4
-		ret
-	}
+  __asm {
+    call GameEndPatch
+    //original code
+    mov ecx, 0xb4
+    ret
+  }
 }
 
 void __declspec(naked) GameLoopPatch_ASM()
 {
-	__asm
-	{
-		pushad;
-		call GameLoopPatch;
-		popad;
+  __asm
+  {
+    pushad;
+    call GameLoopPatch;
+    popad;
 
-		push D2CLIENT_GameLoop;
-		ret;
-	}
+    push D2CLIENT_GameLoop;
+    ret;
+  }
 }
 
 void __declspec(naked) D2Login_ASM() {
-	__asm {
-		pushad
-		call D2Login
-		popad
-		CALL DWORD PTR DS : [EAX + 0x8] //    bnclient.6FF3F5DC            ; bnclient.6FF2BDD0
-		XOR ECX, ECX
-		retn
-	}
+  __asm {
+    pushad
+    call D2Login
+    popad
+    CALL DWORD PTR DS : [EAX + 0x8] //    bnclient.6FF3F5DC            ; bnclient.6FF2BDD0
+    XOR ECX, ECX
+    retn
+  }
 }
 
 //void __declspec(naked) GameDrawPlayerBlob_STUB()

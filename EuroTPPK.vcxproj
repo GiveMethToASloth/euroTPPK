@@ -123,6 +123,7 @@
     <ClCompile Include="Keylogger.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Maphack.cpp" />
+    <ClCompile Include="Missiles.cpp" />
     <ClCompile Include="Monsters.cpp" />
     <ClCompile Include="Offset.cpp" />
     <ClCompile Include="PrecastsBox.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Maphack.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Missiles.h" />
     <ClInclude Include="Monsters.h" />
     <ClInclude Include="Offset.h" />
     <ClInclude Include="Patch.h" />

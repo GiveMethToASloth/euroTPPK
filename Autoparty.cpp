@@ -74,6 +74,7 @@ DWORD WINAPI AutoPartyThread(LPVOID lpParameter)
     }
   }
 }
+
 DWORD WINAPI SpamMessage(LPVOID lpParameter)
 {
   for (INT i = 0; i < v_SpamMessage.GetSize() && i <= 20; i++)

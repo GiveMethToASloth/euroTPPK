@@ -62,15 +62,13 @@ BOOL WINAPI DllMain(HINSTANCE hDll, DWORD dwReason, LPVOID lpReserved)
 
     // IN_GAME
       /*	if(D2GFX_GetHwnd())*/
-    if (D2GFX_GetHwnd() != NULL)
-    {
-      if (GameReady())
-      {
+    if (D2GFX_GetHwnd() != NULL) {
+      if (GameReady()) {
         TimeOn++;			            // Start TimeOn Timer for welcome message.
         TimeOn1++;
         dwCurrentExp = D2COMMON_GetUnitStat(D2CLIENT_GetPlayerUnit(), 13, 0);
         //CheckAuth();                    // Performs auth check
-        //RevealAct();		            // Reveals the first act.
+        RevealAct();		            // Reveals the first act.
         //GetPlayers();		            // Gets Playerlists
         SaveGameName();                 // Saves the current gamename and password.
         Auto.Init();

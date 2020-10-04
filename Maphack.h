@@ -1,7 +1,7 @@
 #ifndef _MAPFUNC_H
 #define _MAPFUNC_H
 
-BOOL RevealAct();
+bool RevealAct();
 bool GameReady(void);
 bool RevealLevel(Level* pLevel);
 

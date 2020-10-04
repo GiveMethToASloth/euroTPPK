@@ -35,9 +35,6 @@
     <Filter Include="__ASM">
       <UniqueIdentifier>{0d55c9ee-8b2f-4508-bb92-b8baa8024520}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maphack">
-      <UniqueIdentifier>{b9cf4a98-81c4-437b-9d05-9b7bee6e9f0d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LinkedList">
       <UniqueIdentifier>{78c35770-fdeb-485b-a848-4791c90a9d9a}</UniqueIdentifier>
     </Filter>
@@ -70,6 +67,18 @@
     </Filter>
     <Filter Include="Keylogger">
       <UniqueIdentifier>{079696c4-55ad-46a5-a246-d4015d21f7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reveal">
+      <UniqueIdentifier>{b9cf4a98-81c4-437b-9d05-9b7bee6e9f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reveal\Maphack">
+      <UniqueIdentifier>{4ce8fab0-b803-448b-8386-810959c2d563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reveal\Monsters">
+      <UniqueIdentifier>{6d315522-719d-445d-b640-1d2ae6d48e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reveal\Missiles">
+      <UniqueIdentifier>{b7891071-072f-493d-afeb-2a680d8b4c5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -145,14 +154,8 @@
     <ClCompile Include="asm.cpp">
       <Filter>__ASM</Filter>
     </ClCompile>
-    <ClCompile Include="Maphack.cpp">
-      <Filter>Maphack</Filter>
-    </ClCompile>
-    <ClCompile Include="Monsters.cpp">
-      <Filter>Maphack</Filter>
-    </ClCompile>
     <ClCompile Include="Test.cpp">
-      <Filter>Maphack</Filter>
+      <Filter>Reveal</Filter>
     </ClCompile>
     <ClCompile Include="LinkedList.cpp">
       <Filter>LinkedList</Filter>
@@ -210,6 +213,15 @@
     </ClCompile>
     <ClCompile Include="Keylogger.cpp">
       <Filter>Keylogger</Filter>
+    </ClCompile>
+    <ClCompile Include="Maphack.cpp">
+      <Filter>Reveal\Maphack</Filter>
+    </ClCompile>
+    <ClCompile Include="Monsters.cpp">
+      <Filter>Reveal\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Missiles.cpp">
+      <Filter>Reveal\Missiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -309,14 +321,8 @@
     <ClInclude Include="asm.h">
       <Filter>__ASM</Filter>
     </ClInclude>
-    <ClInclude Include="Maphack.h">
-      <Filter>Maphack</Filter>
-    </ClInclude>
-    <ClInclude Include="Monsters.h">
-      <Filter>Maphack</Filter>
-    </ClInclude>
     <ClInclude Include="Test.h">
-      <Filter>Maphack</Filter>
+      <Filter>Reveal</Filter>
     </ClInclude>
     <ClInclude Include="LinkedList.h">
       <Filter>LinkedList</Filter>
@@ -380,6 +386,15 @@
     </ClInclude>
     <ClInclude Include="Keylogger.h">
       <Filter>Keylogger</Filter>
+    </ClInclude>
+    <ClInclude Include="Maphack.h">
+      <Filter>Reveal\Maphack</Filter>
+    </ClInclude>
+    <ClInclude Include="Monsters.h">
+      <Filter>Reveal\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Missiles.h">
+      <Filter>Reveal\Missiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

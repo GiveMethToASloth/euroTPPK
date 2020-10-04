@@ -364,11 +364,13 @@ POINT GetPosition() {
   mp.y = PlayerUnit->pPath->yPos;
   return mp;
 }
+
 int GetPercent(DWORD Current, DWORD Max) {
   float Cur1 = (int)Current;
   float Max1 = (int)Max;
   return (Cur1 / Max * 100);
 }
+
 /*
  void ExitGame() {
 DWORD ExitAddr=(DWORD)LoadLibrary("D2Client.dll")+0x7AB00;
@@ -376,6 +378,7 @@ DWORD ExitAddr=(DWORD)LoadLibrary("D2Client.dll")+0x7AB00;
       call ExitAddr
      }
  }*/
+
  //Getting Mouse Positon
 void GetD2MousePos(POINT& Pointer) {
   typedef unsigned short(__fastcall* pPos)();
@@ -387,6 +390,7 @@ void GetD2MousePos(POINT& Pointer) {
   Pointer.x = pPosX();
   Pointer.y = pPosY();
 }
+
 void HoldRightUp(long X, long Y) {
   SendMessage((HWND)D2GFX_GetHwnd(), WM_RBUTTONUP, 0, MAKELONG(X, Y));
 }
@@ -419,6 +423,7 @@ void HostileAll()
     UnhostMembers();
   }*/
 }
+
 void UnhostMembers()
 {
   /*int i;
@@ -444,6 +449,7 @@ void PrintMessage(char* Message, char Color)
   MultiByteToWideChar(0, 1, Message, 100, Buffer, 100);
   Print(Buffer, Color);
 };
+
 void PrintMessageBottomLeft(char* Message, char Color)
 {
   typedef void(_stdcall* pPrint)(wchar_t* Text, char Color);

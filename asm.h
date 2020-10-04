@@ -1,5 +1,7 @@
 DWORD GetPlayerID(VOID);
 void SendGAMEPacket(BYTE* Packet, DWORD PacketSize);
+void __fastcall Attack_STUB(AttackStruct* Attack, bool AttackingUnit);
+
 DWORD __fastcall D2CLIENT_clickParty_ASM(DWORD RosterUnit, DWORD Mode);
 //DWORD __fastcall D2CLIENT_GetUnitFromId_STUB(DWORD unitid, DWORD unittype);
 WORD GetPlayerX(DWORD ID);

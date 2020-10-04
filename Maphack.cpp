@@ -7,7 +7,7 @@
 Level* GetLevelPointer(ActMisc* pActMisc, int nLevel)
 {
   if ((!pActMisc) || (nLevel < 0))
-    return false;
+    return nullptr;
 
   for (Level* pLevel = pActMisc->pLevelFirst; pLevel; pLevel = pLevel->pNextLevel)
   {
@@ -67,14 +67,14 @@ bool RevealLevel(Level* pLevel)
   return true;
 }
 
-/* BOOL RevealAct ()
+/* bool RevealAct ()
  * Reveals every area in the act.
  */
-BOOL RevealAct()
+bool RevealAct()
 {
   //Grab the player unit now, so we don't call this 100 times
   UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
-  if (!pUnit)
+  if (!pUnit || !pUnit->pAct)
     return false;
 
   //The level id's for each town and the last one is the final map

@@ -4,12 +4,12 @@
 //extern int PlayerRosterN;
 //
 struct PKInfoStruct {
-	char ForumName[50];
-	DWORD TotalKills;
-	DWORD TotalScore;
-	DWORD Rank;
-	char LastUse[50];
-	DWORD Ready;
+  char ForumName[50];
+  DWORD TotalKills;
+  DWORD TotalScore;
+  DWORD Rank;
+  char LastUse[50];
+  DWORD Ready;
 };
 extern PKInfoStruct PKInfo;
 //
@@ -23,13 +23,13 @@ extern PKInfoStruct PKInfo;
 //extern LastPKStruct LPK;
 //
 struct AUTHNUMBER {
-	int LifeAddr1; // 0x6FD856E0
-	int totalVars;
+  int LifeAddr1; // 0x6FD856E0
+  int totalVars;
 };
 extern AUTHNUMBER Authn;
 //
 //// Playeers
-//void GetPlayers();
+void GetPlayers();
 //void GetMembers(void);
 //void CheckAuth(void);
 //void GetBlackList(void);

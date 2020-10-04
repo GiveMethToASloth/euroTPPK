@@ -63,6 +63,7 @@ extern char szModulePath[259];
 #include "LinkedList.h"
 #include "AutoAim.h"
 #include "Monsters.h"
+#include "Missiles.h"
 #include "Common.h"
 #include "Maphack.h"
 #include "Timer.h"
