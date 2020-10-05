@@ -8,6 +8,8 @@ class BoxManager
 {
 private:
   std::map<std::string, Box*> boxList;
+  bool bMouseDown;
+  POINT lastLocation;
   void FixName(std::string& szName);
 public:
   BoxManager() {}
@@ -21,6 +23,7 @@ public:
   void RemoveBox(Box* box);
 
   void OpenBoxes();
+  void MoveBoxes();
 
   void DrawTabbedBoxes();
   void DrawBoxes();

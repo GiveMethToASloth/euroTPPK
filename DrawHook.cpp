@@ -21,6 +21,15 @@ DWORD ssTimer;
 bool Units = false;
 Vector GlobalVectors;
 
+bool IsMouseInBounds(DWORD dwXPos, DWORD dwYPos, DWORD dwXPos2, DWORD dwYPos2) {
+  if (D2CLIENT_MouseX >= dwXPos && D2CLIENT_MouseX <= dwXPos2 &&
+    D2CLIENT_MouseY >= dwYPos && D2CLIENT_MouseY <= dwYPos2
+    )
+    return true;
+
+  return false;
+}
+
 void D2DrawLine(int x, int y, int x2, int y2, DWORD color) {
   D2GFX_DrawLine(x, y, x2, y2, color, 0xff);
 }
@@ -1068,6 +1077,12 @@ void GameDraw()
 
   DrawWelcomeText();
   WelcomeBox();
+
+  TextHook(100, 390, 0, false, 0, -1, "X: %d, Y: %d", D2CLIENT_MouseX, D2CLIENT_MouseY);
+
+  if (KEYDOWN(vK_MoveBoxKey)) {
+    boxManager->MoveBoxes();
+  }
 
   //if (D2CLIENT_AutomapOn) // The Automap is tabbed ON
   //	AutoTeleDraw();		 // Draw while auto teleporting

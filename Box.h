@@ -27,6 +27,7 @@ public:
   ~Box() {};
 
   std::string GetBoxName() { return boxInfo->szBoxTitle; }
+
   bool IsBoxOpen() { return boxInfo->bIsOpen; }
   void OpenBox(bool bOpen) {
     if (bOpen) {
@@ -37,10 +38,12 @@ public:
     else
       boxInfo->bIsOpen = false;
   };
+
   std::vector<std::string> GetBoxInfo() { return boxInfo->szBoxInfo; }
   void UpdateBox(BoxInfo* boxInfo) {
     this->boxInfo = boxInfo;
   }
+
   POINT GetTabbedCoords() {
     return { long(boxInfo->dwTabbedXPos), long(boxInfo->dwTabbedYPos) };
   }
@@ -55,12 +58,13 @@ public:
     boxInfo->dwTabbedXSize = dwTabbedXSize;
     boxInfo->dwTabbedYSize = dwTabbedYSize;
   }
+
   POINT GetOpenCoords() {
     return { long(boxInfo->dwOpenXPos), long(boxInfo->dwOpenYPos) };
   }
   void SetOpenCoords(DWORD dwOpenXPos, DWORD dwOpenYPos) {
-    boxInfo->dwTabbedXPos = dwOpenXPos;
-    boxInfo->dwTabbedYPos = dwOpenYPos;
+    boxInfo->dwOpenXPos = dwOpenXPos;
+    boxInfo->dwOpenYPos = dwOpenYPos;
   }
   POINT GetOpenSize() {
     return { long(boxInfo->dwOpenXSize), long(boxInfo->dwOpenYSize) };

@@ -12,6 +12,7 @@ extern bool Units;
 extern bool Set;
 extern bool Precasts;
 extern DWORD GetUnitIDByXY(LONG Wx, LONG Wy, Room2* pRoom2);
+extern bool IsMouseInBounds(DWORD dwXPos, DWORD dwYPos, DWORD dwXPos2, DWORD dwYPos2);
 void D2DrawLine(int x, int y, int x2, int y2, DWORD color);
 extern bool OneClick;
 extern int ClickTimer;
@@ -55,12 +56,12 @@ void TextHook(INT xPos, INT yPos, DWORD dwColor, BOOL Automap, INT dwFont, BOOL 
 void BoxHook(INT x, INT y, INT xSize, INT ySize, DWORD dwColor, DWORD Trans, BOOL Automap);
 //void TestDraw(void);
 struct Vector {
-	POINT WPPos;
-	POINT OtherPos;
-	POINT QuestPos;
+  POINT WPPos;
+  POINT OtherPos;
+  POINT QuestPos;
 
-	DWORD WPID;
-	DWORD OtherID;
-	DWORD QuestID;
+  DWORD WPID;
+  DWORD OtherID;
+  DWORD QuestID;
 };
 extern Vector GlobalVectors;

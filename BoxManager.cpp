@@ -18,20 +18,31 @@ void BoxManager::RemoveBox(Box* box) {
 }
 
 void BoxManager::OpenBoxes() {
-  for (map<string, Box*>::iterator it = boxList.begin(); it != boxList.end(); ++it) {
+  for (std::map<std::string, Box*>::iterator it = boxList.begin(); it != boxList.end(); ++it) {
     POINT ptPos = (*it).second->GetTabbedCoords();
     POINT ptSize = (*it).second->GetTabbedSize();
 
-    if (
-      D2CLIENT_MouseX > ptPos.x && D2CLIENT_MouseX < ptPos.x + ptSize.x &&
-      D2CLIENT_MouseY > ptPos.y && D2CLIENT_MouseY < ptPos.y + ptSize.y
-      ) {
+    if (IsMouseInBounds(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y)) {
       ClickMapConfig(9, D2CLIENT_MouseX, D2CLIENT_MouseY, 1);
       if (KEYDOWN(MK_LBUTTON)) {
         (*it).second->OpenBox(true);
       }
       else if (KEYDOWN(MK_RBUTTON)) {
         (*it).second->OpenBox(false);
+      }
+    }
+  }
+}
+
+void BoxManager::MoveBoxes() {
+  for (std::map<std::string, Box*>::iterator it = boxList.begin(); it != boxList.end(); ++it) {
+    POINT ptPos = (*it).second->GetOpenCoords();
+    POINT ptSize = (*it).second->GetOpenSize();
+    POINT ptCenter = { long(ptSize.x / 2), long(ptSize.y / 2) };
+
+    if (IsMouseInBounds(ptPos.x, ptPos.y, ptSize.x + ptPos.x, ptSize.y + ptPos.y)) {
+      if (KEYDOWN(MK_LBUTTON)) {
+        (*it).second->SetOpenCoords(D2CLIENT_MouseX - ptCenter.x, D2CLIENT_MouseY - ptCenter.y);
       }
     }
   }
@@ -60,7 +71,7 @@ void BoxManager::DrawBoxes() {
       D2GFX_DrawRectangle(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y, 0, 100);
       D2DrawRectFrame(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y);
       strcpy_s(szName, box.second->GetBoxName().c_str());
-      DrawTextToScreen(szName, ptPos.x + 5, ptPos.y + 3, FONTCOLOR_WHITE, 6);
+      DrawTextToScreen(szName, ptPos.x + 5, ptPos.y - 5, FONTCOLOR_WHITE, 6);
     }
   }
 }
