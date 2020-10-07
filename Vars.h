@@ -22,6 +22,7 @@ extern CArrayEx<LevelNameInfo*, LevelNameInfo*> LevelNames;
 
 //CArrayEx<LevelNameInfo*, LevelNameInfo*> LevelNames;
 DEFINEVAR(CHAR, szLastGameName[1024])
+DEFINEVAR(WNDPROC, OldWndProc)
 //MYCARRAY(LevelNameInfo*, LevelNameInfo)
 MYCARRAY(PCONFIGVAR, DeathMessage)
 MYCARRAY(PCONFIGVAR, SpamMessage)
@@ -116,6 +117,7 @@ MYKEY(AimAndAttack)
 MYKEY(AutoPK)
 MYKEY(OpenStash)
 MYKEY(BoxKey)
+DEFINEVAR(bool, bMoveBox)
 MYKEY(MoveBoxKey)
 MYKEY(NPCAdd)
 MYKEY(TeleNext)

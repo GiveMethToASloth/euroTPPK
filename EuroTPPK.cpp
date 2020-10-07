@@ -91,6 +91,8 @@ BOOL WINAPI DllMain(HINSTANCE hDll, DWORD dwReason, LPVOID lpReserved)
     // IN_GAME
       /*	if(D2GFX_GetHwnd())*/
     if (D2GFX_GetHwnd() != NULL) {
+      OldWndProc = WNDPROC(GetWindowLongA(D2GFX_GetHwnd(), GWL_WNDPROC));
+      SetWindowLongA(D2GFX_GetHwnd(), GWL_WNDPROC, LONG(WindowProc));
       if (GameReady()) {
         TimeOn++;			            // Start TimeOn Timer for welcome message.
         TimeOn1++;

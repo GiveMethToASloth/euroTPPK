@@ -757,8 +757,8 @@ void DrawUIVars(void)
 {
   UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
   if (D2CLIENT_GetUiVar(2)) {
-    /*   if  (D2COMMON_GetQuestFlag(D2CLIENT_GetQuestInfo(), 4, 10))
-       TextHook(100, 390, 0, false, 0, -1, "ÿc1*ÿc0King Killedÿc1*");*/
+    if (D2COMMON_GetQuestFlag(D2CLIENT_GetQuestInfo(), 4, 10))
+      TextHook(100, 390, 0, false, 0, -1, "ÿc1*ÿc0King Killedÿc1*");
     char Buffer[200];
     // Fire 180 base
     int fire = D2COMMON_GetUnitStat((UnitAny*)pUnit, 39, 0);
@@ -777,11 +777,11 @@ void DrawUIVars(void)
     sprintf(Buffer, "%d", psn);
     DrawTextToScreen(Buffer, 402, 480, 2, 1);
 
-    //     D2GFX_DrawRectangle(88,390,200,490,0,1);
-    //     D2DrawRectFrame(88,390,200,490);
+    D2GFX_DrawRectangle(88, 390, 200, 490, 0, 1);
+    D2DrawRectFrame(88, 390, 200, 490);
 
-       //D2GFX_DrawRectangle(715,532,756,549,0,100);
-       //D2DrawRectFrame(715,532,755,549);
+    D2GFX_DrawRectangle(715, 532, 756, 549, 0, 100);
+    D2DrawRectFrame(715, 532, 755, 549);
   }
 }
 
@@ -1079,10 +1079,6 @@ void GameDraw()
   WelcomeBox();
 
   TextHook(100, 390, 0, false, 0, -1, "X: %d, Y: %d", D2CLIENT_MouseX, D2CLIENT_MouseY);
-
-  if (KEYDOWN(vK_MoveBoxKey)) {
-    boxManager->MoveBoxes();
-  }
 
   //if (D2CLIENT_AutomapOn) // The Automap is tabbed ON
   //	AutoTeleDraw();		 // Draw while auto teleporting

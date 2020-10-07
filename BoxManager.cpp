@@ -38,11 +38,12 @@ void BoxManager::MoveBoxes() {
   for (std::map<std::string, Box*>::iterator it = boxList.begin(); it != boxList.end(); ++it) {
     POINT ptPos = (*it).second->GetOpenCoords();
     POINT ptSize = (*it).second->GetOpenSize();
-    POINT ptCenter = { long(ptSize.x / 2), long(ptSize.y / 2) };
+    POINT ptDist = { long(ptSize.x / 2), long(ptSize.y / 2) };
 
     if (IsMouseInBounds(ptPos.x, ptPos.y, ptSize.x + ptPos.x, ptSize.y + ptPos.y)) {
       if (KEYDOWN(MK_LBUTTON)) {
-        (*it).second->SetOpenCoords(D2CLIENT_MouseX - ptCenter.x, D2CLIENT_MouseY - ptCenter.y);
+        PrintConsoleString("%d", D2CLIENT_MouseX - ptDist.x);
+        (*it).second->SetOpenCoords(DWORD(D2CLIENT_MouseX - ptDist.x), DWORD(D2CLIENT_MouseY - ptDist.y));
       }
     }
   }
