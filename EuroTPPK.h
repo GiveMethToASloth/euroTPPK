@@ -45,7 +45,8 @@ extern char szModulePath[259];
 #include <stdlib.h>
 #include <errno.h>
 #include <io.h>
-#include <string.h>
+#include <string>
+#include <map>
 // EuroTPPK header files
 #include "Intercepts.h"
 #include "D2Structs.h"
@@ -85,6 +86,7 @@ extern char szModulePath[259];
 #include "Keylogger.h"
 #include "Settings.h"
 
+#include "Handlers.h"
 #include "BoxManager.h"
 #include "Box.h"
 
@@ -123,8 +125,13 @@ extern char szModulePath[259];
 #define D2FONT_BIGROUGH		2	// Big rough font
 #define D2FONT_BIGBIGROUGH	3	// Big big rough font
 #define D2FONT_SMOKE		11	// Smoke font
-
 extern BoxManager* boxManager;
+extern Box* pBoxConfig;
+extern Box* pBoxTarget;
+extern Box* pBoxPrecast;
+extern Box* pBoxLevel;
+extern Box* pBoxConsole;
+extern Box* pBoxDiscord;
 extern AutoAim Auto;
 extern LinkedList* PlayerFriendList;
 extern LinkedList* PlayerEnemyList;

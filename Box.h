@@ -2,75 +2,61 @@
 #include <string>
 #include <vector>
 
-struct BoxInfo {
+class Box
+{
+private:
+  friend class BoxManager;
   std::string szBoxTitle;
   std::vector<std::string> szBoxInfo;
   bool bIsOpen;
   DWORD dwTabbedXPos;
   DWORD dwTabbedYPos;
-  DWORD dwTabbedXSize;
-  DWORD dwTabbedYSize;
   DWORD dwOpenXPos;
   DWORD dwOpenYPos;
-  DWORD dwOpenXSize;
-  DWORD dwOpenYSize;
-};
-
-class Box
-{
-private:
-  friend class BoxManager;
-  BoxInfo* boxInfo;
 
 public:
-  Box(BoxInfo* boxInfo) : boxInfo(boxInfo) {};
+  Box(std::string szBoxTitle, DWORD dwTabbedXPos, DWORD dwTabbedYPos, DWORD dwOpenXPos, DWORD dwOpenYPos)
+    : szBoxTitle(szBoxTitle), dwTabbedXPos(dwTabbedXPos), dwTabbedYPos(dwTabbedYPos), dwOpenXPos(dwOpenXPos), dwOpenYPos(dwOpenYPos) {
+    bIsOpen = false;
+  };
   ~Box() {};
 
-  std::string GetBoxName() { return boxInfo->szBoxTitle; }
+  std::string GetBoxName() { return szBoxTitle; }
+  void SetBoxName(std::string szBoxTitle) { this->szBoxTitle = szBoxTitle; }
 
-  bool IsBoxOpen() { return boxInfo->bIsOpen; }
-  void OpenBox(bool bOpen) {
-    if (bOpen) {
-      if (!boxInfo->bIsOpen) {
-        boxInfo->bIsOpen = true;
+  std::vector<std::string> GetBoxInfo() { return szBoxInfo; }
+  void SetBoxInfo(std::vector<std::string> szBoxInfo) { this->szBoxInfo = szBoxInfo; }
+
+  bool IsBoxOpen() { return bIsOpen; }
+  void SetOpenBox(bool bIsOpen) { this->bIsOpen = bIsOpen; }
+
+  POINT GetTabbedPos() { return { long(this->dwTabbedXPos), long(this->dwTabbedYPos) }; }
+  void SetTabbedPos(POINT ptTabbedPos) { this->dwTabbedXPos = ptTabbedPos.x; this->dwTabbedYPos = ptTabbedPos.y; }
+
+  POINT GetTabbedSize() {
+    POINT ptSiz = { 0, 0 };
+    ptSiz = GetTextSize(szBoxTitle, 6);
+    ptSiz.x += 6;
+    ptSiz.y += 6;
+    return ptSiz;
+  }
+
+  POINT GetOpenPos() { return { long(this->dwOpenXPos), long(this->dwOpenYPos) }; }
+  void SetOpenPos(POINT ptOpenPos) { this->dwOpenXPos = ptOpenPos.x; this->dwOpenYPos = ptOpenPos.y; }
+
+  POINT GetOpenSize() {
+    POINT ptSiz = { 0, 0 };
+    for (const auto& szStr : szBoxInfo) {
+      POINT ptTmp = GetTextSize(szStr, 6);
+      if (ptTmp.x > ptSiz.x) {
+        ptSiz.x = ptTmp.x;
+      }
+      if (ptTmp.y > ptSiz.y) {
+        ptSiz.y = ptTmp.y;
       }
     }
-    else
-      boxInfo->bIsOpen = false;
-  };
-
-  std::vector<std::string> GetBoxInfo() { return boxInfo->szBoxInfo; }
-  void UpdateBox(BoxInfo* boxInfo) {
-    this->boxInfo = boxInfo;
-  }
-
-  POINT GetTabbedCoords() {
-    return { long(boxInfo->dwTabbedXPos), long(boxInfo->dwTabbedYPos) };
-  }
-  void SetTabbedCoords(DWORD dwTabbedXPos, DWORD dwTabbedYPos) {
-    boxInfo->dwTabbedXPos = dwTabbedXPos;
-    boxInfo->dwTabbedYPos = dwTabbedYPos;
-  }
-  POINT GetTabbedSize() {
-    return { long(boxInfo->dwTabbedXSize), long(boxInfo->dwTabbedYSize) };
-  }
-  void SetTabbedSize(DWORD dwTabbedXSize, DWORD dwTabbedYSize) {
-    boxInfo->dwTabbedXSize = dwTabbedXSize;
-    boxInfo->dwTabbedYSize = dwTabbedYSize;
-  }
-
-  POINT GetOpenCoords() {
-    return { long(boxInfo->dwOpenXPos), long(boxInfo->dwOpenYPos) };
-  }
-  void SetOpenCoords(DWORD dwOpenXPos, DWORD dwOpenYPos) {
-    boxInfo->dwOpenXPos = dwOpenXPos;
-    boxInfo->dwOpenYPos = dwOpenYPos;
-  }
-  POINT GetOpenSize() {
-    return { long(boxInfo->dwOpenXSize), long(boxInfo->dwOpenYSize) };
-  }
-  void SetOpenSize(DWORD dwOpenXSize, DWORD dwOpenYSize) {
-    boxInfo->dwOpenXSize = dwOpenXSize;
-    boxInfo->dwOpenYSize = dwOpenYSize;
+    ptSiz.x += 6;
+    ptSiz.y = 12 * szBoxInfo.size() + 6;
+    return ptSiz;
   }
 };

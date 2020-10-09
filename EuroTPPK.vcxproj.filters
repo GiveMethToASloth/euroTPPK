@@ -89,6 +89,9 @@
     <Filter Include="UI\Boxes">
       <UniqueIdentifier>{37d96e6d-2e13-4ce5-acf9-1d664d3b9b85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Handlers">
+      <UniqueIdentifier>{c3f91e27-a6c6-44f2-8133-d0364d8f3ad2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EuroTPPK.cpp">
@@ -237,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="BoxManager.cpp">
       <Filter>UI\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers.cpp">
+      <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -416,6 +422,9 @@
     </ClInclude>
     <ClInclude Include="BoxManager.h">
       <Filter>UI\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers.h">
+      <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

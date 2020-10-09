@@ -115,6 +115,7 @@
     <ClCompile Include="EuroTPPK.cpp" />
     <ClCompile Include="expbox.cpp" />
     <ClCompile Include="Extra.cpp" />
+    <ClCompile Include="Handlers.cpp" />
     <ClCompile Include="InfoBox.cpp" />
     <ClCompile Include="Intercepts.cpp" />
     <ClCompile Include="Internet.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="EuroTPPK.h" />
     <ClInclude Include="expbox.h" />
     <ClInclude Include="Extra.h" />
+    <ClInclude Include="Handlers.h" />
     <ClInclude Include="InfoBox.h" />
     <ClInclude Include="Intercepts.h" />
     <ClInclude Include="Internet.h" />

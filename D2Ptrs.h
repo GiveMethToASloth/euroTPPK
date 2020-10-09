@@ -255,6 +255,7 @@ FUNCPTR(D2LANG, GetLocaleText, wchar_t* __fastcall, (WORD nLocaleTxtNo), 0x124A3
 FUNCPTR(D2WIN, DrawSprites, VOID __fastcall, (VOID), 0xF9870)
 FUNCPTR(D2WIN, SetControlText, void* __fastcall, (Control* box, wchar_t* txt), 0xFF5A0) // Updated
 FUNCPTR(D2WIN, GetTextWidthFileNo, DWORD __fastcall, (wchar_t* wStr, DWORD* dwWidth, DWORD* dwFileNo), 0x102520) // Updated
+FUNCPTR(D2WIN, GetTextHeight, int, (), 0x101A40)
 FUNCPTR(D2WIN, SetTextSize, DWORD __fastcall, (DWORD dwSize), 0x102EF0) // Updated
 FUNCPTR(D2WIN, DrawText, void __fastcall, (wchar_t* wStr, int xPos, int yPos, DWORD dwColor, DWORD dwUnk), 0x102320) // Updated
 //FUNCPTR(D2WIN, GetTextLength, DWORD __fastcall, (wchar_t* szwText), -10132)

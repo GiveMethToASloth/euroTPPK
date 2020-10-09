@@ -224,6 +224,29 @@ void  ToggleInventory(bool on) {
       _asm CALL GUI
 }
 
+wchar_t* AnsiToUnicode(const char* szStr) {
+  wchar_t* wzBuf = nullptr;
+  int nLen = MultiByteToWideChar(CP_ACP, 0, szStr, -1, wzBuf, 0);
+  wzBuf = new wchar_t[nLen];
+  MultiByteToWideChar(CP_ACP, 0, szStr, -1, wzBuf, nLen);
+  return wzBuf;
+}
+
+POINT GetTextSize(std::string szStr, unsigned int nFont) {
+  DWORD dwWidth = NULL;
+  DWORD dwHeight = NULL;
+  DWORD dwFileNo = NULL;
+  POINT ptSiz{ 0, 0 };
+  wchar_t* wzStr = AnsiToUnicode(szStr.c_str());
+  DWORD dwOldFnt = D2WIN_SetTextSize(nFont);
+  D2WIN_GetTextWidthFileNo(wzStr, &dwWidth, &dwFileNo);
+  dwHeight = DWORD(D2WIN_GetTextHeight());
+  D2WIN_SetTextSize(dwOldFnt);
+  ptSiz = { LONG(dwWidth), LONG(dwHeight) };
+  delete[] wzStr;
+  return ptSiz;
+}
+
 char* ReplaceString(char* source, char* old, char* newtext)
 {
   char* original = new char[strlen(source)];

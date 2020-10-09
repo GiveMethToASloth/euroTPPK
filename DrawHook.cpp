@@ -1073,6 +1073,7 @@ void GameDraw()
   //Boxes();
   //DrawPlayerInventoryHook();
 
+  ConfigBox();
   boxManager->DrawBoxes();
 
   DrawWelcomeText();

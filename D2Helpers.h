@@ -13,6 +13,8 @@ void FlashPlayer(DWORD ID);
 bool IsInventoryOpen();
 void  ToggleInventory(bool on);
 void PrintLists(void);
+wchar_t* AnsiToUnicode(const char* szStr);
+POINT GetTextSize(std::string szStr, unsigned int nFont);
 char* ReplaceString(char* source, char* old, char* newtext);
 void PrintChat(char* Message);
 DWORD GetExpLeft();

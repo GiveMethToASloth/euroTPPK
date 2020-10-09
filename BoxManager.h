@@ -9,7 +9,6 @@ class BoxManager
 private:
   std::map<std::string, Box*> boxList;
   bool bMouseDown;
-  POINT lastLocation;
   void FixName(std::string& szName);
 public:
   BoxManager() {}
