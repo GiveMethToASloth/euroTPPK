@@ -9,14 +9,6 @@ DWORD __declspec(naked) __fastcall D2CLIENT_clickParty_ASM(DWORD RosterUnit, DWO
   }
 }
 
-DWORD __declspec(naked) GetPlayerID(VOID) {
-  __asm {
-    MOV EAX, DWORD PTR DS : [0x6FBCC3D0]
-    MOV ECX, DWORD PTR DS : [EAX + 0xC]
-    mov eax, ecx
-    ret
-  }
-}
 DWORD SendPacketAddr = 0x91A0; // 6FB291A0-6FBF0000
 void SendGAMEPacket(BYTE* Packet, DWORD PacketSize) {
   DWORD size1 = PacketSize;
@@ -64,46 +56,6 @@ void __declspec(naked) __fastcall Attack_STUB(AttackStruct* Attack, bool Attacki
 //		jmp D2CLIENT_GetUnitFromId_M;
 //	}
 //}
-
-WORD GetPlayerX(DWORD ID) {
-  UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
-  if (pUnit != NULL)
-    return pUnit->pPath->xPos;
-  return 0;
-}
-WORD GetPlayerY(DWORD ID) {
-  UnitAny* pUnit = D2CLIENT_FindServerSideUnit(ID, UNIT_TYPE_PLAYER);
-  if (pUnit != NULL)
-    return pUnit->pPath->yPos;
-  return 0;
-}
-//WORD GetPlayerXTarget(DWORD ID) {
-//	UnitAny* pUnit = (UnitAny*)D2CLIENT_GetUnitFromId_STUB(ID, 0);
-//	if (pUnit != NULL)
-//		return pUnit->pPath->xTarget;
-//	return 0;
-//}
-//WORD GetPlayerYTarget(DWORD ID) {
-//	UnitAny* pUnit = (UnitAny*)D2CLIENT_GetUnitFromId_STUB(ID, 0);
-//	if (pUnit != NULL)
-//		return pUnit->pPath->yTarget;
-//	return 0;
-//}
-
-DWORD D2CLIENT_TestPvpFlag_M = 0x30DD0;
-
-DWORD __declspec(naked) __fastcall TestPvpFlag_STUB(DWORD planum1, DWORD planum2, DWORD flagmask)
-{
-  __asm {
-    push esi
-    push[esp + 8] // flagmask
-    mov esi, edx
-    mov edx, ecx
-    call D2CLIENT_TestPvpFlag_M
-    pop esi
-    ret 4
-  }
-}
 
 //DWORD LifeAddr=0x6FD856E0;/*(0x6FD5BB60); 1876448992*/
 //int LifeAddr = Authn.LifeAddr1;
@@ -166,6 +118,7 @@ void __fastcall NextGameNamePatch(Control* box, BOOL(__stdcall* FunCallBack)(Con
   D2WIN_SelectEditBoxText(box);
   D2WIN_SetEditBoxProc(box, FunCallBack);
 }
+
 void __fastcall NextGamePasswordPatch(Control* box, BOOL(__stdcall* FunCallBack)(Control*, DWORD, DWORD))
 {
   D2WIN_SetControlText(box, wszGamePassword);

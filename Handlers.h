@@ -3,3 +3,4 @@
 
 void InitBoxes();
 void ConfigBox();
+void PrecastBox();

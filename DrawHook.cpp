@@ -30,10 +30,6 @@ bool IsMouseInBounds(DWORD dwXPos, DWORD dwYPos, DWORD dwXPos2, DWORD dwYPos2) {
   return false;
 }
 
-void D2DrawLine(int x, int y, int x2, int y2, DWORD color) {
-  D2GFX_DrawLine(x, y, x2, y2, color, 0xff);
-}
-
 void GiveFinger(void) {
   PrintChat(" ................/´¯/)");
   PrintChat(" ............. /.¯.// ");
@@ -45,7 +41,7 @@ void GiveFinger(void) {
   PrintChat("I JuSt TuRn You iNto my BiTch ThAnkS ");
 }
 
-extern DWORD GetUnitIDByXY(LONG Wx, LONG Wy, Room2* pRoom2) {
+DWORD GetUnitIDByXY(LONG Wx, LONG Wy, Room2* pRoom2) {
   UnitAny* pUnit;
   if (!pRoom2)
     return 0;
@@ -80,17 +76,6 @@ Level* GetLevelPointerD(ActMisc* pActMisc, int nLevel)
       return pLevel;
   }
   return D2COMMON_GetLevel(pActMisc, nLevel);
-}
-
-void DrawPlayerBlob(int xpos, int ypos, int col) {
-  static char blines[][2] = { 0,-2, 4,-4, 8,-2, 4,0, 8,2, 4,4, 0,2, -4,4, -8,2, -4,0, -8,-2, -4,-4, 0,-2 };
-  for (int i = 0; i < ARRAYSIZE(blines) - 1; i++) {
-    D2GFX_DrawLine(xpos + blines[i][0], ypos + blines[i][1], xpos + blines[i + 1][0], ypos + blines[i + 1][1], col, 0xff);
-  }
-  POINT Player = { D2CLIENT_GetPlayerUnit()->pPath->xPos, D2CLIENT_GetPlayerUnit()->pPath->yPos };
-  MapToScreenCoords(Player);
-  ScreenToAutomapRelative(&Player, Player.x, Player.y);
-  D2GFX_DrawLine(Player.x, Player.y, xpos, ypos, col, 0xff);
 }
 
 #define QUESTCOLOR 155
@@ -503,7 +488,8 @@ extern int Players() {
 void DrawPos(void)
 {
   char MyPos[100];
-  sprintf(MyPos, "%d:%d", GetPosition().x, GetPosition().y);
+  POINT ptPos = GetPlayerPosition(D2CLIENT_GetPlayerUnit()->dwUnitId);
+  sprintf(MyPos, "%d:%d", ptPos.x, ptPos.y);
   DrawTextToScreen(MyPos, 115, 550, 1, 4);
 }
 
@@ -550,13 +536,6 @@ void DrawPlines(void)
       }
     }
   }*/
-}
-
-void  AbsToScreenCoords(POINT& rMapPosition)
-{
-  D2COMMON_AbsScreenToMap(&rMapPosition.x, &rMapPosition.y);
-  rMapPosition.x -= D2CLIENT_GetMouseXOffset();
-  rMapPosition.y -= D2CLIENT_GetMouseYOffset();
 }
 
 //void TestDraw(void)
@@ -692,12 +671,6 @@ void Screenhooks(void) {
     //if(!D2CLIENT_GetUiVar(0x18))  {
     UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
     char Buffer[100];
-    /*DWORD	MaxLife = GetMaxLife();
-    DWORD	MaxMana = GetMaxMana();*/
-    /*DWORD	CurrentLife = GetCurrentLife();
-    DWORD	CurrentMana = GetCurrentMana();*/
-    /*DWORD	LifePercent = GetPercent(CurrentLife, MaxLife);
-    DWORD	ManaPercent = GetPercent(CurrentMana, MaxMana);*/
 
     D2GFX_DrawRectangle(50, 532, 91, 549, 0, 100);
     D2DrawRectFrame(50, 532, 91, 549);
@@ -705,12 +678,12 @@ void Screenhooks(void) {
     D2GFX_DrawRectangle(715, 532, 756, 549, 0, 100);
     D2DrawRectFrame(715, 532, 755, 549);
 
-    int nLifePercent = std::abs((float)((double)(D2COMMON_GetUnitStat(pUnit, 6, 0) >> 8) / (double)(D2COMMON_GetUnitStat(pUnit, 7, 0) >> 8)) * 100);
-    int nManaPercent = std::abs((float)((double)(D2COMMON_GetUnitStat(pUnit, 8, 0) >> 8) / (double)(D2COMMON_GetUnitStat(pUnit, 9, 0) >> 8)) * 100);
+    DWORD dwLifePercent = GetLifeMana(true);
+    DWORD dwManaPercent = GetLifeMana(false);
 
-    sprintf(Buffer, "%i% %", nLifePercent);
+    sprintf_s(Buffer, "%d%%", dwLifePercent);
     DrawTextToScreen(Buffer, 56, 547, 1, 0);
-    sprintf(Buffer, "%i% %", nManaPercent);
+    sprintf_s(Buffer, "%d%%", dwManaPercent);
     DrawTextToScreen(Buffer, 722, 547, 3, 0);
   }
 }
@@ -1055,14 +1028,14 @@ void DrawAutomapInfos(void)
 
 void GameDraw()
 {
-  if (!D2CLIENT_GetUiVar(0x18)) {
+  /*if (!D2CLIENT_GetUiVar(0x18)) {
     ConfBoxx();
     ExpBox();
     PreCastsBox();
     TargetInfoBoxxx();
     MovableTargets();
     WinAmpBox();
-  }
+  }*/
   DrawMessageConsole();
   DrawConsole();
 
@@ -1074,6 +1047,7 @@ void GameDraw()
   //DrawPlayerInventoryHook();
 
   ConfigBox();
+  PrecastBox();
   boxManager->DrawBoxes();
 
   DrawWelcomeText();
@@ -1083,80 +1057,4 @@ void GameDraw()
 
   //if (D2CLIENT_AutomapOn) // The Automap is tabbed ON
   //	AutoTeleDraw();		 // Draw while auto teleporting
-}
-
-VOID ScreenToAutomap(POINT* ptPos, int x, int y)
-{
-  ptPos->x = ((x - y) / 2 / (*(INT*)p_D2CLIENT_Divisor)) - (*p_D2CLIENT_Offset).x + 8;
-  ptPos->y = ((x + y) / 4 / (*(INT*)p_D2CLIENT_Divisor)) - (*p_D2CLIENT_Offset).y - 8;
-  if (D2CLIENT_GetAutomapSize())
-  {
-    --ptPos->x;
-    ptPos->y += 5;
-  }
-}
-
-VOID DrawCross(INT nX, INT nY, DWORD dwColor, BOOL Automap)
-{
-  POINT nPos = { nX, nY };
-  if (Automap)
-  {
-    if (!p_D2CLIENT_AutomapOn)
-      return;
-    ScreenToAutomap(&nPos, nX * 32, nY * 32);
-  }
-
-  CHAR szLines[][2] = { 0,-2, 4,-4, 8,-2, 4,0, 8,2, 4,4, 0,2, -4,4, -8,2, -4,0, -8,-2, -4,-4, 0,-2 };
-  for (INT x = 0; x < ArraySize(szLines) - 1; x++)
-    D2GFX_DrawLine(nPos.x + szLines[x][0], nPos.y + szLines[x][1], nPos.x + szLines[x + 1][0], nPos.y + szLines[x + 1][1], dwColor, -1);
-}
-
-void TextHook(INT xPos, INT yPos, DWORD dwColor, BOOL Automap, INT dwFont, INT dwCenter, LPSTR Text, ...)
-{
-  //Setup a point variable
-  POINT nPos = { xPos, yPos };
-  DWORD dwOldSize, wWidth, dwFileNo;
-
-  //Check if we are drawing this on Automap
-  if (Automap)
-  {
-    if (!p_D2CLIENT_AutomapOn)
-      return;
-    ScreenToAutomap(&nPos, xPos * 32, yPos * 32);
-  }
-
-  CHAR szBuffer[800] = "";
-  va_list Args;
-  va_start(Args, Text);
-  vsprintf_s(szBuffer, Text, Args);
-  va_end(Args);
-  int i;
-  wchar_t wBuffer[0x130];
-  MultiByteToWideChar(0, 1, szBuffer, 100, wBuffer, 100);
-  /*for (int i = 0; szBuffer[i]; i++) wBuffer[i] = szBuffer[i];
-    wBuffer[i] = 0;*/
-
-  dwOldSize = D2WIN_SetTextSize(dwFont);
-  if (dwCenter != -1)
-  {
-    D2WIN_GetTextWidthFileNo(wBuffer, &wWidth, &dwFileNo);
-    nPos.x -= (wWidth >> dwCenter);
-  }
-
-  D2WIN_DrawText(wBuffer, nPos.x, nPos.y, dwColor, -1);
-  D2WIN_SetTextSize(dwOldSize);
-}
-
-void BoxHook(INT x, INT y, INT xSize, INT ySize, DWORD dwColor, DWORD Trans, BOOL Automap)
-{
-  POINT Start = { x, y };
-  POINT End = { xSize, ySize };
-  if (Automap)
-  {
-    if (!p_D2CLIENT_AutomapOn)
-      return;
-    ScreenToAutomap(&Start, x * 32, y * 32);
-  }
-
-  return D2GFX_DrawRectangle(Start.x, Start.y, End.x + Start.x, End.y + Start.y, dwColor, Trans);
 }

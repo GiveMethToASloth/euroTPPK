@@ -92,6 +92,12 @@
     <Filter Include="Handlers">
       <UniqueIdentifier>{c3f91e27-a6c6-44f2-8133-d0364d8f3ad2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Diablo II\Unit">
+      <UniqueIdentifier>{7ae6b1c0-752b-4692-81d8-0778fa940274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Diablo II\Drawing">
+      <UniqueIdentifier>{1dfa1a88-1e2c-4772-8cb5-4e4e3928de75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EuroTPPK.cpp">
@@ -243,6 +249,12 @@
     </ClCompile>
     <ClCompile Include="Handlers.cpp">
       <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Diablo II\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawing.cpp">
+      <Filter>Diablo II\Drawing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,6 +437,12 @@
     </ClInclude>
     <ClInclude Include="Handlers.h">
       <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Diablo II\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing.h">
+      <Filter>Diablo II\Drawing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

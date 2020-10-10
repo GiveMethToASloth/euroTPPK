@@ -111,6 +111,7 @@
     <ClCompile Include="CTele.cpp" />
     <ClCompile Include="D2Helpers.cpp" />
     <ClCompile Include="DrawHook.cpp" />
+    <ClCompile Include="Drawing.cpp" />
     <ClCompile Include="Drink.cpp" />
     <ClCompile Include="EuroTPPK.cpp" />
     <ClCompile Include="expbox.cpp" />
@@ -141,6 +142,7 @@
     <ClCompile Include="TeleportPath.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="WalkPath.cpp" />
     <ClCompile Include="WelcomeBox.cpp" />
     <ClCompile Include="Winamp.cpp" />
@@ -169,6 +171,7 @@
     <ClInclude Include="D2Ptrs.h" />
     <ClInclude Include="D2Structs.h" />
     <ClInclude Include="DrawHook.h" />
+    <ClInclude Include="Drawing.h" />
     <ClInclude Include="Drink.h" />
     <ClInclude Include="EuroTPPK.h" />
     <ClInclude Include="expbox.h" />
@@ -202,6 +205,7 @@
     <ClInclude Include="TeleportPath.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="Vars.h" />
     <ClInclude Include="WalkPath.h" />
     <ClInclude Include="WelcomeBox.h" />

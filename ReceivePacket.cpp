@@ -63,7 +63,7 @@ DWORD WINAPI AutoPartyMemberThread(LPVOID P) {
 
   while (true)
   {
-    TickCount();
+    //TickCount();
     return 0;
   }
 }
@@ -71,50 +71,6 @@ DWORD WINAPI AutoPartyMemberThread(LPVOID P) {
 int RandomNumber(int high, int low)
 {
   return ((rand() % high - low) + low + 1);
-}
-
-int GetLevelByName(char* Name) {
-  RosterUnit* pUnit = (RosterUnit*)*(DWORD*)0x6FBCC080;
-  while (pUnit != NULL) {
-    if (!_strcmpi(pUnit->szName, Name))
-      return pUnit->wLevel;
-    pUnit = pUnit->pNext;
-  }
-
-  return -1;
-}
-
-char* GetClassByName(char* Name) {
-  RosterUnit* pUnit = (RosterUnit*)*(DWORD*)0x6FBCC080;
-  while (pUnit != NULL) {
-    if (!_strcmpi(pUnit->szName, Name))
-      return GetD2ClassName(pUnit->dwClassId);
-    pUnit = pUnit->pNext;
-  }
-
-  return NULL;
-}
-
-int GetIDByName(char* Name) {
-  RosterUnit* pUnit = (RosterUnit*)*(DWORD*)0x6FBCC080;
-  UnitAny* Me = (UnitAny*)D2CLIENT_GetPlayerUnit();
-  while (pUnit != NULL) {
-    if (!_strcmpi(pUnit->szName, Name))
-      return pUnit->dwUnitId;
-    pUnit = pUnit->pNext;
-  }
-  return -1;
-}
-
-char* GetNameByID(DWORD PID) {
-  RosterUnit* pUnit = (RosterUnit*)*(DWORD*)0x6FBCC080;
-  while (pUnit) {
-    if (pUnit->dwUnitId == PID) {
-      return pUnit->szName;
-    }
-    pUnit = pUnit->pNext;
-  }
-  return "UNKNOWN";
 }
 
 /*bool __fastcall OnGamePacketReceived(LPBYTE aPacket, DWORD aLen)
@@ -142,7 +98,7 @@ bool Portal(byte* data, DWORD len) {
   if (!IsTownLevel(GetPlayerArea()) && v_TakeNextTP) {
     UnitAny* pUnit = D2CLIENT_FindServerSideUnit(*(DWORD*)&data[3], UNIT_OBJECT);
     if (pUnit && pUnit->pObjectPath)
-      if (D2COMMON_GetDistance(pUnit, GetPosition().x, GetPosition().y) < 7) {
+      if (D2COMMON_GetDistance(pUnit, GetPlayerPosition(D2CLIENT_GetPlayerUnit()->dwUnitId).x, GetPlayerPosition(D2CLIENT_GetPlayerUnit()->dwUnitId).y) < 7) {
         D2CLIENT_SendInteract(UNIT_OBJECT, pUnit->dwUnitId);
         v_TakeNextTP = false;
 

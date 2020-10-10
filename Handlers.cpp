@@ -78,32 +78,72 @@ void ConfigBox() {
   }
 }
 
-//
-//void UpdateBoxes() {
-//}
-//
-//std::vector<std::string> UpdateConfigBox() {
-//  std::vector<std::string> szboxInfo;
-//  char szBuffer[200];
-//
-//  sprintf_s(szBuffer, "AA: %s", !AA ? "Off" : LeftAA ? "On, Left" : "On, Right");
-//  szboxInfo.push_back(szBuffer);
-//
-//  if (v_TownLifePercent != 0) {
-//    sprintf_s(szBuffer, "Town (Life): %d", v_TownLifePercent);
-//  }
-//  else {
-//    sprintf_s(szBuffer, "Town (Life): Off");
-//  }
-//  szboxInfo.push_back(szBuffer);
-//
-//  if (v_QuitLifePercent != 0) {
-//    sprintf_s(szBuffer, "Quit (Life): %d", v_QuitLifePercent);
-//  }
-//  else {
-//    sprintf_s(szBuffer, "Quit (Life): Off");
-//  }
-//  szboxInfo.push_back(szBuffer);
-//
-//  return szboxInfo;
-//}
+void PrecastBox() {
+  if (pBoxPrecast) {
+    std::vector<std::string> szBoxInfo;
+    char szBuffer[200];
+    if (Authn.totalVars == 0) {
+      sprintf_s(szBuffer, "- None -");
+      szBoxInfo.push_back(szBuffer);
+    }
+
+    if (GotBc) { // Battle Command
+      sprintf_s(szBuffer, "Battle Command");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotBo) { // Bo
+      sprintf_s(szBuffer, "Battle Orders");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotSh) { // Shout
+      sprintf_s(szBuffer, "Shout");
+      szBoxInfo.push_back(szBuffer);
+    }
+    // Druid
+    if (GotHu) { // Hurricane
+      sprintf_s(szBuffer, "Hurricane");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotCa) { // Cyclone Armor
+      sprintf_s(szBuffer, "Cyclone Armor");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotOak) { // OakSage
+      sprintf_s(szBuffer, "Oak Sage");
+      szBoxInfo.push_back(szBuffer);
+    }
+    // Sorke
+    if (GotEs) { // Eenrgy Shield
+      sprintf_s(szBuffer, "Energy Shield");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotEnch) { // Ench
+      sprintf_s(szBuffer, "Enchant");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotCAr) { // Chilling Armor
+      sprintf_s(szBuffer, "Chilling Armor");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotSa) { // Shiver Armor
+      sprintf_s(szBuffer, "Shiver Armor");
+      szBoxInfo.push_back(szBuffer);
+    }
+    if (GotFa) { // Frozen Armor
+      sprintf_s(szBuffer, "Frozen Armor");
+      szBoxInfo.push_back(szBuffer);
+    }
+    // Paladin
+    if (GotHs) { // Holy Shield
+      sprintf_s(szBuffer, "Holy Shield");
+      szBoxInfo.push_back(szBuffer);
+    }
+    // Assasin
+    if (GotFade) {
+      sprintf_s(szBuffer, "Fade");
+      szBoxInfo.push_back(szBuffer);
+    }
+
+    pBoxPrecast->SetBoxInfo(szBoxInfo);
+  }
+}

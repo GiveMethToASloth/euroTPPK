@@ -1,14 +1,8 @@
-DWORD GetPlayerID(VOID);
 void SendGAMEPacket(BYTE* Packet, DWORD PacketSize);
 void __fastcall Attack_STUB(AttackStruct* Attack, bool AttackingUnit);
 
 DWORD __fastcall D2CLIENT_clickParty_ASM(DWORD RosterUnit, DWORD Mode);
 //DWORD __fastcall D2CLIENT_GetUnitFromId_STUB(DWORD unitid, DWORD unittype);
-WORD GetPlayerX(DWORD ID);
-WORD GetPlayerY(DWORD ID);
-//WORD GetPlayerXTarget(DWORD ID);
-//WORD GetPlayerYTarget(DWORD ID);
-DWORD __fastcall TestPvpFlag_STUB(DWORD planum1, DWORD planum2, DWORD flagmask);
 extern DWORD SendPacketAddr;
 //extern DWORD p_D2CLIENT_pUnitTableM;
 extern DWORD D2CLIENT_GetUnitFromId_M;

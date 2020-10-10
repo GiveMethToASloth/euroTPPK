@@ -10,8 +10,10 @@ void wcscpy2(wchar_t* dest, char* src)
 {
   do { *dest++ = *src; } while (*src++);
 }
+
 wchar_t wszGameName[32];
 wchar_t wszGamePassword[32];
+
 void SaveGameName()
 {
   GameStructInfo* gi = D2CLIENT_GetGameInfo();

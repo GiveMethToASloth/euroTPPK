@@ -63,22 +63,27 @@ void BoxManager::DrawTabbedBoxes() {
 }
 
 void BoxManager::DrawBoxes() {
-  for (auto box : boxList) {
-    if (box.second->IsBoxOpen()) {
-      POINT ptPos = box.second->GetOpenPos();
-      POINT ptSize = box.second->GetOpenSize();
-      char szName[0x16] = "";
+  if (!D2CLIENT_GetUiVar(0x01))
+    if (!D2CLIENT_GetUiVar(0x1a))
+      if (!D2CLIENT_GetUiVar(0x19))
+        if (!D2CLIENT_GetUiVar(0x02))
+          if (!D2CLIENT_GetUiVar(0x18))
+            for (auto box : boxList) {
+              if (box.second->IsBoxOpen()) {
+                POINT ptPos = box.second->GetOpenPos();
+                POINT ptSize = box.second->GetOpenSize();
+                char szName[0x16] = "";
 
-      D2GFX_DrawRectangle(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y, 0, 100);
-      D2DrawRectFrame(ptPos.x, ptPos.y, ptPos.x + ptSize.x + 2, ptPos.y + ptSize.y);
-      strcpy_s(szName, box.second->GetBoxName().c_str());
-      DrawTextToScreen(szName, ptPos.x + 5, ptPos.y - 5, FONTCOLOR_WHITE, 6);
-      int y = ptPos.y + 2;
-      for (auto info : box.second->GetBoxInfo()) {
-        char szInfo[200] = "";
-        strcpy_s(szInfo, info.c_str());
-        DrawTextToScreen(szInfo, ptPos.x + 5, y += 12, FONTCOLOR_WHITE, 6);
-      }
-    }
-  }
+                D2GFX_DrawRectangle(ptPos.x, ptPos.y, ptPos.x + ptSize.x, ptPos.y + ptSize.y, 0, 100);
+                D2DrawRectFrame(ptPos.x, ptPos.y, ptPos.x + ptSize.x + 2, ptPos.y + ptSize.y);
+                strcpy_s(szName, box.second->GetBoxName().c_str());
+                DrawTextToScreen(szName, ptPos.x + 5, ptPos.y - 5, FONTCOLOR_WHITE, 6);
+                int y = ptPos.y + 2;
+                for (auto info : box.second->GetBoxInfo()) {
+                  char szInfo[200] = "";
+                  strcpy_s(szInfo, info.c_str());
+                  DrawTextToScreen(szInfo, ptPos.x + 5, y += 12, FONTCOLOR_WHITE, 6);
+                }
+              }
+            }
 }

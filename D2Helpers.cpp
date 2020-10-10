@@ -75,25 +75,6 @@ int xpos2 = ((ypos*2)+xpos)/32;
 int ypos2 = ((ypos*2)-xpos)/32;
 */
 
-VOID AutomapToScreen(POINT* ptPos, int xpos, int ypos)
-{
-  if (D2CLIENT_GetAutomapSize()) {
-    xpos += 1;
-    ypos -= 5;
-  }
-  xpos = (xpos + (*p_D2CLIENT_Offset).x + 8) * (*(INT*)p_D2CLIENT_Divisor);
-  ypos = (ypos + (*p_D2CLIENT_Offset).y - 8) * (*(INT*)p_D2CLIENT_Divisor);
-  int xpos2 = ((ypos * 2) + xpos) / 32;
-  int ypos2 = ((ypos * 2) - xpos) / 32;
-}
-
-void AutomapToScreenRelative(POINT* pos, int x, int y)
-{
-  x += D2CLIENT_GetMouseXOffset();
-  y += D2CLIENT_GetMouseYOffset();
-  AutomapToScreen(pos, y * 2 + x, y * 2 - x);
-}
-
 /*
 VOID ScreenToAutomap(POINT *ptPos, int x, int y)
 {
@@ -169,15 +150,6 @@ void TeleportToTele(long x, long y) {
   AttackToTele(x, y);
 }
 
-RosterUnit* FindPartyByName(LPSTR szName)
-{
-  for (RosterUnit* pUnit = *p_D2CLIENT_PlayerUnitList; pUnit; pUnit = pUnit->pNext)
-    if (!_stricmp(szName, pUnit->szName))
-      return pUnit;
-
-  return NULL;
-}
-
 BOOL SetSkill(WORD wSkillId, BOOL bLeft) //used
 {
   if (!D2CLIENT_GetPlayerUnit()) return FALSE;
@@ -230,21 +202,6 @@ wchar_t* AnsiToUnicode(const char* szStr) {
   wzBuf = new wchar_t[nLen];
   MultiByteToWideChar(CP_ACP, 0, szStr, -1, wzBuf, nLen);
   return wzBuf;
-}
-
-POINT GetTextSize(std::string szStr, unsigned int nFont) {
-  DWORD dwWidth = NULL;
-  DWORD dwHeight = NULL;
-  DWORD dwFileNo = NULL;
-  POINT ptSiz{ 0, 0 };
-  wchar_t* wzStr = AnsiToUnicode(szStr.c_str());
-  DWORD dwOldFnt = D2WIN_SetTextSize(nFont);
-  D2WIN_GetTextWidthFileNo(wzStr, &dwWidth, &dwFileNo);
-  dwHeight = DWORD(D2WIN_GetTextHeight());
-  D2WIN_SetTextSize(dwOldFnt);
-  ptSiz = { LONG(dwWidth), LONG(dwHeight) };
-  delete[] wzStr;
-  return ptSiz;
 }
 
 char* ReplaceString(char* source, char* old, char* newtext)
@@ -305,7 +262,7 @@ void Tele(WORD x, WORD y) {
   DWORD ID;
   BYTE TELE[5] = { 0x5f, 0,0,   0,0 };
   BYTE UPDATE[9] = { 0x4b, 0,0,0,0,     0,0,0,0 };
-  ID = GetPlayerID();
+  ID = GetPlayerID(D2CLIENT_GetPlayerUnit());
   memcpy(&UPDATE[5], &ID, 4);
   memcpy(&TELE[1], &x, 2);
   memcpy(&TELE[3], &y, 2);
@@ -331,13 +288,6 @@ Level* GetLevel(DWORD dwLevelNo)
       return pLevel;
 
   return D2COMMON_GetLevel(D2CLIENT_GetPlayerUnit()->pAct->pMisc, dwLevelNo);
-}
-
-void DrawBlob(int xpos, int ypos, int col) {
-  static char blines[][2] = { 0,-2, 4,-4, 8,-2, 4,0, 8,2, 4,4, 0,2, -4,4, -8,2, -4,0, -8,-2, -4,-4, 0,-2 };
-  for (int i = 0; i < ARRAYSIZE(blines) - 1; i++) {
-    D2GFX_DrawLine(xpos + blines[i][0], ypos + blines[i][1], xpos + blines[i + 1][0], ypos + blines[i + 1][1], col, 0xff);
-  }
 }
 
 INT GetSkill(WORD wSkillId)
@@ -379,19 +329,17 @@ DWORD GetDistanceSquared(DWORD x1, DWORD y1, DWORD x2, DWORD y2) {
   return (DWORD)sqrt((double)(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2))));
 }
 
-//Getting my position
-POINT GetPosition() {
-  POINT mp;
-  UnitAny* PlayerUnit = D2CLIENT_GetPlayerUnit();
-  mp.x = PlayerUnit->pPath->xPos;
-  mp.y = PlayerUnit->pPath->yPos;
-  return mp;
-}
+BYTE CalcPercent(DWORD dwVal, DWORD dwMaxVal, BYTE iMin)
+{
+  if (dwVal == 0 || dwMaxVal == 0)
+    return NULL;
 
-int GetPercent(DWORD Current, DWORD Max) {
-  float Cur1 = (int)Current;
-  float Max1 = (int)Max;
-  return (Cur1 / Max * 100);
+  BYTE iRes = (double(dwVal) / double(dwMaxVal)) * 100.0;
+
+  if (iRes == 100)
+    iRes = 100;
+
+  return max(iRes, iMin);
 }
 
 /*
@@ -482,17 +430,6 @@ void PrintMessageBottomLeft(char* Message, char Color)
   Print(Buffer, Color);
 };
 
-//Draw Text To Screen Permanent
-VOID DrawTextToScreen(char* szwText, int x, int y, int color, int font) {
-  wchar_t Buffer[100];
-
-  MultiByteToWideChar(0, 1, szwText, 50, Buffer, 100);
-  DWORD dwOld = D2WIN_SetTextSize(font);
-  //DWORD dwXLength = D2WIN_GetTextLength(Buffer);
-  D2WIN_DrawText(Buffer, x, y, color, 0);
-  D2WIN_SetTextSize(dwOld);
-}
-
 //DWORD GetClientHandle() {
 //return (DWORD)LoadLibrary("D2Client.dll");
 //}
@@ -515,18 +452,6 @@ VOID DrawTextToScreen(char* szwText, int x, int y, int color, int font) {
 //	}
 //}
 
-void  MapToScreenCoords(POINT& rMapPosition)
-{
-  D2COMMON_MapToAbsScreen(&rMapPosition.x, &rMapPosition.y);
-  rMapPosition.x -= D2CLIENT_GetMouseXOffset();
-  rMapPosition.y -= D2CLIENT_GetMouseYOffset();
-}
-void ScreenToAutomapRelative(POINT* pos, int x, int y)
-{
-  x += D2CLIENT_GetMouseXOffset();
-  y += D2CLIENT_GetMouseYOffset();
-  ScreenToAutomap(pos, y * 2 + x, y * 2 - x);
-}
 //
 /*Level* GetLevel(DWORD dwLevelNo)
 {
@@ -553,23 +478,6 @@ void fpEnumUnits(fp EnumFunction, DWORD Type) {
       }
     }
   }
-}
-
-void __declspec(naked) __fastcall D2DrawRectFrameWrap(LPRECT pRect) {
-  __asm {
-    mov eax, ecx
-    call D2CLIENT_DrawRectFrame
-    ret
-  }
-}
-
-void D2DrawRectFrame(int x, int y, int x2, int y2) {
-  RECT Frame;
-  Frame.left = x;
-  Frame.top = y;
-  Frame.right = x2;
-  Frame.bottom = y2;
-  D2DrawRectFrameWrap(&Frame);
 }
 
 char* mitoa(int integer) {

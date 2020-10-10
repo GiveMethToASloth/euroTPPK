@@ -8,28 +8,15 @@ int DrankRejMana;
 
 bool TakeNextTP = FALSE;
 
-BYTE CalcPercent(DWORD dwVal, DWORD dwMaxVal, BYTE iMin)
-{
-  if (dwVal == 0 || dwMaxVal == 0)
-    return NULL;
-
-  BYTE iRes = (double(dwVal) / double(dwMaxVal)) * 100.0;
-
-  if (iRes == 100)
-    iRes = 100;
-
-  return max(iRes, iMin);
-}
-
 DWORD GetLifeMana(bool bLife)
 {
   UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
   if (pUnit) {
     if (!bLife) {
-      return CalcPercent(D2COMMON_GetUnitStat(pUnit, STAT_MANA, 0) >> 8, D2COMMON_GetUnitStat(pUnit, STAT_MAXMANA, 0) >> 8);
+      return DWORD(CalcPercent(D2COMMON_GetUnitStat(pUnit, STAT_MANA, 0) >> 8, D2COMMON_GetUnitStat(pUnit, STAT_MAXMANA, 0) >> 8));
     }
     else {
-      return CalcPercent(D2COMMON_GetUnitStat(pUnit, STAT_HP, 0) >> 8, D2COMMON_GetUnitStat(pUnit, STAT_MAXHP, 0) >> 8);
+      return DWORD(CalcPercent(D2COMMON_GetUnitStat(pUnit, STAT_HP, 0) >> 8, D2COMMON_GetUnitStat(pUnit, STAT_MAXHP, 0) >> 8));
     }
   }
 }

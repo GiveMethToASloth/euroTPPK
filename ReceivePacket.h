@@ -18,4 +18,3 @@ extern bool GotSa;
 extern bool GotFa;
 extern bool GotFade;
 extern bool bLeft;
-bool __fastcall OnGamePacketReceived(LPBYTE aPacket, DWORD aLen);

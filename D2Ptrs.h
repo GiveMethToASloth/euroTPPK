@@ -81,6 +81,7 @@ FUNCPTR(D2CLIENT, Transmute, VOID __fastcall, (VOID), 0x8A0D0)
 FUNCPTR(D2CLIENT, HostiledByMe, bool __fastcall, (DWORD id1, DWORD id2), 0x7A070)
 FUNCPTR(D2CLIENT, HostiledByUnit, bool __fastcall, (DWORD id), 0x7A170)
 FUNCPTR(D2CLIENT, SendInteract, void __fastcall, (DWORD pUnitType, DWORD pUnitId), 0x80930)
+FUNCPTR(D2CLIENT, TestPvpFlag_I, DWORD __fastcall, (DWORD dwUnitId1, DWORD dwUnitId2, DWORD dwFlag), 0xDC440)
 
 VARPTR(D2CLIENT, MouseOffsetY, int, 0x3A5208) // Updated
 VARPTR(D2CLIENT, MouseOffsetX, int, 0x3A520C) // Updated
@@ -329,6 +330,6 @@ VARPTR(D2WIN, FocusedControl, Control*, 0x3D55CC) // Updated
 #define D2CLIENT_MouseX							 (*p_D2CLIENT_MouseX)
 #define D2CLIENT_MouseY							 (*p_D2CLIENT_MouseY)
 
-#define TestPvpFlag(dwId1, dwId2, dwFlag)		 (TestPvpFlag_STUB(dwId1, dwId2, dwFlag))
+#define TestPvpFlag(dwId1, dwId2, dwFlag)		 (D2CLIENT_TestPvpFlag_I(dwId1, dwId2, dwFlag))
 /*
 D2VARPTR(D2CLIENT, pSkip, DWORD, 0x1032C8)*/

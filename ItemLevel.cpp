@@ -16,6 +16,7 @@ wchar_t* __cdecl wsprintfW2(wchar_t* dest, char* fmt, ...)
   }
   return dest;
 }
+
 wchar_t* __fastcall ColourD2String(wchar_t* str, DWORD col)
 {
   memmove(str + 3, str, (wcslen(str) + 1) * sizeof(wchar_t));

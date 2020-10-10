@@ -53,6 +53,7 @@ extern char szModulePath[259];
 #include "SendPacket.h"
 #include "ReceivePacket.h"
 #include "KeyHook.h"
+#include "Drawing.h"
 #include "DrawHook.h"
 #include "D2Helpers.h"
 #include "asm.h"
@@ -89,6 +90,7 @@ extern char szModulePath[259];
 #include "Handlers.h"
 #include "BoxManager.h"
 #include "Box.h"
+#include "Unit.h"
 
 #include "Targetlist.h"
 #include "ConfigBox.h"

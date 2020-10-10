@@ -49,6 +49,14 @@
 #define PVP_HOSTILED_BY_YOU		0x10 // Hostiled by you, but he may not have hostiled you
 #define PVP_ALLIED_WITH_YOU		0x20 // Allied with you
 
+#define PVP_HOSTILE 1
+#define PVP_FRIENDLY 2
+#define PVP_NEUTRAL 3
+#define PARTY_NOT_IN_PARTY 0x00
+#define PARTY_IN_PARTY 0x01
+#define PARTY_INVITED_YOU 0x02
+#define PARTY_INVITED_BY_YOU 0x04
+
 //////////////////////////////////////////////////////////////////////////
 // Player Type Flags
 //////////////////////////////////////////////////////////////////////////
@@ -90,8 +98,9 @@
 #define	STAT_GOLD					14		// gold
 #define	STAT_GOLDBANK				15		// stash gold
 #define	STAT_TOBLOCK				20		// to block
-//#define	STAT_DAMAGEREDUCTION		36		// damage reduction
+#define	STAT_DAMAGEREDUCTION		34		// damage reduction
 #define	STAT_MAGICDAMAGEREDUCTION	35		// magic damage reduction
+#define	STAT_DAMAGERESIST			36		// physic resist
 #define	STAT_MAGICRESIST			37		// magic resist
 #define	STAT_MAXMAGICRESIST			38		// max magic resist
 #define	STAT_FIRERESIST				39		// fire resist
@@ -138,19 +147,19 @@
 // Body Locations
 ///////////////////////////////////////////////////
 enum {
-	EQUIP_NONE = 0,			// Not equipped
-	EQUIP_HEAD,				// Head
-	EQUIP_AMULET,			// Amulet
-	EQUIP_BODY,				// Body armor
-	EQUIP_RIGHT_PRIMARY,	// Right primary slot
-	EQUIP_LEFT_PRIMARY,		// Left primary slot
-	EQUIP_RIGHT_RING,		// Right ring
-	EQUIP_LEFT_RING,		// Left ring
-	EQUIP_BELT,				// Belt
-	EQUIP_FEET,				// Feet
-	EQUIP_GLOVES,			// Gloves
-	EQUIP_RIGHT_SECONDARY,	// Right secondary slot
-	EQUIP_LEFT_SECONDARY,	// Left secondary slot
+  EQUIP_NONE = 0,			// Not equipped
+  EQUIP_HEAD,				// Head
+  EQUIP_AMULET,			// Amulet
+  EQUIP_BODY,				// Body armor
+  EQUIP_RIGHT_PRIMARY,	// Right primary slot
+  EQUIP_LEFT_PRIMARY,		// Left primary slot
+  EQUIP_RIGHT_RING,		// Right ring
+  EQUIP_LEFT_RING,		// Left ring
+  EQUIP_BELT,				// Belt
+  EQUIP_FEET,				// Feet
+  EQUIP_GLOVES,			// Gloves
+  EQUIP_RIGHT_SECONDARY,	// Right secondary slot
+  EQUIP_LEFT_SECONDARY,	// Left secondary slot
 };
 
 ///////////////////////////////////////////////////
@@ -189,75 +198,75 @@ enum {
 // Player Mode Definition
 ///////////////////////////////////////////////////
 enum {
-	PLAYER_MODE_DEATH = 0,				// death
-	PLAYER_MODE_STAND_OUTTOWN,			// standing outside town
-	PLAYER_MODE_WALK_OUTTOWN,			// walking outside town
-	PLAYER_MODE_RUN,					// running
-	PLAYER_MODE_BEING_HIT,				// being hit
-	PLAYER_MODE_STAND_INTOWN,			// standing inside town
-	PLAYER_MODE_WALK_INTOWN,			// walking outside town
-	PLAYER_MODE_ATTACK1,				// attacking 1
-	PLAYER_MODE_ATTACK2,				// attacking 2
-	PLAYER_MODE_BLOCK,					// blocking
-	PLAYER_MODE_CAST,					// casting spell
-	PLAYER_MODE_THROW,					// throwing
-	PLAYER_MODE_KICK,					// kicking (assassin)
-	PLAYER_MODE_USESKILL1,				// using skill 1
-	PLAYER_MODE_USESKILL2,				// using skill 2
-	PLAYER_MODE_USESKILL3,				// using skill 3
-	PLAYER_MODE_USESKILL4,				// using skill 4
-	PLAYER_MODE_DEAD,					// dead
-	PLAYER_MODE_SEQUENCE,				// sequence
-	PLAYER_MODE_BEING_KNOCKBACK
+  PLAYER_MODE_DEATH = 0,				// death
+  PLAYER_MODE_STAND_OUTTOWN,			// standing outside town
+  PLAYER_MODE_WALK_OUTTOWN,			// walking outside town
+  PLAYER_MODE_RUN,					// running
+  PLAYER_MODE_BEING_HIT,				// being hit
+  PLAYER_MODE_STAND_INTOWN,			// standing inside town
+  PLAYER_MODE_WALK_INTOWN,			// walking outside town
+  PLAYER_MODE_ATTACK1,				// attacking 1
+  PLAYER_MODE_ATTACK2,				// attacking 2
+  PLAYER_MODE_BLOCK,					// blocking
+  PLAYER_MODE_CAST,					// casting spell
+  PLAYER_MODE_THROW,					// throwing
+  PLAYER_MODE_KICK,					// kicking (assassin)
+  PLAYER_MODE_USESKILL1,				// using skill 1
+  PLAYER_MODE_USESKILL2,				// using skill 2
+  PLAYER_MODE_USESKILL3,				// using skill 3
+  PLAYER_MODE_USESKILL4,				// using skill 4
+  PLAYER_MODE_DEAD,					// dead
+  PLAYER_MODE_SEQUENCE,				// sequence
+  PLAYER_MODE_BEING_KNOCKBACK
 };		// being knocked back
 
 ///////////////////////////////////////////////////
 // NPC Mode Definition
 ///////////////////////////////////////////////////
 enum {
-	NPC_MODE_DEATH = 0,		// NPC death
-	NPC_MODE_STAND,			// NPC standing still
-	NPC_MODE_WALK,			// NPC walking
-	NPC_MODE_BEING_HIT,		// NPC getting hit
-	NPC_MODE_ATTACK1,		// NPC attacking 1
-	NPC_MODE_ATTACK2,		// NPC attacking 2
-	NPC_MODE_BLOCK,			// NPC blocking
-	NPC_MODE_CAST,			// NPC casting spell skill
-	NPC_MODE_USESKILL1,		// NPC using skill 1
-	NPC_MODE_USESKILL2,		// NPC using skill 2
-	NPC_MODE_USESKILL3,		// NPC using skill 3
-	NPC_MODE_USESKILL4,		// NPC using skill 4
-	NPC_MODE_DEAD,			// NPC dead
-	NPC_MODE_BEING_KNOCKBACK,	// NPC being knocked back
-	NPC_MODE_SEQUENCE,		// NPC sequence
-	NPC_MODE_RUN
+  NPC_MODE_DEATH = 0,		// NPC death
+  NPC_MODE_STAND,			// NPC standing still
+  NPC_MODE_WALK,			// NPC walking
+  NPC_MODE_BEING_HIT,		// NPC getting hit
+  NPC_MODE_ATTACK1,		// NPC attacking 1
+  NPC_MODE_ATTACK2,		// NPC attacking 2
+  NPC_MODE_BLOCK,			// NPC blocking
+  NPC_MODE_CAST,			// NPC casting spell skill
+  NPC_MODE_USESKILL1,		// NPC using skill 1
+  NPC_MODE_USESKILL2,		// NPC using skill 2
+  NPC_MODE_USESKILL3,		// NPC using skill 3
+  NPC_MODE_USESKILL4,		// NPC using skill 4
+  NPC_MODE_DEAD,			// NPC dead
+  NPC_MODE_BEING_KNOCKBACK,	// NPC being knocked back
+  NPC_MODE_SEQUENCE,		// NPC sequence
+  NPC_MODE_RUN
 };			// NPC running
 
 ///////////////////////////////////////////////////
 // Object Mode Definition
 ///////////////////////////////////////////////////
 enum {
-	OBJ_MODE_IDLE = 0,		// Object idle
-	OBJ_MODE_OPERATING,		// Object operating
-	OBJ_MODE_OPENED,		// Object opened
-	OBJ_MODE_SPECIAL1,		// Object special 1
-	OBJ_MODE_SPECIAL2,		// Object special 2
-	OBJ_MODE_SPECIAL3,		// Object special 3
-	OBJ_MODE_SPECIAL4,		// Object special 4
-	OBJ_MODE_SPECIAL5
+  OBJ_MODE_IDLE = 0,		// Object idle
+  OBJ_MODE_OPERATING,		// Object operating
+  OBJ_MODE_OPENED,		// Object opened
+  OBJ_MODE_SPECIAL1,		// Object special 1
+  OBJ_MODE_SPECIAL2,		// Object special 2
+  OBJ_MODE_SPECIAL3,		// Object special 3
+  OBJ_MODE_SPECIAL4,		// Object special 4
+  OBJ_MODE_SPECIAL5
 };	// Object special 5
 
 ///////////////////////////////////////////////////
 // Item Mode Definition
 ///////////////////////////////////////////////////
 enum {
-	ITEM_MODE_INV_STASH_CUBE_STORE = 0,	// Item inven stash cube store
-	ITEM_MODE_EQUIPPED,					// Item equipped self or merc
-	ITEM_MODE_IN_BELT,					// Item in belt
-	ITEM_MODE_ON_GROUND,				// Item on ground
-	ITEM_MODE_ON_CURSOR,				// Item on cursor
-	ITEM_MODE_BEING_DROPPED,			// Item being dropped
-	ITEM_MODE_SOCKETED_IN_ITEM
+  ITEM_MODE_INV_STASH_CUBE_STORE = 0,	// Item inven stash cube store
+  ITEM_MODE_EQUIPPED,					// Item equipped self or merc
+  ITEM_MODE_IN_BELT,					// Item in belt
+  ITEM_MODE_ON_GROUND,				// Item on ground
+  ITEM_MODE_ON_CURSOR,				// Item on cursor
+  ITEM_MODE_BEING_DROPPED,			// Item being dropped
+  ITEM_MODE_SOCKETED_IN_ITEM
 };		// Item socketed in item
 
 ///////////////////////////////////////////////////
@@ -296,14 +305,14 @@ enum {
 // Character Classes
 ///////////////////////////////////////////////////
 enum {
-	CLASS_AMA = 0,
-	CLASS_SOR,
-	CLASS_NEC,
-	CLASS_PAL,
-	CLASS_BAR,
-	CLASS_DRU,
-	CLASS_ASN,
-	CLASS_NA
+  CLASS_AMA = 0,
+  CLASS_SOR,
+  CLASS_NEC,
+  CLASS_PAL,
+  CLASS_BAR,
+  CLASS_DRU,
+  CLASS_ASN,
+  CLASS_NA
 };
 
 ///////////////////////////////////////////////////
@@ -322,11 +331,11 @@ enum {
 #define D2S_TOMEOFTOWNPORTAL	0x00dc
 #define D2S_SCROLLOFTOWNPORTAL	0x00db
 
-	///////////////////////////////////////////////////////////////
-	// Amazon Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Amazon Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Javelin and Spear spells
+  // Javelin and Spear spells
 #define D2S_JAB					0x000a
 #define D2S_IMPALE				0x0013
 #define D2S_FEND				0x001e
@@ -338,7 +347,7 @@ enum {
 #define D2S_PLAGUEJAVELIN		0x0019
 #define D2S_LIGHTNINGFURY		0x0023
 
-	// Passive and Magic spells
+  // Passive and Magic spells
 #define D2S_INNERSIGHT			0x0008
 #define D2S_SLOWMISSILES		0x0011
 #define D2S_DECOY				0x001c
@@ -350,7 +359,7 @@ enum {
 #define D2S_PENETRATE			0x0017
 #define D2S_PIERCE				0x0021
 
-	// Bow and Crossbow spells
+  // Bow and Crossbow spells
 #define D2S_COLDARROW			0x000b
 #define D2S_ICEARROW			0x0015
 #define D2S_FREEZINGARROW		0x001f
@@ -362,11 +371,11 @@ enum {
 #define D2S_EXPLODINGARROW		0x0010
 #define D2S_IMMOLATIONARROW		0x001b
 
-	///////////////////////////////////////////////////////////////
-	// Assassin Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Assassin Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Martial Arts
+  // Martial Arts
 #define D2S_FISTSOFFIRE			0x0103
 #define D2S_CLAWSOFTHUNDER		0x010d
 #define D2S_BLADESOFICE			0x0112
@@ -378,7 +387,7 @@ enum {
 #define D2S_DRAGONTAIL			0x010e
 #define D2S_DRAGONFLIGHT		0x0113
 
-	// Shadow Disciplines
+  // Shadow Disciplines
 #define D2S_BURSTOFSPEED		0x0102
 #define D2S_FADE				0x010b
 #define D2S_VENOM				0x0116
@@ -390,7 +399,7 @@ enum {
 #define D2S_CLOAKOFSHADOWS		0x0108
 #define D2S_MINDBLAST			0x0111
 
-	// Traps
+  // Traps
 #define D2S_SHOCKWEB			0x0100
 #define D2S_CHARGEDBOLTSENTRY	0x0105
 #define D2S_LIGHTNINGSENTRY		0x010f
@@ -402,11 +411,11 @@ enum {
 #define D2S_BLADEFURY			0x010a
 #define D2S_BLADESHIELD			0x0115
 
-	///////////////////////////////////////////////////////////////
-	// Barbarian Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Barbarian Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Warcries
+  // Warcries
 #define D2S_HOWL				0x0082
 #define D2S_TAUNT				0x0089
 #define D2S_BATTLECRY			0x0092
@@ -418,7 +427,7 @@ enum {
 #define D2S_FINDITEM			0x008e
 #define D2S_GRIMWARD			0x0096
 
-	// Combat Masteries
+  // Combat Masteries
 #define D2S_SWORDMASTERY		0x007f
 #define D2S_POLEARMMASTERY		0x0086
 #define D2S_INCREASEDSTAMINA	0x008d
@@ -430,7 +439,7 @@ enum {
 #define D2S_IRONSKIN			0x0091
 #define D2S_NATURALRESISTANCE	0x0099
 
-	// Combat spells
+  // Combat spells
 #define D2S_LEAP				0x0084
 #define D2S_LEAPATTACK			0x008f
 #define D2S_WHIRLWIND			0x0097
@@ -442,11 +451,11 @@ enum {
 #define D2S_DOUBLETHROW			0x008c
 #define D2S_FRENZY				0x0093
 
-	///////////////////////////////////////////////////////////////
-	// Druid Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Druid Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Elemental
+  // Elemental
 #define D2S_FIRESTORM			0x00e1
 #define D2S_MOLTENBOULDER		0x00e5
 #define D2S_FISSURE				0x00ea
@@ -458,7 +467,7 @@ enum {
 #define D2S_ARCTICBLAST			0x00e6
 #define D2S_CYCLONEARMOR		0x00eb
 
-	// Shape Shifting
+  // Shape Shifting
 #define D2S_WEREWOLF			0x00df
 #define D2S_FERALRAGE			0x00e8
 #define D2S_RABIES				0x00ee
@@ -470,7 +479,7 @@ enum {
 #define D2S_MAUL				0x00e9
 #define D2S_SHOCKWAVE			0x00f3
 
-	// Summoning
+  // Summoning
 #define D2S_OAKSAGE				0x00e2
 #define D2S_HEARTOFWOLVERINE	0x00ec
 #define D2S_SPIRITOFBARBS		0x00f6
@@ -482,11 +491,11 @@ enum {
 #define D2S_CARRIONVINE			0x00e7
 #define D2S_SOLARCREEPER		0x00f1
 
-	///////////////////////////////////////////////////////////////
-	// Necromancer Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Necromancer Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Summoning Spells
+  // Summoning Spells
 #define D2S_SKELETONMASTERY		0x0045
 #define D2S_GOLEMMASTERY		0x004f
 #define D2S_SUMMONRESIST		0x0059
@@ -498,7 +507,7 @@ enum {
 #define D2S_RAISESKELETALMAGE	0x0050
 #define D2S_REVIVE				0x005f
 
-	// Poison and Bone Spells
+  // Poison and Bone Spells
 #define D2S_POISONDAGGER		0x0049
 #define D2S_POISONEXPLOSION		0x0053
 #define D2S_POISONNOVA			0x005c
@@ -510,7 +519,7 @@ enum {
 #define D2S_BONEWALL			0x004e
 #define D2S_BONEPRISON			0x0058
 
-	// Curses
+  // Curses
 #define D2S_DIMVISION			0x0047
 #define D2S_CONFUSE				0x0051
 #define D2S_ATTRACT				0x0056
@@ -522,11 +531,11 @@ enum {
 #define D2S_TERROR				0x004d
 #define D2S_DECREPIFY			0x0057
 
-	///////////////////////////////////////////////////////////////
-	// Paladin Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Paladin Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Defensive Auras
+  // Defensive Auras
 #define D2S_PRAYER				0x0063
 #define D2S_CLEANSING			0x006d
 #define D2S_MEDITATION			0x0078
@@ -538,7 +547,7 @@ enum {
 #define D2S_RESISTLIGHTNING		0x006e
 #define D2S_SALVATION			0x007d
 
-	// Offensive Auras
+  // Offensive Auras
 #define D2S_MIGHT				0x0062
 #define D2S_BLESSEDAIM			0x006c
 #define D2S_CONCENTRATION		0x0071
@@ -550,7 +559,7 @@ enum {
 #define D2S_SANCTUARY			0x0077
 #define D2S_CONVICTION			0x007b
 
-	// Combat spells
+  // Combat spells
 #define D2S_SACRIFICE			0x0060
 #define D2S_ZEAL				0x006a
 #define D2S_VENGEANCE			0x006f
@@ -562,11 +571,11 @@ enum {
 #define D2S_CHARGE				0x006b
 #define D2S_HOLYSHIELD			0x0075
 
-	///////////////////////////////////////////////////////////////
-	// Sorceress Spells
-	///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  // Sorceress Spells
+  ///////////////////////////////////////////////////////////////
 
-	// Cold Spells
+  // Cold Spells
 #define D2S_FROSTNOVA			0x002c
 #define D2S_BLIZZARD			0x003b
 #define D2S_FROZENORB			0x0040
@@ -578,7 +587,7 @@ enum {
 #define D2S_SHIVERARMOR			0x0032
 #define D2S_CHILLINGARMOR		0x003c
 
-	// Lightning Spells
+  // Lightning Spells
 #define D2S_STATICFIELD			0x002a
 #define D2S_NOVA				0x0030
 #define D2S_THUNDERSTORM		0x0039
@@ -590,7 +599,7 @@ enum {
 #define D2S_TELEPORT			0x0036
 #define D2S_ENERGYSHIELD		0x003a
 
-	// Fire Spells
+  // Fire Spells
 #define D2S_INFERNO				0x0029
 #define D2S_BLAZE				0x002e
 #define D2S_FIREWALL			0x0033
@@ -602,14 +611,14 @@ enum {
 #define D2S_ENCHANT				0x0034
 #define D2S_HYDRA				0x003e
 
-	///////////////////////////////////////////////////
-	// Map Definition
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Map Definition
+  ///////////////////////////////////////////////////
 #define MAP_UNKNOWN								0x00
 
-	///////////////////////////////////////////////////
-	// Act 1 Maps
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Act 1 Maps
+  ///////////////////////////////////////////////////
 #define MAP_A1_ROGUE_ENCAMPMENT					0x01
 #define MAP_A1_BLOOD_MOOR						0x02
 #define MAP_A1_COLD_PLAINS						0x03
@@ -650,9 +659,9 @@ enum {
 #define MAP_A1_TRISTRAM							0x26
 #define MAP_A1_THE_SECRET_COW_LEVEL				0x27
 
-	///////////////////////////////////////////////////
-	// Act 2 Maps
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Act 2 Maps
+  ///////////////////////////////////////////////////
 #define MAP_A2_LUT_GHOLEIN						0x28
 #define MAP_A2_ROCKY_WASTE						0x29
 #define MAP_A2_DRY_HILLS						0x2a
@@ -689,9 +698,9 @@ enum {
 #define MAP_A2_TAL_RASHAS_CHAMBER				0x49
 #define MAP_A2_ARCANE_SANCTUARY					0x4a
 
-	///////////////////////////////////////////////////
-	// Act 3 Maps
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Act 3 Maps
+  ///////////////////////////////////////////////////
 #define MAP_A3_KURAST_DOCKS						0x4b
 #define MAP_A3_SPIDER_FOREST					0x4c
 #define MAP_A3_GREAT_MARSH						0x4d
@@ -721,9 +730,9 @@ enum {
 #define MAP_A3_DURANCE_OF_HATE_LEVEL_2			0x65
 #define MAP_A3_DURANCE_OF_HATE_LEVEL_3			0x66
 
-	///////////////////////////////////////////////////
-	// Act 4 Maps
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Act 4 Maps
+  ///////////////////////////////////////////////////
 #define MAP_A4_THE_PANDEMONIUM_FORTRESS			0x67
 #define MAP_A4_OUTER_STEPPES					0x68
 #define MAP_A4_PLAINS_OF_DESPAIR				0x69
@@ -731,9 +740,9 @@ enum {
 #define MAP_A4_RIVER_OF_FLAME					0x6b
 #define MAP_A4_THE_CHAOS_SANCTUARY				0x6c
 
-	///////////////////////////////////////////////////
-	// Act 5 Maps
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Act 5 Maps
+  ///////////////////////////////////////////////////
 #define MAP_A5_HARROGATH						0x6d
 #define MAP_A5_THE_BLOODY_FOOTHILLS				0x6e
 #define MAP_A5_FRIGID_HIGHLANDS					0x6f
@@ -763,9 +772,9 @@ enum {
 #define MAP_A5_FURNACE_OF_PAIN					0x87
 #define MAP_A5_TRISTRAM							0x88
 
-	///////////////////////////////////////////////////
-	// Item Attributes (From D2jsp scripting document)
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Item Attributes (From D2jsp scripting document)
+  ///////////////////////////////////////////////////
 #define ITEM_IDENTIFIED			0x00000010 // Identified
 #define ITEM_SWITCHIN			0x00000040 // Switched in(activated)
 #define ITEM_SWITCHOUT			0x00000080 // Switched out(deactivated)
@@ -778,9 +787,9 @@ enum {
 #define ITEM_PERSONALIZED		0x01000000 // Personalized
 #define ITEM_RUNEWORD			0x04000000 // Runeword
 
-	///////////////////////////////////////////////////
-	// Item Stats
-	///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // Item Stats
+  ///////////////////////////////////////////////////
 #define ITEMSTAT_SOCKETS		0xC2
 #define AFFECT_JUST_PORTALED                                         102
 
