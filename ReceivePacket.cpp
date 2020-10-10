@@ -160,7 +160,7 @@ DWORD __fastcall RecvPacket(byte* data, DWORD len) {
 
       if (IsDebuggerPresent())
       {
-        PrintMessage("Debugger is present", 7);
+        PrintMessage(false, FONTCOLOR_BROWN, "Debugger is present");
         TerminateProcess(GetCurrentProcess(), 0);
       }
     }

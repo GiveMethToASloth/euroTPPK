@@ -105,7 +105,7 @@ extern char szModulePath[259];
 #define	WToC(wString, szString)				(WideCharToMultiByte(CP_ACP, 0, wString, -1, szString, (int)sizeof(szString), 0, 0));
 
 #define FONTCOLOR_WHITE		0
-#define FONTCOLOR_RED		1
+#define FONTCOLOR_RED		  1
 #define FONTCOLOR_GREEN		2
 #define FONTCOLOR_BLUE		3
 #define FONTCOLOR_GOLD		4

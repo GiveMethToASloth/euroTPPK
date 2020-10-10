@@ -79,7 +79,7 @@ DWORD WINAPI SpamMessage(LPVOID lpParameter)
 {
   for (INT i = 0; i < v_SpamMessage.GetSize() && i <= 20; i++)
   {
-    Say((LPSTR)v_SpamMessage[i]->Buffers[0]);
+    Say((char*)v_SpamMessage[i]->Buffers[0]);
     Sleep(30);
   }
   return TRUE;
@@ -89,7 +89,7 @@ DWORD WINAPI PKMessage(LPVOID lpParameter)
 {
   for (INT i = 0; i < v_DeathMessage.GetSize() && i <= 20; i++)
   {
-    Say((LPSTR)v_DeathMessage[i]->Buffers[0]);
+    Say((char*)v_DeathMessage[i]->Buffers[0]);
     Sleep(30);
   }
   return TRUE;

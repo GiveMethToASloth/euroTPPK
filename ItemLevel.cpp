@@ -6,26 +6,6 @@ byte Backup[6];
 bool BackUped = false;
 bool ItemLevel = false;
 
-wchar_t* __cdecl wsprintfW2(wchar_t* dest, char* fmt, ...)
-{
-  va_list va;
-  va_start(va, fmt);
-  int len = wvsprintf((char*)dest, fmt, va);
-  for (int i = len; i >= 0; i--) {
-    dest[i] = ((char*)dest)[i];
-  }
-  return dest;
-}
-
-wchar_t* __fastcall ColourD2String(wchar_t* str, DWORD col)
-{
-  memmove(str + 3, str, (wcslen(str) + 1) * sizeof(wchar_t));
-  str[0] = 0xff;
-  str[1] = 'c';
-  str[2] = '0' + (int)col;
-  return str;
-}
-
 void __fastcall ItemNamePatch(wchar_t* name, UnitAny* item)
 {
   wchar_t Buffer[100] = { 0 };

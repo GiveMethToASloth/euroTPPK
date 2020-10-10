@@ -2,56 +2,6 @@
 #include "Area.h"
 #define QUANTITY_STAT_ID	70
 
-BOOL SayOverHead(LPSTR lpMessage, ...)
-{
-  CHAR szBuffer[0x400] = "";
-  va_list Args;
-
-  if (!GameReady())
-    return FALSE;
-
-  va_start(Args, lpMessage);
-  vsprintf(szBuffer, lpMessage, Args);
-  va_end(Args);
-
-  if (lpMessage && lpMessage[0])
-  {
-    UnitAny* pUnit = D2CLIENT_GetPlayerUnit();
-    OverheadMsg* pMsg = D2COMMON_GenerateOverheadMsg(NULL, lpMessage, *p_D2CLIENT_OverheadTrigger);
-    if (pMsg)
-    {
-      D2COMMON_FixOverheadMsg(pMsg, NULL);
-      pUnit->pOMsg = pMsg;
-    }
-  }
-  return TRUE;
-}
-
-BOOL Say(LPSTR lpMessage, ...)
-{
-  CHAR szBuffer[0x400] = "";
-  va_list Args;
-
-  if (!GameReady())
-    return FALSE;
-
-  va_start(Args, lpMessage);
-  vsprintf(szBuffer, lpMessage, Args);
-  va_end(Args);
-
-  LPBYTE aPacket = new BYTE[(INT)strlen(szBuffer) + 6];
-  memset(aPacket, 0, (INT)strlen(szBuffer) + 6);
-
-  aPacket[0] = 0x15;
-  *(LPWORD)&aPacket[1] = 1;
-  memcpy(aPacket + 3, szBuffer, (INT)strlen(szBuffer));
-
-  D2NET_SendPacket((INT)strlen(szBuffer) + 6, 1, aPacket);
-  delete[] aPacket;
-
-  return TRUE;
-}
-
 void GameLoopPatch()
 {
   if (GameReady())
@@ -174,9 +124,7 @@ void FlashPlayer(DWORD ID) {
 
 void PrintLists(void)
 {
-  char Buffer[200];
-  sprintf(Buffer, ":: Friends: %d  Enemys: %d Spammers: %d", PlayerFriendList->GetItemCount(), PlayerEnemyList->GetItemCount(), PlayerSpamList->GetItemCount());
-  PrintMessage(Buffer, FONTCOLOR_WHITE);
+  PrintMessage(false, FONTCOLOR_WHITE, ":: Friends: %d  Enemys: %d Spammers: %d", PlayerFriendList->GetItemCount(), PlayerEnemyList->GetItemCount(), PlayerSpamList->GetItemCount());
 }
 
 bool IsInventoryOpen() {
@@ -194,40 +142,6 @@ void  ToggleInventory(bool on) {
   if (!on)
     if (IsInventoryOpen())
       _asm CALL GUI
-}
-
-wchar_t* AnsiToUnicode(const char* szStr) {
-  wchar_t* wzBuf = nullptr;
-  int nLen = MultiByteToWideChar(CP_ACP, 0, szStr, -1, wzBuf, 0);
-  wzBuf = new wchar_t[nLen];
-  MultiByteToWideChar(CP_ACP, 0, szStr, -1, wzBuf, nLen);
-  return wzBuf;
-}
-
-char* ReplaceString(char* source, char* old, char* newtext)
-{
-  char* original = new char[strlen(source)];
-  strcpy(original, source);
-  char* temp = new char[256];
-  int old_length = strlen(old);
-  int i, j, k, location = -1;
-  for (i = 0; source[i] && (location == -1); ++i)
-    for (j = i, k = 0; source[j] == old[k]; j++, k++)
-      if (!old[k + 1])
-        location = i;
-  if (location != -1)
-  {
-    for (j = 0; j < location; j++)
-      temp[j] = source[j];
-    for (i = 0; newtext[i]; i++, j++)
-      temp[j] = newtext[i];
-    for (k = location + old_length; source[k]; k++, j++)
-      temp[j] = source[k];
-    temp[j] = NULL;
-    for (i = 0; source[i] = temp[i]; i++);
-  }
-  delete original;
-  return temp;
 }
 
 DWORD __declspec(naked) IsExpansion() {
@@ -250,12 +164,6 @@ GameStructInfo* GetGameInfo() {
     pop eax
   }
   return Returne;
-}
-
-void PrintChat(char* Message) {
-  byte CharPacket[100] = {};
-  sprintf((char*)CharPacket, "%c%c%c%s%c%c%c", 0x15, 0x01, 0x00, Message, 0x00, 0x00, 0x00);
-  SendGAMEPacket(CharPacket, strlen(Message) + 6);
 }
 
 void Tele(WORD x, WORD y) {
@@ -411,25 +319,6 @@ void UnhostMembers()
   }*/
 }
 
-//PrintMessage Command
-void PrintMessage(char* Message, char Color)
-{
-  typedef void(_stdcall* pPrint)(wchar_t* Text, char Color);
-  pPrint Print = (pPrint)(DWORD)(0x6FB21740 - 0x6fab0000 + (DWORD)LoadLibrary("D2Client.dll"));
-  wchar_t Buffer[0x130];
-  MultiByteToWideChar(0, 1, Message, 100, Buffer, 100);
-  Print(Buffer, Color);
-};
-
-void PrintMessageBottomLeft(char* Message, char Color)
-{
-  typedef void(_stdcall* pPrint)(wchar_t* Text, char Color);
-  pPrint Print = (pPrint)(DWORD)(0x6FB21500 - 0x6fab0000 + (DWORD)LoadLibrary("D2Client.dll"));
-  wchar_t Buffer[0x130];
-  MultiByteToWideChar(0, 1, Message, 100, Buffer, 100);
-  Print(Buffer, Color);
-};
-
 //DWORD GetClientHandle() {
 //return (DWORD)LoadLibrary("D2Client.dll");
 //}
@@ -478,12 +367,6 @@ void fpEnumUnits(fp EnumFunction, DWORD Type) {
       }
     }
   }
-}
-
-char* mitoa(int integer) {
-  char Buffer[100] = { 0 };
-  sprintf_s(Buffer, "%d", integer);
-  return Buffer;
 }
 
 enum { CLASS_AMAZON = 0, CLASS_SORCERESS, CLASS_NECROMANCER, CLASS_PALADIN, CLASS_BARBARIAN, CLASS_DRUID, CLASS_ASSASSIN };
@@ -855,12 +738,12 @@ UnitAny* FindTPBook(VOID) {
         pItem = D2COMMON_GetNextItemFromInventory(pItem);
       }
       if (bFoundTPBook) {
-        PrintMessage("::ÿc  Your TP books are empty!", 1);
+        PrintMessage(false, FONTCOLOR_RED, "::ÿc  Your TP books are empty!");
         return nullptr;
       }
     }
   }
-  PrintMessage("::ÿc  Couldn't find any TP book.", 1);
+  PrintMessage(false, FONTCOLOR_RED, "::ÿc  Couldn't find any TP book.");
   return nullptr;
 }
 

@@ -16,7 +16,7 @@ bool InputMessage(char** Msg, int argc)
 {
   if (!_strcmpi(Msg[0], "reload")) {
     ReadConfigFile();
-    PrintMessage("::ÿc  Reloaded Config!", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Reloaded Config!");
     return true;
   }
   if (!_strcmpi(Msg[0], "resize")) {
@@ -37,173 +37,173 @@ bool InputMessage(char** Msg, int argc)
   }
   // .chicken
   if (!_strcmpi(Msg[0], "chicken") && argc == 1) {
-    PrintMessage("::ÿc  Syntax is .chicken drink <on/off>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink timer <ms>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken printfaileddrinks <on/off>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink life <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink mana <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink liferej <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink manarej <%%>", 2);
-    PrintMessage("::", 2);
-    PrintMessage("::ÿc  Syntax is .chicken town life <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken town mana <%%>", 2);
-    PrintMessage("::", 2);
-    PrintMessage("::ÿc  Syntax is .chicken quit life <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken quit mana <%%>", 2);
-    PrintMessage("", 2);
-    PrintMessage("::ÿc  Syntax is .chicken hostile <0-4>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken aim <0-4>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink timer <ms>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken printfaileddrinks <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink life <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink mana <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink liferej <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink manarej <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town life <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town mana <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken quit life <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken quit mana <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken hostile <0-4>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken aim <0-4>");
     return true;
   }
   // .chicken drink
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "drink") && argc == 2)) {
-    PrintMessage("::ÿc  Syntax is .chicken drink <on/off>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink timer <ms>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink life <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink mana <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink liferej <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken drink manarej <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink timer <ms>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink life <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink mana <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink liferej <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink manarej <%%>");
     return true;
   }
   // .chicken drink timer
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "drink") && (!_strcmpi(Msg[2], "timer") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken drink timer <ms>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink timer <ms>");
     return true;
   }
   // .chicken drink life
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "drink") && (!_strcmpi(Msg[2], "life") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken drink life <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink life <%%>");
     return true;
   }
   // .chicken drink mana
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "drink") && (!_strcmpi(Msg[2], "mana") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken drink mana <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink mana <%%>");
     return true;
   }
   // .chicken drink lifeRej
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "drink") && (!_strcmpi(Msg[2], "liferej") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken drink liferej <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink liferej <%%>");
     return true;
   }
   // .chicken drink ManaRej
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "drink") && (!_strcmpi(Msg[2], "manarej") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken drink manarej <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken drink manarej <%%>");
     return true;
   }
   // .
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "town") && argc == 2)) {
-    PrintMessage("::ÿc  Syntax is .chicken town life <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken town mana <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town life <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town mana <%%>");
     return true;
   }
   // .chicken town life
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "town") && (!_strcmpi(Msg[2], "life") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken town life <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town life <%%>");
     return true;
   }
   // .chicken town mana
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "town") && (!_strcmpi(Msg[2], "mana") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken town mana <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town mana <%%>");
     return true;
   }
   // .chicken quit
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "town") && argc == 2)) {
-    PrintMessage("::ÿc  Syntax is .chicken town life <%%>", 2);
-    PrintMessage("::ÿc  Syntax is .chicken town mana <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town life <%%>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken town mana <%%>");
     return true;
   }
   // .chicken quit life
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "quit") && (!_strcmpi(Msg[2], "life") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken quit life <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken quit life <%%>");
     return true;
   }
   // .chicken quit mana
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "quit") && (!_strcmpi(Msg[2], "mana") && argc == 3))) {
-    PrintMessage("::ÿc  Syntax is .chicken quit mana <%%>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken quit mana <%%>");
     return true;
   }
   // .chicken hostile
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "hostile") && argc == 2)) {
-    PrintMessage("::ÿc  Syntax is .chicken hostile <0-4>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken hostile <0-4>");
     return true;
   }
   // .chicken aim
   if (!_strcmpi(Msg[0], "chicken") && (!_strcmpi(Msg[1], "aim") && argc == 2)) {
-    PrintMessage("::ÿc  Syntax is .chicken aim <0-4>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .chicken aim <0-4>");
     return true;
   }
   // .bp
   if (!_strcmpi(Msg[0], "bp") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .bp <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .bp <on/off>");
     return true;
   }
   // .questflags
   if (!_strcmpi(Msg[0], "questflags") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .questflags <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .questflags <on/off>");
     return true;
   }
   // .invite members
   if (!_strcmpi(Msg[0], "invitemembers") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .invitemembers <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .invitemembers <on/off>");
     return true;
   }
   // .loot members
   if (!_strcmpi(Msg[0], "lootmembers") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .lootmembers <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .lootmembers <on/off>");
     return true;
   }
   // .modifiers
   if (!_strcmpi(Msg[0], "Modifiers") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .modifiers <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .modifiers <on/off>");
     return true;
   }
   // .Aimbox
   if (!_strcmpi(Msg[0], "aimbox") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .aimbox <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .aimbox <on/off>");
     return true;
   }
   // .Enchbot
   if (!_strcmpi(Msg[0], "enchbot") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .enchbot <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .enchbot <on/off>");
     return true;
   }
   // .winamp
   if (!_strcmpi(Msg[0], "winamp") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .winamp <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .winamp <on/off>");
     return true;
   }
   // .cc
   if (!_strcmpi(Msg[0], "cc") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .cc <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .cc <on/off>");
     return true;
   }
   // .bp
   if (!_strcmpi(Msg[0], "ap") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .ap <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .ap <on/off>");
     return true;
   }
   if (!_strcmpi(Msg[0], "clipcursor") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .clipcursor <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .clipcursor <on/off>");
     return true;
   }
   if (!_strcmpi(Msg[0], "farcast") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .farcast <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .farcast <on/off>");
     return true;
   }
   if (!_strcmpi(Msg[0], "hammer") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .hammer <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .hammer <on/off>");
     return true;
   }
   if (!_strcmpi(Msg[0], "hammerduel") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .hammerduel <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .hammerduel <on/off>");
     return true;
   }
   if (!_strcmpi(Msg[0], "setbp") && argc != 3) {
-    PrintMessage("::ÿc  Syntax is .setbp <type> <value>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .setbp <type> <value>");
     return true;
   }
   if (!_strcmpi(Msg[0], "aa") && argc != 2) {
-    PrintMessage("::ÿc  Syntax is .aa <type>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Syntax is .aa <type>");
     return true;
   }
 
@@ -215,7 +215,7 @@ bool InputMessage(char** Msg, int argc)
       if (!_strcmpi(Msg[2], "on"))
       {
         if (!v_AutoDrink) {
-          PrintMessage("::ÿc  Drinking Enabled!", 2);
+          PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Drinking Enabled!");
           v_AutoDrink = 1;
           return true;
         }
@@ -226,7 +226,7 @@ bool InputMessage(char** Msg, int argc)
       else if (!_strcmpi(Msg[2], "off"))
       {
         if (v_AutoDrink) {
-          PrintMessage("::ÿc  Drinking Disabled!", 2);
+          PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Drinking Disabled!");
           v_AutoDrink = 0;
           return true;
         }
@@ -239,7 +239,7 @@ bool InputMessage(char** Msg, int argc)
         v_DrinkRejuTimer = atoi(Msg[3]);
         char Buffer[200];
         sprintf(Buffer, "::ÿc  Set DrinkRejuvTimer to %i", v_DrinkRejuTimer);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       if (!_strcmpi(Msg[2], "Life") && argc == 4)
@@ -247,7 +247,7 @@ bool InputMessage(char** Msg, int argc)
         v_AutoDrinkLife = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  Set DrinkLife to %i", v_AutoDrinkLife);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       if (!_strcmpi(Msg[2], "Mana") && argc == 4)
@@ -255,7 +255,7 @@ bool InputMessage(char** Msg, int argc)
         v_AutoDrinkMana = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  DrinkMana is set to %i", v_AutoDrinkMana);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       if (!_strcmpi(Msg[2], "liferej") && argc == 4)
@@ -263,7 +263,7 @@ bool InputMessage(char** Msg, int argc)
         v_AutoDrinkReju = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  DrinkLifeRej is set to %i", v_AutoDrinkReju);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       /*		if(!_strcmpi(Msg[2],"manarej") && argc==4)
@@ -282,7 +282,7 @@ bool InputMessage(char** Msg, int argc)
         v_TownLifePercent = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  TownLifeChicken is set to %i", v_TownLifePercent);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       if (!_strcmpi(Msg[2], "mana") && argc == 4)
@@ -290,7 +290,7 @@ bool InputMessage(char** Msg, int argc)
         v_TownManaPercent = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  TownManaChicken is set to %i", v_TownManaPercent);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
     }
@@ -301,7 +301,7 @@ bool InputMessage(char** Msg, int argc)
         v_QuitLifePercent = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  QuitLife is set to %i", v_QuitLifePercent);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       if (!_strcmpi(Msg[2], "mana") && argc == 4)
@@ -309,7 +309,7 @@ bool InputMessage(char** Msg, int argc)
         v_QuitManaPercent = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  QuitMana is set to %i", v_QuitManaPercent);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
     }
@@ -320,7 +320,7 @@ bool InputMessage(char** Msg, int argc)
         v_QuitLifePercent = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  QuitLife is set to %i", v_QuitLifePercent);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
       if (!_strcmpi(Msg[2], "mana") && argc == 4)
@@ -328,7 +328,7 @@ bool InputMessage(char** Msg, int argc)
         v_QuitManaPercent = atoi(Msg[3]);
         char Buffer[20];
         sprintf(Buffer, "::ÿc  QuitMana is set to %i", v_QuitManaPercent);
-        PrintMessage(Buffer, 2);
+        PrintMessage(false, FONTCOLOR_GREEN, Buffer);
         return true;
       }
     }
@@ -336,19 +336,19 @@ bool InputMessage(char** Msg, int argc)
     {
       v_HostileChicken = atoi(Msg[2]);
       if (v_HostileChicken == 0) {
-        PrintMessage("::ÿc  Hostile Chicken is set to OFF", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Hostile Chicken is set to OFF");
       }
       if (v_HostileChicken == 1) {
-        PrintMessage("::ÿc  Hostile Chicken is set to TP", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Hostile Chicken is set to TP");
       }
       if (v_HostileChicken == 2) {
-        PrintMessage("::ÿc  Hostile Chicken is set to TELE", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Hostile Chicken is set to TELE");
       }
       if (v_HostileChicken == 3) {
-        PrintMessage("::ÿc  Hostile Chicken is set to EXIT", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Hostile Chicken is set to EXIT");
       }
       if (v_HostileChicken == 4) {
-        PrintMessage("::ÿc  Hostile Chicken is set to WARN", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Hostile Chicken is set to WARN");
       }
       return true;
     }
@@ -356,27 +356,27 @@ bool InputMessage(char** Msg, int argc)
     {
       v_AimChicken = atoi(Msg[2]);
       if (v_AimChicken == 0)
-        PrintMessage("::ÿc  Aim Chicken is set to OFF", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Aim Chicken is set to OFF");
       if (v_AimChicken == 1)
-        PrintMessage("::ÿc  Aim Chicken is set to TP", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Aim Chicken is set to TP");
       if (v_AimChicken == 2)
-        PrintMessage("::ÿc  Aim Chicken is set to TELE", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Aim Chicken is set to TELE");
       if (v_AimChicken == 3)
-        PrintMessage("::ÿc  Aim Chicken is set to EXIT", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Aim Chicken is set to EXIT");
       if (v_AimChicken == 4) {
-        PrintMessage("::ÿc  Aim Chicken is set to WARN", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Aim Chicken is set to WARN");
       }
       return true;
     }
     if (!_strcmpi(Msg[1], "printfaileddrinks")) {
       if (!_strcmpi(Msg[2], "on")) {
         v_PrintFailed = 1;
-        PrintMessage("::ÿc  Activated Showing of Failed Drinks", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Showing of Failed Drinks");
         return true;
       }
       if (!_strcmpi(Msg[2], "off")) {
         v_PrintFailed = 0;
-        PrintMessage("::ÿc  Deactivated Showing of Failed Drinks", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Showing of Failed Drinks");
         return true;
       }
     }
@@ -386,25 +386,25 @@ bool InputMessage(char** Msg, int argc)
     if (!_strcmpi(Msg[1], "on")) {
       MaxBPs();
       v_MaxBPs = true;
-      PrintMessage("::ÿc  Loaded Maxed Breakpoints", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Loaded Maxed Breakpoints");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       UnloadMaxBPs();
       v_MaxBPs = false;
-      PrintMessage("::ÿc  Unloaded Maxed Breakpoints", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Unloaded Maxed Breakpoints");
       return true;
     }
   }
   if (!_strcmpi(Msg[0], "questflags")) {
     if (!_strcmpi(Msg[1], "on")) {
       v_ShowQuestPackets = 1;
-      PrintMessage("::ÿc  Activated Questflag Notifications", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Questflag Notifications");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       v_ShowQuestPackets = false;
-      PrintMessage("::ÿc  Deactivated Questflag Notifications", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Questflag Notifications");
       return true;
     }
   }
@@ -412,60 +412,60 @@ bool InputMessage(char** Msg, int argc)
   if (!_strcmpi(Msg[0], "invitemembers")) {
     if (!_strcmpi(Msg[1], "on")) {
       v_InviteMembers = true;
-      PrintMessage("::ÿc  Activated Automatic Invitation of Members", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Automatic Invitation of Members");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       v_InviteMembers = false;
-      PrintMessage("::ÿc  Deactivated Automatic Invitation of Members", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Automatic Invitation of Members");
       return true;
     }
   }
   if (!_strcmpi(Msg[0], "lootmembers")) {
     if (!_strcmpi(Msg[1], "on")) {
       v_LootMembers = true;
-      PrintMessage("::ÿc  Activated Automatic Looting of Members", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Automatic Looting of Members");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       v_LootMembers = false;
-      PrintMessage("::ÿc  Deactivated Automatic Looting of Members", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Automatic Looting of Members");
       return true;
     }
   }
   if (!_strcmpi(Msg[0], "modifiers")) {
     if (!_strcmpi(Msg[1], "on")) {
       //cfg.DrawModifiers=1;
-      PrintMessage("::ÿc  Activated Showing of Modifiers", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Showing of Modifiers");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       //cfg.DrawModifiers=0;
-      PrintMessage("::ÿc  Deactivated Showing of Modifiers", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Showing of Modifiers");
       return true;
     }
   }
   if (!_strcmpi(Msg[0], "aimbox")) {
     if (!_strcmpi(Msg[1], "on")) {
       v_AimBox = 1;
-      PrintMessage("::ÿc  Activated Showing of Aimbox", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Showing of Aimbox");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       v_AimBox = 0;
-      PrintMessage("::ÿc  Deactivated Showing of Aimxbox", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Showing of Aimxbox");
       return true;
     }
   }
   if (!_strcmpi(Msg[0], "winamp")) {
     if (!_strcmpi(Msg[1], "on")) {
       v_DrawSongTitle = 1;
-      PrintMessage("::ÿc  Activated Showing of Winamp Track", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activated Showing of Winamp Track");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       v_DrawSongTitle = 0;
-      PrintMessage("::ÿc  Deactivated Showing of Winamp Track", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivated Showing of Winamp Track");
       return true;
     }
   }
@@ -474,7 +474,7 @@ bool InputMessage(char** Msg, int argc)
       char Buffer[200];
       if (!EnchBot) {
         EnchBot = true;
-        PrintMessage("::ÿc  Enchbot Activated", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Enchbot Activated");
         sprintf(Buffer, "EuTPPK Enchant bot Activated! Commands: %s , %s", v_EnchantMe, v_EnchantMerc/*,v_EnchantAll*/);
         PrintChat(Buffer);
         CreateThread(0, 0, AutoPartyThread, 0, 0, 0);
@@ -486,7 +486,7 @@ bool InputMessage(char** Msg, int argc)
     }
     if (!_strcmpi(Msg[1], "off")) {
       if (EnchBot) {
-        PrintMessage("::ÿc  Enchbot Deactivated", 2);
+        PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Enchbot Deactivated");
         PrintChat("Enchbot Deactivated!");
         TerminateThread(AutoPartyThread, 0);
         EnchBot = false;
@@ -499,30 +499,30 @@ bool InputMessage(char** Msg, int argc)
   }
 
   if (!_strcmpi(Msg[0], "help")) {
-    PrintMessage("::ÿc  Commands:", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Commands:");
 
-    PrintMessage("::ÿc  .reload", 2);
-    PrintMessage("::ÿc  .chicken <type> <value>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .reload");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .chicken <type> <value>");
 
-    PrintMessage("::ÿc  .bp <on/off>", 2);
-    PrintMessage("::ÿc  .questflags <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .bp <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .questflags <on/off>");
 
-    PrintMessage("::ÿc  .invitemembers <on/off>", 2);
-    PrintMessage("::ÿc  .lootmembers <on/off>", 2);
-    PrintMessage("::ÿc  .ap <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .invitemembers <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .lootmembers <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .ap <on/off>");
 
-    PrintMessage("::ÿc  .modifiers <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .modifiers <on/off>");
 
-    PrintMessage("::ÿc  .aimbox <on/off>", 2);
-    PrintMessage("::ÿc  .enchbot <on/off>", 2);
-    PrintMessage("::ÿc  .winamp <on/off>", 2);
-    PrintMessage("::ÿc  .clipcursor <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .aimbox <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .enchbot <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .winamp <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .clipcursor <on/off>");
 
-    PrintMessage("::ÿc  .hammer <on/off>", 2);
-    PrintMessage("::ÿc  .hammerduel <on/off>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .hammer <on/off>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .hammerduel <on/off>");
     //PrintMessage("::ÿc  .farcast <on/off>",2);
-    PrintMessage("::ÿc  .setbp <type> <value>", 2);
-    PrintMessage("::ÿc  .aa <type>", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .setbp <type> <value>");
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  .aa <type>");
 
     return true;
   }
@@ -530,12 +530,12 @@ bool InputMessage(char** Msg, int argc)
   if (!_strcmpi(Msg[0], "units")) {
     if (Units) {
       Units = false;
-      PrintMessage("::ÿc  Removing Unit Numbers & Type.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Removing Unit Numbers & Type.");
       return true;
     }
     else {
       Units = true;
-      PrintMessage("::ÿc  Showing Unit Numbers & Type.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Showing Unit Numbers & Type.");
       return true;
     }
   }
@@ -561,13 +561,13 @@ bool InputMessage(char** Msg, int argc)
       RECT WindowRect;
       GetWindowRect(D2GFX_GetHwnd(), &WindowRect);
       ClipCursor(&WindowRect);
-      PrintMessage("::ÿc  Clipping Cursor.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Clipping Cursor.");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       ClipCursor(0);
       Set = false;
-      PrintMessage("::ÿc  Releasing Cursor.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Releasing Cursor.");
       return true;
     }
   }
@@ -575,23 +575,23 @@ bool InputMessage(char** Msg, int argc)
   if (!_strcmpi(Msg[0], "ap")) {
     if (!_strcmpi(Msg[1], "on")) {
       CreateThread(0, 0, AutoPartyThread, 0, 0, 0);
-      PrintMessage("::ÿc  Activating Autoparty.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activating Autoparty.");
     }
     if (!_strcmpi(Msg[1], "off")) {
       TerminateThread(AutoPartyThread, 0);
-      PrintMessage("::ÿc  Deactivating Autoparty.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivating Autoparty.");
     }
   }
   if (!_strcmpi(Msg[0], "hammer")) {
     if (!_strcmpi(Msg[1], "on")) {
-      PrintMessage("::ÿc  Autohammer Activated.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Autohammer Activated.");
       GetD2MousePos(Camp);
       Hammer = true;
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       Hammer = false;
-      PrintMessage("::ÿc  Autohammer Deactivated.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Autohammer Deactivated.");
       HoldRightUp(Camp.x, Camp.y);
       return true;
     }
@@ -659,7 +659,7 @@ bool InputMessage(char** Msg, int argc)
       v_BPIAS = atoi(Msg[2]);
       char Buffer[200];
       sprintf(Buffer, "::ÿc  Set IAS to %i", v_BPIAS);
-      PrintMessage(Buffer, 2);
+      PrintMessage(false, FONTCOLOR_GREEN, Buffer);
       MaximizeIAS();
       return true;
     }
@@ -667,7 +667,7 @@ bool InputMessage(char** Msg, int argc)
       v_BPFCR = atoi(Msg[2]);
       char Buffer[200];
       sprintf(Buffer, "::ÿc  Set FCR to %i", v_BPFCR);
-      PrintMessage(Buffer, 2);
+      PrintMessage(false, FONTCOLOR_GREEN, Buffer);
       MaximizeFCR();
       return true;
     }
@@ -675,7 +675,7 @@ bool InputMessage(char** Msg, int argc)
       v_BPFBR = atoi(Msg[2]);
       char Buffer[200];
       sprintf(Buffer, "::ÿc  Set FBR to %i", v_BPFBR);
-      PrintMessage(Buffer, 2);
+      PrintMessage(false, FONTCOLOR_GREEN, Buffer);
       MaximizeFBR();
       return true;
     }
@@ -683,7 +683,7 @@ bool InputMessage(char** Msg, int argc)
       v_BPFHR = atoi(Msg[2]);
       char Buffer[200];
       sprintf(Buffer, "::ÿc  Set FHR to %i", v_BPFHR);
-      PrintMessage(Buffer, 2);
+      PrintMessage(false, FONTCOLOR_GREEN, Buffer);
       MaximizeFHR();
       return true;
     }
@@ -692,12 +692,12 @@ bool InputMessage(char** Msg, int argc)
   if (!_strcmpi(Msg[0], "hammerduel")) {
     if (!_strcmpi(Msg[1], "on")) {
       hammerduel = true;
-      PrintMessage("::ÿc  Activating Hammerdin Duelhelper.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Activating Hammerdin Duelhelper.");
       return true;
     }
     if (!_strcmpi(Msg[1], "off")) {
       hammerduel = false;
-      PrintMessage("::ÿc  Deactivating Hammerdin Duelhelper.", 2);
+      PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Deactivating Hammerdin Duelhelper.");
       return true;
     }
   }
@@ -710,7 +710,7 @@ bool InputMessage(char** Msg, int argc)
       char Buffer[200];
       sprintf(Buffer, "::ÿc  Sniffing %i", SniffPacket);
       sniff = true;
-      PrintMessage(Buffer, 2);
+      PrintMessage(false, FONTCOLOR_GREEN, Buffer);
       return true;
     }
   }
@@ -728,7 +728,7 @@ bool Input(char* Text) {
     int argc = MakeParameter(Buffer2, argv, ' ', FALSE);
     if (InputMessage(argv, argc))
       return false;
-    PrintMessage("::ÿc  Command not found!", 2);
+    PrintMessage(false, FONTCOLOR_GREEN, "::ÿc  Command not found!");
     return false; // Return false, so it wont print
     return false;
   }
@@ -748,17 +748,17 @@ DWORD __fastcall SendPacket(byte* data, DWORD len) {
       if (!IsTownLevel(GetPlayerArea())) {
         if (data[0] == 0x3c) // Set Skill
           if (data[1] == D2S_BLESSEDHAMMER) {
-            PrintMessage("Selected hammer -> Conc", 1);
+            PrintMessage(false, FONTCOLOR_RED, "Selected hammer -> Conc");
             SetSkill(D2S_CONCENTRATION, bLeft);
             keybd_event(VK_SHIFT, 1, 0, 0);
           }
         if (data[1] == D2S_CHARGE) {
-          PrintMessage("Selected Charge -> Vigor", 1);
+          PrintMessage(false, FONTCOLOR_RED, "Selected Charge -> Vigor");
           SetSkill(D2S_VIGOR, bLeft);
           keybd_event(VK_SHIFT, 1, 1, 0);
         }
         if (data[1] == D2S_TELEPORT) {
-          PrintMessage("Selected Teleport -> Conc", 1);
+          PrintMessage(false, FONTCOLOR_RED, "Selected Teleport -> Conc");
           SetSkill(D2S_CONCENTRATION, bLeft);
           keybd_event(VK_SHIFT, 1, 1, 0);
         }

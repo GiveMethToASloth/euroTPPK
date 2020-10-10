@@ -29,7 +29,7 @@ DWORD   fpCalculateTeleportPath(long x, long y, LPPOINT lpBuffer, DWORD dwMaxCou
 {
   CCollisionMap	g_collisionMap;
   if (!g_collisionMap.CreateMap(GetPlayerArea()))
-    PrintMessage("Failed Creating Map", 3);
+    PrintMessage(false, FONTCOLOR_BLUE, "Failed Creating Map");
   return 0;
 
   POINT ptStart = GetPlayerPosition(D2CLIENT_GetPlayerUnit()->dwUnitId);

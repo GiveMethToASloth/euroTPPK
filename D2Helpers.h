@@ -1,7 +1,5 @@
 void HostileAll();
 void UnhostMembers();
-BOOL Say(LPSTR lpMessage, ...);
-BOOL SayOverHead(LPSTR lpMessage, ...);
 void GameEndPatch();
 void GameLoopPatch();
 BOOL SetSkill(WORD wSkillId, BOOL bLeft);
@@ -11,9 +9,6 @@ void FlashPlayer(DWORD ID);
 bool IsInventoryOpen();
 void  ToggleInventory(bool on);
 void PrintLists(void);
-wchar_t* AnsiToUnicode(const char* szStr);
-char* ReplaceString(char* source, char* old, char* newtext);
-void PrintChat(char* Message);
 DWORD GetExpLeft();
 //void SendBNMessage(char* lpMsg);
 GameStructInfo* GetGameInfo();
@@ -31,8 +26,6 @@ INT		GetSkill(WORD wSkillId);
 int MakeParameter(char* szInput, char** argv, char splitchar, bool bSkipQuote);
 char* GetNameByID(DWORD PID);
 void Hostile(DWORD ID);
-void PrintMessage(char* Message, char Color);
-void PrintMessageBottomLeft(char* Message, char Color);
 
 typedef bool(_stdcall* fp)(UnitAny* pUnit);
 void fpEnumUnits(fp EnumFunction, DWORD Type);

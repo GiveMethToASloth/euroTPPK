@@ -990,7 +990,7 @@ void DT(void) {
     if (TimeOn1 < 1000) {
       if (v_AutoScreenShot)
         D2WIN_TakeScreenshot();
-      PrintMessage("Screen Captured", 8);
+      PrintMessage(false, FONTCOLOR_ORANGE, "Screen Captured");
       Killed = false;
       return;
     }
